@@ -1,7 +1,16 @@
 const notaEffects = {
-    forte: function()
-    {
+
+   /* /**
+     * 
+     * @param {Nota} nota 
+     
+    forte: (nota) => {
+        nota.properties.set("forte", true);
+    },*/
+    forte: function(){
+        
         this.scene.playerNotesAgainstEnemyNotes.add(this);
+
     },
     piano: function()
     {
