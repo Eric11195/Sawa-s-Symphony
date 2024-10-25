@@ -72,6 +72,7 @@ export default class combatScene extends Phaser.Scene {
         this.enemy = new Enemy(this, testEnemy);
 
         music = this.sound.add('currentCombatSong');
+        clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this)
 
 
         //MARCADORES DE PTS
