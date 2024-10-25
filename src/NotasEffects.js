@@ -1,4 +1,5 @@
 const notaEffects = {
+
    /* /**
      * 
      * @param {Nota} nota 
@@ -7,16 +8,16 @@ const notaEffects = {
         nota.properties.set("forte", true);
     },*/
     forte: function(){
-        this.forte= true;
+        
+        this.scene.playerNotesAgainstEnemyNotes.add(this);
+
     },
     piano: function()
     {
-        this.piano= true;
+        this.piano = true;
     },
     earworm: function(earwormToAdd){
-        console.log(earwormToAdd);
         if(this.earworm==undefined){this.earworm=0;}
-        console.log(this.earworm+","+earwormToAdd);
         this.earworm+=earwormToAdd;
        
     },
@@ -25,11 +26,23 @@ const notaEffects = {
     },
     adagio: function()
     {
-        this.speed=1/2;
+        this.speed=(1/2);
     },
-    acompañamiento: function(efectosAcompañamiento)
+    accompaniment: function(efectosAccompaniment)
     {
-        this.efectosAcompañamiento=efectosAcompañamiento;
+        if(this.notesCollidedWith==undefined) this.notesCollidedWith =[];
+        this.scene.playerNotesAndPlayerNotes.add(this);
+        this.efectosAccompaniment=efectosAccompaniment;
+    },
+    silent: function(silentToAdd)
+    {
+        if(this.silent==undefined){this.silent=0;}
+        this.silent+=silentToAdd;
+    },
+    damage: function(){
+        this.tipoNota--;
+        if(this.tipoNota < 0) this.destroy();
+        else this.UpdateImage();
     }
 
 }

@@ -1,34 +1,14 @@
 import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "./tileData.js";
 import {deltaTime, clockInstance} from "./combatScene.js"
-import notaEffects from "./NotasEffects.js";
-
-const notas = {
-    0:{
-        name: "corchea"
-    },
-    1 : {
-        name: "negra"
-    },
-    2 : {
-        name: "blanca"
-    }
-};
+import NotesEffects from "./NotasEffects.js";
 
 export default class Nota extends Phaser.GameObjects.Sprite{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
     tipoNota;
     // Contiene la velocidad en compases por beat, 
-    
     speed;
     //Dirección hacia la que avanza la nota
     direction;
-    //La cantidad de daño de veneno que contiene la nota
-   
-    //cantidad de tiempo que se queda parado (Se llama silencio en el GDD)
-    silent;
-    /**También creo una variable de quedarse quieto 
-    y hasta que se acabe el tiempo, el speed será 0*/
-
     /**
      * @param {*} scene la escena en la que se genera la nota
      * @param {*} posX x de la casilla en la que se genera la nota
@@ -37,31 +17,47 @@ export default class Nota extends Phaser.GameObjects.Sprite{
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
     constructor(scene, posX, posY, tipoNota, direction){
-        super(scene, Tile00PositionX(), Tile00PositionY(), notas[tipoNota].name);
+        super(scene, Tile00PositionX(), Tile00PositionY(), 'notes');
         scene.add.existing(this);
         this.setScale(2,2);
         this.setOrigin(0,0.75);
 
         this.x = Tile00PositionX() + posX * TileDiffX();
         this.y = Tile00PositionY() + posY * TileDiffY();
-        this.tipoNota = notas[tipoNota];
+        //this.tipoNota = notas[tipoNota];
         this.speed = 1;
         this.silent=0;
        
         this.direction = direction;
-        
+        this.tipoNota = tipoNota;
         
         //takes the event postupdate from the scene and makes this function postUpdate be called when received
-
+        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this));
         this.scene.events.on('postupdate', this.PostUpdate.bind(this));
  
+        scene.physics.add.existing(this);
+        this.body.setSize(20, 20, true);
+        //Se define como nota del player o del enemy
+        if(this.direction == 1){
+            scene.playerNotes.add(this);
+            this.tint = 0x179bae;
+        }else{
+            scene.enemyNotes.add(this);
+            this.tint = 0xff8343;
+            this.setFlipY(true);
+        }
+
+        this.UpdateImage();
+    }
+    UpdateImage(){
+        this.play("notes"+this.tipoNota);
     }
 
     //After each update moves note forward
     //this needs to be done because deltaTime is not defined until the first update
 
     PostUpdate(){
-        this.MoveForward();
+        if(!this.silent) this.MoveForward();
  
     }
 
@@ -76,32 +72,15 @@ export default class Nota extends Phaser.GameObjects.Sprite{
             this.destroy();
         }
     }
-    /* ChangePoison se usa tanto para añadir como para quitar 
-    el efecto de veneno */
-   
-    //ChangeWaitTime se usa para añadir o quitar tiempo de espera
-    AddSilent(cantidad)
-    {
-        this.silent+=cantidad
-    }
-    RemoveSilent(cantidad)
-    {
-        this.silent-=cantidad;
-        if(this.silent<0){this.silent=0;}
-    }
-    
    
     
     BeatFunction()
     {
-        this.silent--;
+        if(this.silent > 0) this.silent--;
     }
     AddKeyword(config){
-    
-        for(let i = 0; i < config.length; i++){
-            config[i].method.apply(this,config[i].param);
-           
-        };
-       
+        Object.keys(config).forEach(key => {
+            NotesEffects[key].apply(this, config[key]);
+        });       
     }
 }
