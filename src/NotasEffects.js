@@ -6,6 +6,13 @@ const notaEffects = {
         }else{
             this.scene.collideWithPlayerNotes.add(this);
         }
+   /* /**
+     * 
+     * @param {Nota} nota 
+     
+    forte: (nota) => {
+        nota.properties.set("forte", true);
+    },*/
 
     },
     piano: function()
