@@ -6,6 +6,7 @@ import Instrument from "./instrumento.js";
 import InstrumentDataBase from "./instrumentDataBase.js";
 import Enemy from "./enemy.js";
 import testEnemy from "./testEnemy.js";
+import InstrumentUpgrades from "./instrumentUpgrades.js"
 
 let KEYS;
 let deltaTime;
@@ -65,7 +66,7 @@ export default class combatScene extends Phaser.Scene {
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
         //Crea un player con la escena, la pos00x, pos00y, tileDiffx, tileDiffy
         this.player = new Player(this, new Instrument(this,InstrumentDataBase[0]), new Instrument(this, InstrumentDataBase[1]));
-
+        this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
 
         music = this.sound.add('currentCombatSong');
@@ -138,7 +139,6 @@ export default class combatScene extends Phaser.Scene {
         this.physics.add.overlap(this.collideWithEnemyNotes, this.enemyNotes, (collidingNote, receivingNote)=>{
             if(!collidingNote.piano && !receivingNote.piano)
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                console.log(collidingNote.efectosAccompaniment);
                 //console.log(collidingNote.efectosAccompaniment);
                 receivingNote.destroy();
                 collidingNote.AddKeyword({damage:null});

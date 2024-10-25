@@ -32,7 +32,6 @@ export default class Instrumento{
         //Sets the cooldown
         this.actualCooldown = this.baseCooldown;
         this.ProducirNotas(posX, posY);
-
         //Previene que se generen notas fuera del tablero
         
     }
@@ -56,7 +55,6 @@ export default class Instrumento{
 
     }
 
-
     BeatFunction(){
         this.actualCooldown--;
     }
@@ -64,5 +62,10 @@ export default class Instrumento{
     /**returns if the cooldown of this instrument exists */
     CanBePlayed(){
         return (this.actualCooldown <= 0);
+    }
+
+    /**Receives a function to be called in this instrument */
+    ApplyUpgrade(upgrade){
+        upgrade(this);
     }
 }
