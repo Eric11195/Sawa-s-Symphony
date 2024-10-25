@@ -7,7 +7,13 @@ const InstrumentDataBase = [
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
-    noteKeywords: {forte:null,allegro:null, accompaniment:[{adagio:[2]}]}
+    noteKeywords: {forte:null,allegro:null, accompaniment:{adagio:2}},
+    Play: function(posX,posY){
+        this.actualCooldown = this.baseCooldown; //x defecto
+        this.ProducirNotas(posX, posY); //x defecto
+
+        //Código de nuestras funciones locas
+    }
 },
 {
     nombre: "Piano",

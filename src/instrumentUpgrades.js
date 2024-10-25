@@ -5,7 +5,6 @@ const InstrumentUpgrades = [
     },
     function(instrument){
         instrument.tipoNotas = Math.max(Math.min(instrument.tipoNotas+1, 2), 0);
-        console.log(instrument);
     }, 
     function(instrument){
         instrument.numeroNotas++;
