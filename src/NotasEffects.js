@@ -1,4 +1,11 @@
 const notaEffects = {
+   /* /**
+     * 
+     * @param {Nota} nota 
+     
+    forte: (nota) => {
+        nota.properties.set("forte", true);
+    },*/
     forte: function(){
         this.forte= true;
     },
