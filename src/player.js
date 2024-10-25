@@ -73,4 +73,7 @@ export default class Player extends BoardUnit{
     Tempo(){
         console.log("tempo");
     }
+    SwapInstruments(instin, indexout){
+        this.instrumentos[indexout] = instin;
+    }
 }
