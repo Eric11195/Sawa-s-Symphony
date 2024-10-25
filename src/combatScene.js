@@ -26,7 +26,7 @@ export default class combatScene extends Phaser.Scene {
      */
 
     constructor(){
-        super({key: "menu"});
+        super({key: "combatScene"});
         this.lastFrameTime = new Date();
     }
 
@@ -51,7 +51,7 @@ export default class combatScene extends Phaser.Scene {
         
         //iniciar el clock con los BPM como parametro
         clockInstance = new Clock(this, testEnemy.bpm);
-        clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
+        ;
     }
 
     /**
@@ -70,7 +70,7 @@ export default class combatScene extends Phaser.Scene {
         enemy = new Enemy(this, testEnemy);
 
         music = this.sound.add('currentCombatSong');
-
+        clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this)
         //Crea los marcadores de ritmo
         new RhythmMarker(this, 3);
 
