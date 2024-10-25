@@ -6,6 +6,7 @@ import Instrument from "./instrumento.js";
 import InstrumentDataBase from "./instrumentDataBase.js";
 import Enemy from "./enemy.js";
 import testEnemy from "./testEnemy.js";
+import InstrumentUpgrades from "./instrumentUpgrades.js";
 
 let KEYS;
 let deltaTime;
@@ -68,11 +69,11 @@ export default class combatScene extends Phaser.Scene {
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
         //Crea un player con la escena, la pos00x, pos00y, tileDiffx, tileDiffy
         this.player = new Player(this, new Instrument(this,InstrumentDataBase[0]), new Instrument(this, InstrumentDataBase[1]));
-
+        //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
 
         music = this.sound.add('currentCombatSong');
-        clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this)
+        clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
 
 
         //MARCADORES DE PTS
@@ -107,9 +108,9 @@ export default class combatScene extends Phaser.Scene {
         this.playerNotes = this.physics.add.group();
         this.enemyNotes = this.physics.add.group();
         //Contiene las notas que chocan contra notas del player
-        this.playerNotesAndPlayerNotes = this.physics.add.group();
+        this.collideWithPlayerNotes = this.physics.add.group();
         //Contiene las notas del enemigo o del player que chocan entre sí
-        this.playerNotesAgainstEnemyNotes = this.physics.add.group();
+        this.collideWithEnemyNotes = this.physics.add.group();
 
         //Las notas del enemigo se chocan con el player
         this.physics.add.overlap(this.enemyNotes, this.player, (player,note)=>{
@@ -133,7 +134,7 @@ export default class combatScene extends Phaser.Scene {
         });
 
         //Notas del player chocandose contra sus propias notas
-        this.physics.add.overlap(this.playerNotesAndPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
+        this.physics.add.overlap(this.collideWithPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
             if(!collidingNote.piano && !receivingNote.piano)
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
                 receivingNote.AddKeyword(collidingNote.efectosAccompaniment);
@@ -141,7 +142,7 @@ export default class combatScene extends Phaser.Scene {
             }
         });
         //Notas del player chocandose contra notas Enemy
-        this.physics.add.overlap(this.playerNotesAgainstEnemyNotes, this.enemyNotes, (collidingNote, receivingNote)=>{
+        this.physics.add.overlap(this.collideWithEnemyNotes, this.enemyNotes, (collidingNote, receivingNote)=>{
             if(!collidingNote.piano && !receivingNote.piano)
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
                 console.log(collidingNote.efectosAccompaniment);

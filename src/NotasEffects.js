@@ -1,48 +1,48 @@
 const notaEffects = {
-
-   /* /**
-     * 
-     * @param {Nota} nota 
-     
-    forte: (nota) => {
-        nota.properties.set("forte", true);
-    },*/
-    forte: function(){
-        
-        this.scene.playerNotesAgainstEnemyNotes.add(this);
-
-    },
-    piano: function()
+    forte: function(nota)
     {
-        this.piano = true;
+        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
+        if(nota.direction==1){
+            nota.scene.collideWithEnemyNotes.add(nota);
+        }else{
+            nota.scene.collideWithPlayerNotes.add(nota);
+        }
     },
-    earworm: function(earwormToAdd){
-        if(this.earworm==undefined){this.earworm=0;}
-        this.earworm+=earwormToAdd;
+    piano: function(nota)
+    {
+        nota.piano = true;
+    },
+    earworm: function(nota,earwormToAdd){
+        if(nota.earworm==undefined){nota.earworm=0;}
+        nota.earworm+=earwormToAdd;
        
     },
-    allegro: function(){
-        this.speed = 2 ;
+    allegro: function(nota){
+        nota.speed = 2 ;
     },
-    adagio: function()
+    adagio: function(nota)
     {
-        this.speed=(1/2);
+        nota.speed =(1/2);
     },
-    accompaniment: function(efectosAccompaniment)
+    accompaniment: function(nota,efectosAccompaniment)
     {
-        if(this.notesCollidedWith==undefined) this.notesCollidedWith =[];
-        this.scene.playerNotesAndPlayerNotes.add(this);
-        this.efectosAccompaniment=efectosAccompaniment;
+        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
+        if(nota.direction == -1){
+            nota.scene.collideWithEnemyNotes.add(nota);
+        }else{
+            nota.scene.collideWithPlayerNotes.add(nota);
+        }
+        nota.efectosAccompaniment=efectosAccompaniment;
     },
-    silent: function(silentToAdd)
+    silent: function(nota,silentToAdd)
     {
-        if(this.silent==undefined){this.silent=0;}
-        this.silent+=silentToAdd;
+        if(nota.silent==undefined){nota.silent=0;}
+        nota.silent+=silentToAdd;
     },
-    damage: function(){
-        this.tipoNota--;
-        if(this.tipoNota < 0) this.destroy();
-        else this.UpdateImage();
+    damage: function(nota){
+        nota.tipoNota--;
+        if(nota.tipoNota < 0) nota.destroy();
+        else nota.UpdateImage();
     }
 
 }

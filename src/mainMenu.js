@@ -4,7 +4,7 @@ export default class mainmenu extends Phaser.Scene
 {
     init()
     {
-        console.log("1");
+        //console.log("1");
      
         
     }
@@ -17,7 +17,7 @@ export default class mainmenu extends Phaser.Scene
         const sprite = this.add.sprite(600,300,"sawa").setInteractive();
         sprite.on('pointerdown',()=>
             {
-                console.log(2);
+                //console.log(2);
                 this.scene.start("combatScene",{ num:1});
             })
         
