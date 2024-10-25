@@ -1,7 +1,12 @@
 const notaEffects = {
     forte: function()
     {
-        this.scene.playerNotesAgainstEnemyNotes.add(this);
+        if(this.direction==1){
+            this.scene.collideWithEnemyNotes.add(this);
+        }else{
+            this.scene.collideWithPlayerNotes.add(this);
+        }
+
     },
     piano: function()
     {
@@ -17,12 +22,16 @@ const notaEffects = {
     },
     adagio: function()
     {
-        this.speed=(1/2);
+        this.speed =(1/2);
     },
     accompaniment: function(efectosAccompaniment)
     {
         if(this.notesCollidedWith==undefined) this.notesCollidedWith =[];
-        this.scene.playerNotesAndPlayerNotes.add(this);
+        if(this.direction == -1){
+            this.scene.collideWithEnemyNotes.add(this);
+        }else{
+            this.scene.collideWithPlayerNotes.add(this);
+        }
         this.efectosAccompaniment=efectosAccompaniment;
     },
     silent: function(silentToAdd)
