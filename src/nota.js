@@ -32,8 +32,12 @@ export default class Nota extends Phaser.GameObjects.Sprite{
         this.tipoNota = tipoNota;
         
         //takes the event postupdate from the scene and makes this function postUpdate be called when received
-        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this));
-        this.scene.events.on('postupdate', this.PostUpdate.bind(this));
+        clockInstance.eventEmitter.on("BeatNow", ()=>{
+            if(this.silent > 0) this.silent--;
+        });
+        this.scene.events.on('postupdate', ()=>{
+            this.PostUpdate();
+        });
  
         scene.physics.add.existing(this);
         this.body.setSize(20, 20, true);
@@ -71,12 +75,6 @@ export default class Nota extends Phaser.GameObjects.Sprite{
         if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
             this.destroy();
         }
-    }
-   
-    
-    BeatFunction()
-    {
-        if(this.silent > 0) this.silent--;
     }
 
     AddKeyword(config){

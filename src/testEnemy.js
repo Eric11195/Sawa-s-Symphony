@@ -5,6 +5,7 @@ const testEnemy = {
     bpm: 78,
     imagePath: "./assets/img/testEnemy.png",
     songPath: './assets/audio/Brutal_Orchestra_OST_Primary_Colours',
+    msSongStart: 330,
     enemyActions:
     [
         [//Compas 1
