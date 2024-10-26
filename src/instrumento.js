@@ -19,7 +19,10 @@ export default class Instrumento{
             this[key] = instrumentConfig[key];
             //const value = object[key];
         });
-        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this));
+        //Se ejecuta a cada beat
+        clockInstance.eventEmitter.on("BeatNow", ()=>{
+            this.actualCooldown--;
+        });
     }
 
     /**
@@ -53,10 +56,6 @@ export default class Instrumento{
             new Nota(this.sceneRef, posX, posY, tipoNotas, 1).AddKeyword(this.noteKeywords);
         }
 
-    }
-
-    BeatFunction(){
-        this.actualCooldown--;
     }
 
     /**returns if the cooldown of this instrument exists */
