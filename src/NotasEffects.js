@@ -43,6 +43,10 @@ const notaEffects = {
         nota.tipoNota--;
         if(nota.tipoNota < 0) nota.destroy();
         else nota.UpdateImage();
+    },
+    upgrade: function(nota){
+        nota.tipoNota = Math.max(Math.min(nota.tipoNota+1, 2), 0);
+        nota.UpdateImage();
     }
 
 }

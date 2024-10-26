@@ -18,7 +18,6 @@ export default class Clock{
     eventEmitter;
     constructor(scene, BPM){
         this.delayTimer = 1000 /(BPM/60);
-        console.log(this.delayTimer);
 
         this.clockConfig = {delay: this.delayTimer, loop: true, callback: this.UpdateLastBeat, callbackScope: this, paused:false};
         //this.clockConfig = scene.clockConfig;
