@@ -3,10 +3,13 @@ import NotasEffects from "./NotasEffects.js"
 /**@todo habrá que convertir en clase pa que tengan imagenes y desc*/
 
 const artifactList = [
-    //Sordina
-    function(){
-        NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
+    {//Sordina
+        effect: function(){
+            NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
+        },
+        img: "ruta",
     }
+
 ];
 /**returns the function created
  * @param {*} func function to be extended

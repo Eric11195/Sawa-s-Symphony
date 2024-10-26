@@ -72,7 +72,7 @@ export default class combatScene extends Phaser.Scene {
         this.player = new Player(this, new Instrument(this,InstrumentDataBase[0]), new Instrument(this, InstrumentDataBase[1]));
 
         //Get Artifact
-        ArtifactList[0]();
+        ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
 
@@ -181,11 +181,11 @@ export default class combatScene extends Phaser.Scene {
         else if (Phaser.Input.Keyboard.JustDown(KEYS.RIGHT)){
             this.player.NormalMove(1,0);
         }else if(Phaser.Input.Keyboard.JustDown(KEYS.BUTTON1)){
-            this.player.PlayInstrument(0);
+            this.player.TryPlayingInstrument(0);
         }else if(Phaser.Input.Keyboard.JustDown(KEYS.BUTTON2)){
-            this.player.PlayInstrument(1);
+            this.player.TryPlayingInstrument(1);
         }else if(Phaser.Input.Keyboard.JustDown(KEYS.BUTTON3)){
-            this.player.PlayInstrument(2);
+            this.player.TryPlayingInstrument(2);
         }
     }
 
