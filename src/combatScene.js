@@ -8,6 +8,7 @@ import Enemy from "./enemy.js";
 import testEnemy from "./testEnemy.js";
 import InstrumentUpgrades from "./instrumentUpgrades.js";
 import ArtifactList from './artifacts.js';
+import vsMarker from "./vsMarker.js";
 
 let KEYS;
 let deltaTime;
@@ -45,6 +46,7 @@ export default class combatScene extends Phaser.Scene {
         /**Todo cambiar clock por la imagen de las notitas que bajan hasta el punto correcto*/
         this.load.image("clock", "./assets/img/discord.png");
         this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
+        this.load.image("vsMarker", "./assets/img/vsMarker.png");
         /**
          * @todo loadear imagenes de las notas
          */
@@ -75,6 +77,9 @@ export default class combatScene extends Phaser.Scene {
         ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
+
+
+        this.vsMarker = new vsMarker(this, {x:195,y:50}, {x:1160,y:60});
 
         music = this.sound.add('currentCombatSong');
         clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
@@ -121,7 +126,7 @@ export default class combatScene extends Phaser.Scene {
             if(!note.piano){
                 this.enemyPoints+= Math.pow(2,note.tipoNota);
                 this.enemyMarker.text = this.enemyPoints;
-                console.log("dado");
+                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
                 note.destroy();
             }
             /**@todo sumarle puntuación al enemy */
@@ -131,7 +136,7 @@ export default class combatScene extends Phaser.Scene {
             if(!note.piano){
                 this.playerPoints+= Math.pow(2,note.tipoNota);
                 this.playerMarker.text = this.playerPoints;
-                console.log("EnemyDado");
+                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
                 note.destroy();
             }
             /**@todo sumarle puntuación al player */
