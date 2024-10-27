@@ -1,4 +1,4 @@
-import { clockInstance } from "./combatScene.js";
+import { clockInstance } from "../Scenes/combatScene.js";
 
 /**Position of the yCenter if rhythm point */
 const beatPos = 625;

@@ -1,6 +1,6 @@
-import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "./tileData.js";
-import {deltaTime, clockInstance} from "./combatScene.js"
-import NotesEffects from "./NotasEffects.js";
+import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/tileData.js";
+import {deltaTime, clockInstance} from "../Scenes/combatScene.js"
+import NotesEffects from "../Effects/NotasEffects.js";
 
 export default class Nota extends Phaser.GameObjects.Sprite{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
@@ -26,7 +26,7 @@ export default class Nota extends Phaser.GameObjects.Sprite{
         this.y = Tile00PositionY() + posY * TileDiffY();
         //this.tipoNota = notas[tipoNota];
         this.speed = 1;
-        this.silent=0;
+        this.silent = 0;
        
         this.direction = direction;
         this.tipoNota = tipoNota;

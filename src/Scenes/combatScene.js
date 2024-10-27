@@ -1,14 +1,14 @@
-import {KEY_BINDINGS} from './inputKeys.js';
-import Player from './player.js';
-import Clock from './clock.js';
-import RhythmMarker from './rhythmMarker.js';
-import Instrument from "./instrumento.js";
-import InstrumentDataBase from "./instrumentDataBase.js";
-import Enemy from "./enemy.js";
-import testEnemy from "./testEnemy.js";
-import InstrumentUpgrades from "./instrumentUpgrades.js";
-import ArtifactList from './artifacts.js';
-import vsMarker from "./vsMarker.js";
+import {KEY_BINDINGS} from '../Utils/inputKeys.js';
+import Player from '../Characters/player.js';
+import Clock from '../Utils/clock.js';
+import RhythmMarker from '../UIelems/rhythmMarker.js';
+import Instrument from "../Upgrades/instrumento.js";
+import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
+import Enemy from "../Characters/enemy.js";
+import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
+import ArtifactList from '../Upgrades/artifacts.js';
+import vsMarker from "../UIelems/vsMarker.js";
 
 let KEYS;
 let deltaTime;
