@@ -1,4 +1,4 @@
-import NotasEffects from "./NotasEffects.js"
+import NotasEffects from "../Effects/NotasEffects.js"
 
 /**@todo habrá que convertir en clase pa que tengan imagenes y desc*/
 
