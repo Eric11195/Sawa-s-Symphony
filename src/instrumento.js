@@ -31,9 +31,9 @@ export default class Instrumento{
      * @param {*} posX posicion en X desde donde se toca el instrumento
      * @param {*} posY posición en Y desde donde se toca el instrumento
      */
-    Play(posX, posY){
+    Play(posX, posY, cdToAdd){
         //Sets the cooldown
-        this.actualCooldown = this.baseCooldown;
+        this.actualCooldown = this.baseCooldown+cdToAdd;
         this.ProducirNotas(posX, posY);
         //Previene que se generen notas fuera del tablero
         

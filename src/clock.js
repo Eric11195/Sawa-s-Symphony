@@ -58,11 +58,23 @@ export default class Clock{
         return (new Date() - this.lastBeat);
     }
 
-    /**Returns if when this is called it can be considered to the rhythm */
-    IsTempo(){
-        let timeTillNextBeat = this.GetTimeSinceBeat();
-        let auxBool = ((new Date() - this.lastPress > this.delayTimer/2) && (timeTillNextBeat < tempoErrorMargin || timeTillNextBeat > this.delayTimer - tempoErrorMargin));
+    /**Returns if when this is called it can be considered to the rhythm 
+     * @param {number} cd beats hasta que pueda ser tocado de nuevo
+     * devuelve true o false y 1 o 0 segun la cantidad de turnos que que queden pa tocarlo
+    */
+    IsTempo(cd){
+        let auxBool;
+        let cdExtra = 0;
+        if(cd > 1) auxBool = false;
+        else{
+            let timeTillNextBeat = this.GetTimeSinceBeat();
+            auxBool = ((new Date() - this.lastPress > this.delayTimer/2) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
+            cdExtra;
+    
+            cdExtra = Math.max(cd,0);
+        }
         this.lastPress = new Date();
-        return auxBool;
+        //console.log(auxBool," ",cdExtra);
+        return {canBePlayed:auxBool,cdToAdd:cdExtra};
     }
 }
