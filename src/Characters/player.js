@@ -1,4 +1,4 @@
-import Instrumento from "../Upgrades/instrumento.js"
+import Instrumento from "../Upgrades/instrument.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 /**

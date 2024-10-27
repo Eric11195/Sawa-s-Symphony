@@ -18,3 +18,11 @@ export function TileDiffX(){
 export function TileDiffY(){
     return 95;
 }
+
+export function InstrumentCdImage0Pos(){
+    return {x:210,y:615};
+}
+
+export function InstrumentCdImageDiffX(){
+    return 105;
+}

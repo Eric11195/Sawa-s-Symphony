@@ -1,4 +1,4 @@
-import { Tile00PositionY, TileDiffY, TileDiffX } from "../Utils/tileData.js";
+import { Tile00PositionY, TileDiffY, TileDiffX } from "../Utils/screenPositions.js";
 import Nota from "../Projectiles/nota.js";
 
 const notaEffects = {
@@ -90,4 +90,4 @@ const notaEffects = {
 
 }
 
-export default notaEffects
+export default notaEffects;
