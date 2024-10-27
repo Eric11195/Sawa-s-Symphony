@@ -1,25 +1,12 @@
-import Instruments from './instruments';
-import Notas from './notas';
+//import { vibrato, sostenuto } from './efectos.js';
 
-export default class Efectos extends Instruments {
-    constructor() {
-        super();
-        this.effectsList = []; // Additional property
-    }
+const InstrumentoEffects = {
+    vibrato: function() {
+        // Apply vibrato
+        console.log("Applying vibrato effect");
+        // Implementation goes here
 
-    // Example method
-    applyEffect(effectName) {
-        console.log(`Applying effect: ${effectName}`);
-        this.effectsList.push(effectName); // Add effect to the list
-    }
-
-    // Additional method
-    listEffects() {
-        console.log('Current effects:', this.effectsList.join(', '));
-    }
-
-    // Creates a projectile that moves forward along the x-axis
-    Vibrato() {
+        // cambiar el projectile por un proyectil de otra clase que ya crearé
         const projectile = new Notas();
         projectile.velocity = { x: 1, y: 0 }; // Travels forward along the x-axis
     
@@ -29,10 +16,13 @@ export default class Efectos extends Instruments {
         };
     
         return projectile;
-    }
+    },
 
     // Creates a note generator that sustains a note for a given duration
-    Sostenuto(duration, interval) {
+    sostenuto: function(duration, interval) {
+        // Apply sostenuto
+        console.log("Applying sostenuto effect");
+        // Implementation goes here
         const noteGenerator = new Notas();
         noteGenerator.duration = duration;
         noteGenerator.interval = interval;
@@ -59,16 +49,21 @@ export default class Efectos extends Instruments {
         };
     
         return noteGenerator;
-    }
+    },
+    MovePlayerXY: function(x, y) {
+        // Moves the player along the x and y axes
+        console.log("Moving player");
+        // Implementation goes here
 
-    movePlayerXY(player, x, y) {
-        this.player.Move(x, y);
-        //Instrumento.SceneRef.player.Move(x, y);
-        //Scene.player.Move(x, y);
-    }
-
-    // does not let the player move until the duration has passed
-    Ancla(duration) {
+    },
+    Ancla: function(duration) {
+        // Apply chorus effect to the sound
+        console.log("Applying ancla");
+        // Implementation goes here
         this.player.canMove = duration;
-    }
-}
+    },
+    //vibrato: vibrato,
+    //sostenuto: sostenuto
+};
+
+export default InstrumentoEffects;
