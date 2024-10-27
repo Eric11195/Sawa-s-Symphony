@@ -1,6 +1,6 @@
-import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "./tileData.js";
-import {deltaTime, clockInstance} from "./combatScene.js"
-import NotesEffects from "./NotasEffects.js";
+import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/tileData.js";
+import {deltaTime, clockInstance} from "../Scenes/combatScene.js"
+import NotesEffects from "../Effects/NotasEffects.js";
 
 export default class Nota extends Phaser.GameObjects.Sprite{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
@@ -26,14 +26,18 @@ export default class Nota extends Phaser.GameObjects.Sprite{
         this.y = Tile00PositionY() + posY * TileDiffY();
         //this.tipoNota = notas[tipoNota];
         this.speed = 1;
-        this.silent=0;
+        this.silent = 0;
        
         this.direction = direction;
         this.tipoNota = tipoNota;
         
         //takes the event postupdate from the scene and makes this function postUpdate be called when received
-        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this));
-        this.scene.events.on('postupdate', this.PostUpdate.bind(this));
+        clockInstance.eventEmitter.on("BeatNow", ()=>{
+            if(this.silent > 0) this.silent--;
+        });
+        this.scene.events.on('postupdate', ()=>{
+            this.PostUpdate();
+        });
  
         scene.physics.add.existing(this);
         this.body.setSize(20, 20, true);
@@ -72,17 +76,11 @@ export default class Nota extends Phaser.GameObjects.Sprite{
             this.destroy();
         }
     }
-   
-    
-    BeatFunction()
-    {
-        if(this.silent > 0) this.silent--;
-    }
+
     AddKeyword(config){
         Object.keys(config).forEach(key => {
-            console.log(NotesEffects[key]);
-            NotesEffects[key].apply(this, config[key]);
-            //const value = object[key];
+            NotesEffects[key](this, config[key]);
+            //NotesEffects[key].apply(this, config[key]);
         });       
     }
 }

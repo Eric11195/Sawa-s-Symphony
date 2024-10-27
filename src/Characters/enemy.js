@@ -1,5 +1,5 @@
-import Nota from "./nota.js";
-import { clockInstance } from "./combatScene.js";
+import Nota from "../Projectiles/nota.js";
+import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 
 export default class Enemy extends BoardUnit{

@@ -1,5 +1,5 @@
-import Nota from "./nota.js"
-import { clockInstance } from "./combatScene.js";
+import Nota from "../Projectiles/nota.js"
+import { clockInstance } from "../Scenes/combatScene.js";
 
 export default class Instrumento{
     sceneRef;
@@ -19,7 +19,10 @@ export default class Instrumento{
             this[key] = instrumentConfig[key];
             //const value = object[key];
         });
-        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this));
+        //Se ejecuta a cada beat
+        clockInstance.eventEmitter.on("BeatNow", ()=>{
+            this.actualCooldown--;
+        });
     }
 
     /**
@@ -32,7 +35,6 @@ export default class Instrumento{
         //Sets the cooldown
         this.actualCooldown = this.baseCooldown;
         this.ProducirNotas(posX, posY);
-
         //Previene que se generen notas fuera del tablero
         
     }
@@ -56,13 +58,13 @@ export default class Instrumento{
 
     }
 
-
-    BeatFunction(){
-        this.actualCooldown--;
-    }
-
     /**returns if the cooldown of this instrument exists */
     CanBePlayed(){
         return (this.actualCooldown <= 0);
+    }
+
+    /**Receives a function to be called in this instrument */
+    ApplyUpgrade(upgrade){
+        upgrade(this);
     }
 }

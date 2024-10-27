@@ -1,5 +1,5 @@
-import Instrumento from "./instrumento.js"
-import { clockInstance } from "./combatScene.js";
+import Instrumento from "../Upgrades/instrumento.js"
+import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 /**
  * Cambiar la clase Player por la clase character
@@ -50,13 +50,15 @@ export default class Player extends BoardUnit{
             }
         }
     }
-    PlayInstrument(numeroInstrumento){
-        //console.log(this.instrumentos[numeroInstrumento].CanBePlayed);
+    TryPlayingInstrument(numeroInstrumento){
         if(this.instrumentos[numeroInstrumento]!=undefined && this.instrumentos[numeroInstrumento].CanBePlayed()){
             if(clockInstance.IsTempo()) 
                 this.Tempo();
-            this.instrumentos[numeroInstrumento].Play(this.position.x, this.position.y);
+            this.PlayInstrument(numeroInstrumento);
         }
+    }
+    PlayInstrument(numeroInstrumento){
+        this.instrumentos[numeroInstrumento].Play(this.position.x, this.position.y);
     }
 
     /**Produce todos los efectos de syncopate al moverse al ritmo*/
