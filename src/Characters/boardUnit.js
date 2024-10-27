@@ -1,4 +1,4 @@
-import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/tileData.js";
+import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
 
 //Clase player tiene todas las funciones de movimiento, toca instrumentos y demás
 //extiende de sprite para usar su cuerpo físico y cambiar la posición y animaciones del personaje según sus acciones
