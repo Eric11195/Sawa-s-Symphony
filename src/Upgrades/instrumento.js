@@ -1,4 +1,4 @@
-import Nota from "../projectiles/nota.js"
+import Nota from "../Projectiles/nota.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 
 export default class Instrumento{

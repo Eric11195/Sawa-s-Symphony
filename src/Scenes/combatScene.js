@@ -9,6 +9,7 @@ import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../Upgrades/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
+import DescriptionImages from "../UIelems/descriptionImages.js";
 
 let KEYS;
 let deltaTime;
@@ -77,6 +78,8 @@ export default class combatScene extends Phaser.Scene {
         ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
+
+        //this.testDescriptionImages = new DescriptionImages(this,200,200,"negra", "MIAU","probando probando");
 
 
         this.vsMarker = new vsMarker(this, {x:195,y:50}, {x:1160,y:60});

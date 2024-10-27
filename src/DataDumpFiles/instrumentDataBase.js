@@ -1,5 +1,5 @@
 import notaEffects from "../Effects/NotasEffects.js";
-import Nota from "../projectiles/nota.js";
+import Nota from "../Projectiles/nota.js";
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const InstrumentDataBase = [
 {

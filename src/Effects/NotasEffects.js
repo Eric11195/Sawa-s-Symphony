@@ -1,5 +1,5 @@
 import { Tile00PositionY, TileDiffY, TileDiffX } from "../Utils/tileData.js";
-import Nota from "../projectiles/nota.js";
+import Nota from "../Projectiles/nota.js";
 
 const notaEffects = {
     forte: function(nota)
