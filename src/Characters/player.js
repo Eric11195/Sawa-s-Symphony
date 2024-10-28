@@ -38,17 +38,23 @@ export default class Player extends BoardUnit{
 		scene.physics.add.existing(this);
         this.body.setSize(350, 150, true);
     }
+
+    TryNormalMove(xAdd,yAdd){
+        if(clockInstance.IsTempo(0).canBePlayed){
+            this.NormalMove(xAdd,yAdd)
+        }
+    }
     /**
      * 
      * @param {*} xAdd las posiciones a mover al player hacia la derecha
      * @param {*} yAdd las posiciones a mover al player hacia abajo
      */
     NormalMove(xAdd, yAdd){
+        
+        console.log("move");
         if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
-            if(clockInstance.IsTempo(0).canBePlayed){
-                if(this.Move(xAdd,yAdd) > 0){
-                    this.Syncopate();
-               }
+            if(this.Move(xAdd,yAdd) > 0){
+                this.Syncopate();
             }
         }
     }
@@ -62,7 +68,7 @@ export default class Player extends BoardUnit{
         }
     }
     PlayInstrument(numeroInstrumento,cdToAdd){
-        this.instrumentos[numeroInstrumento].Play(this.position.x, this.position.y, cdToAdd);
+        this.instrumentos[numeroInstrumento].Play(cdToAdd);
     }
 
 
@@ -70,10 +76,10 @@ export default class Player extends BoardUnit{
     /**Produce todos los efectos de syncopate al moverse al ritmo*/
     Syncopate(){
         /**@todo Lanzar un evento que coje todo cristo con syncopate */
-        console.log("syncopate");
+        //console.log("syncopate");
     }
     /**Produce todos los efectos no específicos de instrumentos al tocar al ritmo */
     Tempo(){
-        console.log("tempo");
+        //console.log("tempo");
     }
 }

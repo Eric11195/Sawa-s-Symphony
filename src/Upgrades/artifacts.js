@@ -1,4 +1,5 @@
 import { AddToFunctionAfter,AddToFunctionBefore } from "../Utils/addToFunction.js";
+import NotasEffects from "../Effects/notasEffects.js"
 
 /**@todo habrá que convertir en clase pa que tengan imagenes y desc*/
 
