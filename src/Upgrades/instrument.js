@@ -1,4 +1,4 @@
-import Nota from "../Projectiles/nota.js"
+import Nota from "../projectiles/nota.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import InstrumentCdImage from "../UIelems/instrumentsCdImage.js";
 import InstrumentEffects from "../Effects/instrumentEffects.js";
