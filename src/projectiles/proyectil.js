@@ -1,7 +1,8 @@
 import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
 
 
-class Projectile {
+// no se si deberia extender de phaser.gameobject.sprite o de que, esto lo cambiare cuando sepa y ya tambien cambio la clase nota para que extienda a esta
+class Proyectil extends Phaser.GameObjects.Sprite{
     // Contiene la velocidad en compases por beat, 
     speed;
     //Dirección hacia la que avanza la nota
