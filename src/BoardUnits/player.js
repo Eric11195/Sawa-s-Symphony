@@ -60,13 +60,18 @@ export default class Player extends BoardUnit{
         if(this.instrumentos[numeroInstrumento]!=undefined){
             let auxObj = clockInstance.IsTempo(this.instrumentos[numeroInstrumento].actualCooldown);
             if(auxObj.canBePlayed){
-                this.PlayInstrument(numeroInstrumento, auxObj.cdToAdd);
+                //console.log(auxObj.beforeBeat);
+                this.PlayInstrument(numeroInstrumento,auxObj.beforeBeat);
                 this.Tempo();
             }
         }
     }
-    PlayInstrument(numeroInstrumento,cdToAdd){
-        this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,cdToAdd);
+    PlayInstrument(numeroInstrumento, beforeBeat){
+        if(beforeBeat){
+            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,1,beforeBeat);
+        }else{
+            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,0,beforeBeat);
+        }
     }
 
 

@@ -42,12 +42,15 @@ export default class Instrumento{
      * @param {*} posX posicion en X desde donde se toca el instrumento
      * @param {*} posY posición en Y desde donde se toca el instrumento
      */
-    Play(x,y,cdToAdd){
+    Play(x,y,cdToAdd,beforeBeat){
         //Sets the cooldown
+        console.log(cdToAdd);
         this.actualCooldown = this.baseCooldown+cdToAdd;
+        console.log(this.actualCooldown);
         //console.log(this.actualCooldown);
         this.ProducirNotas();
         this.cdImage.UpdateCd(this.actualCooldown);
+        //console.log(beforeBeat);
         //Previene que se generen notas fuera del tablero
         
     }
@@ -64,16 +67,9 @@ export default class Instrumento{
         }
     }
     SpawnNotes(posX,posY, tipoNotas){
-
         if(posY < 5 && posY >= 0){
             new Nota(this.sceneRef, posX, posY, tipoNotas, 1).AddKeyword(this.noteKeywords);
         }
-
-    }
-
-    /**returns if the cooldown of this instrument exists */
-    CanBePlayed(){
-        return (this.actualCooldown <= 0);
     }
 
     /**Receives a function to be called in this instrument */

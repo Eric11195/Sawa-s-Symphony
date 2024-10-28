@@ -65,16 +65,14 @@ export default class Clock{
     IsTempo(cd){
         let auxBool;
         let cdExtra = 0;
+        let beforeBeat = false;
         if(cd > 1) auxBool = false;
         else{
             let timeTillNextBeat = this.GetTimeSinceBeat();
             auxBool = ((new Date() - this.lastPress > this.delayTimer/2) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
-            cdExtra;
-    
-            cdExtra = Math.max(cd,0);
+            beforeBeat = timeTillNextBeat > this.delayTimer - tempoErrorMargin;
         }
         this.lastPress = new Date();
-        //console.log(auxBool," ",cdExtra);
-        return {canBePlayed:auxBool,cdToAdd:cdExtra};
+        return {canBePlayed:auxBool, beforeBeat:beforeBeat};
     }
 }
