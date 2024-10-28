@@ -1,5 +1,6 @@
 import Nota from "../Projectiles/nota.js"
 import { clockInstance } from "../Scenes/combatScene.js";
+import InstrumentCdImage from "../UIelems/instrumentsCdImage.js";
 
 export default class Instrumento{
     sceneRef;
@@ -10,18 +11,25 @@ export default class Instrumento{
     actualCooldown = 0;
     baseCooldown = 0;
     noteKeywords={};
+
+    cdImage;
     /**
      * @param instrumentConfig el instrumento de la base de datos con todos los parametros
      */
-    constructor(scene, instrumentConfig){
+    constructor(scene, instrumentConfig, instrumentNumber){
         this.sceneRef = scene;
         Object.keys(instrumentConfig).forEach(key => {
             this[key] = instrumentConfig[key];
             //const value = object[key];
         });
+        
+        this.cdImage = new InstrumentCdImage(scene,this,instrumentNumber);
         //Se ejecuta a cada beat
         clockInstance.eventEmitter.on("BeatNow", ()=>{
-            this.actualCooldown--;
+            if(this.actualCooldown!=0){
+                this.actualCooldown--;
+                this.cdImage.UpdateCd(this.actualCooldown);
+            }
         });
     }
 
@@ -31,10 +39,11 @@ export default class Instrumento{
      * @param {*} posX posicion en X desde donde se toca el instrumento
      * @param {*} posY posición en Y desde donde se toca el instrumento
      */
-    Play(posX, posY){
+    Play(posX, posY, cdToAdd){
         //Sets the cooldown
-        this.actualCooldown = this.baseCooldown;
+        this.actualCooldown = this.baseCooldown+cdToAdd;
         this.ProducirNotas(posX, posY);
+        this.cdImage.UpdateCd(this.actualCooldown);
         //Previene que se generen notas fuera del tablero
         
     }

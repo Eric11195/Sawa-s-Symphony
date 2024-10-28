@@ -1,4 +1,4 @@
-import Instrumento from "../Upgrades/instrumento.js"
+import Instrumento from "../Upgrades/instrument.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 /**
@@ -45,22 +45,28 @@ export default class Player extends BoardUnit{
      */
     NormalMove(xAdd, yAdd){
         if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
-            if(this.Move(xAdd,yAdd) > 0){
-                if(clockInstance.IsTempo()) this.Syncopate();
+            if(clockInstance.IsTempo(0).canBePlayed){
+                if(this.Move(xAdd,yAdd) > 0){
+                    this.Syncopate();
+               }
             }
         }
     }
     TryPlayingInstrument(numeroInstrumento){
-        if(this.instrumentos[numeroInstrumento]!=undefined && this.instrumentos[numeroInstrumento].CanBePlayed()){
-            if(clockInstance.IsTempo()) 
+        if(this.instrumentos[numeroInstrumento]!=undefined){
+            let auxObj = clockInstance.IsTempo(this.instrumentos[numeroInstrumento].actualCooldown);
+            if(auxObj.canBePlayed){
+                this.PlayInstrument(numeroInstrumento, auxObj.cdToAdd);
                 this.Tempo();
-            this.PlayInstrument(numeroInstrumento);
+            }
         }
     }
-    PlayInstrument(numeroInstrumento){
-        this.instrumentos[numeroInstrumento].Play(this.position.x, this.position.y);
+    PlayInstrument(numeroInstrumento,cdToAdd){
+        this.instrumentos[numeroInstrumento].Play(this.position.x, this.position.y, cdToAdd);
     }
 
+
+    /**@todo estos efectos ahora se aplican por defecto así que igual son innecesarios */
     /**Produce todos los efectos de syncopate al moverse al ritmo*/
     Syncopate(){
         /**@todo Lanzar un evento que coje todo cristo con syncopate */

@@ -1,6 +1,6 @@
-import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/tileData.js";
+import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
 import {deltaTime, clockInstance} from "../Scenes/combatScene.js"
-import NotesEffects from "../Effects/NotasEffects.js";
+import NotesEffects from "../Effects/notasEffects.js";
 
 export default class Nota extends Phaser.GameObjects.Sprite{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
@@ -62,7 +62,6 @@ export default class Nota extends Phaser.GameObjects.Sprite{
 
     PostUpdate(){
         if(!this.silent) this.MoveForward();
- 
     }
 
     /**Move forward the note until it gets out of board*/

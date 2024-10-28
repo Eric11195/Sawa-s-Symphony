@@ -1,22 +1,20 @@
-import notaEffects from "../Effects/NotasEffects.js";
 import Nota from "../Projectiles/nota.js";
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const InstrumentDataBase = [
 {
     nombre: "Flauta",
+    description: 
+    `Amarilla y de funda verde`,
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
     noteKeywords: {forte:null,allegro:null, accompaniment:{split:2}},
-    Play: function(posX,posY){
-        this.actualCooldown = this.baseCooldown; //x defecto
-        this.ProducirNotas(posX, posY); //x defecto
-
-        //Código de nuestras funciones locas
-    }
 },
 {
     nombre: "Piano",
+    description: 
+`A diferencia de ti, no se
+toca solo por las noches`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
