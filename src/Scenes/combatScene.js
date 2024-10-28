@@ -1,10 +1,10 @@
 import {KEY_BINDINGS} from '../Utils/inputKeys.js';
-import Player from '../Characters/player.js';
+import Player from '../BoardUnits/player.js';
 import Clock from '../Utils/clock.js';
 import RhythmMarker from '../UIelems/rhythmMarker.js';
 import Instrument from "../Upgrades/instrument.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
-import Enemy from "../Characters/enemy.js";
+import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../Upgrades/artifacts.js';
@@ -50,10 +50,8 @@ export default class combatScene extends Phaser.Scene {
 
         this.load.image("Flauta", "./assets/img/flauta.png");
         this.load.image("Piano", "./assets/img/piano.png");
-        /**
-         * @todo loadear imagenes de las notas
-         */
-        this.load.image("negra", "./assets/img/negra.png");
+       
+        this.load.image("sostenuto", "./assets/img/sostenuto.png");
 
         this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
     }

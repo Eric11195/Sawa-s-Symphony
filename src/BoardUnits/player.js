@@ -50,8 +50,6 @@ export default class Player extends BoardUnit{
      * @param {*} yAdd las posiciones a mover al player hacia abajo
      */
     NormalMove(xAdd, yAdd){
-        
-        console.log("move");
         if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
             if(this.Move(xAdd,yAdd) > 0){
                 this.Syncopate();
@@ -68,7 +66,7 @@ export default class Player extends BoardUnit{
         }
     }
     PlayInstrument(numeroInstrumento,cdToAdd){
-        this.instrumentos[numeroInstrumento].Play(cdToAdd);
+        this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,cdToAdd);
     }
 
 
