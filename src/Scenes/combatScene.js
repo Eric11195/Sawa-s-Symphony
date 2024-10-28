@@ -199,22 +199,4 @@ export default class combatScene extends Phaser.Scene {
     startCombatSong(){
         this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - testEnemy.msSongStart, callback: ()=>{music.play()}});
     }
-
-    callOnce(callback, context = this) {
-
-        if (typeof callback !== 'function') {
-            callback = () => {
-            };
-        }
-
-        let once = false;
-
-        return (...args) => {
-            if (!once) {
-                once = true;
-                callback.apply(context, args);
-            }
-        }
-
-    }
 }
