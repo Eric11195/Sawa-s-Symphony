@@ -1,6 +1,7 @@
+import NotasEffects from "../Effects/notasEffects.js"
 import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
 import {deltaTime, clockInstance} from "../Scenes/combatScene.js"
-import NotesEffects from "../Effects/notasEffects.js";
+//import NotesEffects from "../Effects/notasEffects.js";
 
 export default class Nota extends Phaser.GameObjects.Sprite{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
@@ -78,8 +79,7 @@ export default class Nota extends Phaser.GameObjects.Sprite{
 
     AddKeyword(config){
         Object.keys(config).forEach(key => {
-            NotesEffects[key](this, config[key]);
-            //NotesEffects[key].apply(this, config[key]);
+            NotasEffects[key](this, config[key]);
         });       
     }
 }

@@ -2,16 +2,16 @@
  * @param {*} func function to be extended
  * @param {*} toAdd function to be added to func
  */
-function AddToFunctionBefore(func, toAdd){
-    return function(arg1,arg2) {
-        toAdd(arg1,arg2);
-        func(arg1,arg2);
-    }
+export function AddToFunctionBefore(func, toAdd){
+    return function() {
+        toAdd.apply(this, arguments);
+        func.apply(this,arguments);
+    };
 }
 
-function AddToFunctionAfter(func, toAdd){
-    return function(arg1,arg2) {
-        func(arg1,arg2);
-        toAdd(arg1,arg2);
-    }
+export function AddToFunctionAfter(func, toAdd){
+    return function() {
+        func.apply(this,arguments);
+        toAdd.apply(this,arguments);
+    };
 }

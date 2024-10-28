@@ -1,6 +1,7 @@
 import Nota from "../Projectiles/nota.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import InstrumentCdImage from "../UIelems/instrumentsCdImage.js";
+import InstrumentEffects from "../Effects/instrumentEffects.js";
 
 export default class Instrumento{
     sceneRef;
@@ -22,6 +23,8 @@ export default class Instrumento{
             this[key] = instrumentConfig[key];
             //const value = object[key];
         });
+
+        this.AddKeyword(this.instrumentKeywords);
         
         this.cdImage = new InstrumentCdImage(scene,this,instrumentNumber);
         //Se ejecuta a cada beat
@@ -39,24 +42,26 @@ export default class Instrumento{
      * @param {*} posX posicion en X desde donde se toca el instrumento
      * @param {*} posY posición en Y desde donde se toca el instrumento
      */
-    Play(posX, posY, cdToAdd){
+    Play(cdToAdd){
+        console.log("Play");
         //Sets the cooldown
         this.actualCooldown = this.baseCooldown+cdToAdd;
-        this.ProducirNotas(posX, posY);
+        //console.log(this.actualCooldown);
+        this.ProducirNotas();
         this.cdImage.UpdateCd(this.actualCooldown);
         //Previene que se generen notas fuera del tablero
         
     }
 
-    ProducirNotas(posX, posY){
-        this.ThrowNotes(posX,posY);
+    ProducirNotas(){
+        this.ThrowNotes();
         if(this.numeroNotas > 1){
-            this.sceneRef.time.addEvent({delay: clockInstance.delayTimer/this.numeroNotas, repeat:(this.numeroNotas-2), callback: this.ThrowNotes, args: [posX,posY], callbackScope: this});
+            this.sceneRef.time.addEvent({delay: clockInstance.delayTimer/this.numeroNotas, repeat:(this.numeroNotas-2), callback: this.ThrowNotes, callbackScope: this});
         }
     }
-    ThrowNotes(posX, posY){
+    ThrowNotes(){
         for(let i = 0; i < this.notePositionMod.length; i++){
-            this.SpawnNotes(posX+this.notePositionMod[i].x, posY+this.notePositionMod[i].y, this.tipoNotas);
+            this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, this.sceneRef.player.position.y+this.notePositionMod[i].y, this.tipoNotas);
         }
     }
     SpawnNotes(posX,posY, tipoNotas){
@@ -75,5 +80,12 @@ export default class Instrumento{
     /**Receives a function to be called in this instrument */
     ApplyUpgrade(upgrade){
         upgrade(this);
+    }
+
+    AddKeyword(config){
+        if(config)
+        Object.keys(config).forEach(key => {
+            InstrumentEffects[key](this, config[key]);
+        });
     }
 }
