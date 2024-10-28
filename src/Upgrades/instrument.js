@@ -42,8 +42,7 @@ export default class Instrumento{
      * @param {*} posX posicion en X desde donde se toca el instrumento
      * @param {*} posY posición en Y desde donde se toca el instrumento
      */
-    Play(cdToAdd){
-        console.log("Play");
+    Play(x,y,cdToAdd){
         //Sets the cooldown
         this.actualCooldown = this.baseCooldown+cdToAdd;
         //console.log(this.actualCooldown);

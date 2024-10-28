@@ -19,7 +19,8 @@ toca solo por las noches`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
-    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/]
+    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
+    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 1}}
 }
 ];
 
