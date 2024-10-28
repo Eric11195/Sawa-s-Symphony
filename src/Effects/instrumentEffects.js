@@ -10,7 +10,7 @@ const instrumentEffects = {
         let auxMove = function(){
             this.sceneRef.player.NormalMove(move.x,move.y);
         }
-        instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxMovePlayerPredetermined(move.x,move.y).bind(instrument));
+        instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxMove.bind(instrument));
     },
     /**
      * 
@@ -22,20 +22,14 @@ const instrumentEffects = {
          * @param {*} x posicion x del player
          * @param {*} y posicion y del player
         */
-        let auxSostenutoCreation = function(x,y){
+        let auxSostenutoCreation = function(x,y, cdToAdd, wait){
             let sostenutoPos = {x:config.pos.x+x, y:config.pos.y+y};
             //Crearlo solo si esta dentro de la pantalla
             if(sostenutoPos.x >= 0 && sostenutoPos.x <7 && sostenutoPos.y >= 0 && sostenutoPos.y < 5){
-                new Sostenuto(this.sceneRef, sostenutoPos, 1, config.tipoNota);
+                new Sostenuto(this.sceneRef, sostenutoPos, 1, config.tipoNota, wait);
             }
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxSostenutoCreation.bind(instrument));
-    }
-}
-
-function auxMovePlayerPredetermined(x,y){
-    return function(){
-        this.sceneRef.player.NormalMove(x,y);
     }
 }
 
