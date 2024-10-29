@@ -1,6 +1,6 @@
 import CombatScene from "./Scenes/combatScene.js";
 import MainMenu from "./Scenes/mainMenu.js";
-import RewardsLobby from "./Scenes/rewardsLobby.js";
+import RewardsLobby from "./Scenes/rewardsLobbyScene.js";
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
