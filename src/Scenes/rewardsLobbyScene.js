@@ -21,6 +21,9 @@ export default class rewardsLobbyScene extends Phaser.Scene{
                 name: "jose",
                 posX: 400,
                 posY: 400,
+                dialogo: [`¡Miau! 
+Soy tu furrillo 
+de confianza`]
             }
         );
     }

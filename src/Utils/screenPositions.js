@@ -26,3 +26,19 @@ export function InstrumentCdImage0Pos(){
 export function InstrumentCdImageDiffX(){
     return 105;
 }
+
+export function npcDialoguePositionX(){
+    return 300;
+}
+
+export function npcDialoguePositionY(){
+    return 100;
+}
+
+export function npcReturnButtonPositionX(){
+    return 1200;
+}
+
+export function npcReturnButtonPositionY(){
+    return 610;
+}
