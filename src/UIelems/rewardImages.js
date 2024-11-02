@@ -1,4 +1,5 @@
 import DescriptionImages from "./descriptionImages.js";
+import RewardClass from "../DataDumpFiles/itemTypes.js";
 class RewardImages extends DescriptionImages{
     index;
     constructor (scene, x, y, index, rclass){
@@ -15,8 +16,7 @@ class RewardImages extends DescriptionImages{
             break;
         }
     }
-    getIndex(){
+    getIndex = function(){
         return this.index;
     }
-
 }

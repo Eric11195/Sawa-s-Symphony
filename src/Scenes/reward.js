@@ -1,10 +1,6 @@
-import RewardImages from "../UIelems/rewardImages.js"
+import RewardImages from "../UIelems/rewardImages.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
-const RewardClass = {
-    instrument: 'instrument',
-    upgrade: 'upgrade',
-    artifact: 'artifact'
-}
+import RewardClass from "../DataDumpFiles/itemTypes.js";
 class Reward{
    number;
    rclass;
@@ -13,7 +9,6 @@ class Reward{
    player;
 
     constructor(scene, position, rclass, number, player, remainingitems){
-        //super(scene, Tile00PositionX(), Tile00PositionY())
         this.number = number;
         this.type = type;
         this.rclass = rclass;
@@ -29,10 +24,18 @@ class Reward{
         }*/
         for (let i = 0; i<number; i++){
             let item = randomInst(remainingitems);
-            this.choices.push(new RewardImages(scene, position.x+(50*i), position.y, item, rclass));
+            let index = this.storeIndex(item);
+            this.choices.push(new RewardImages(scene, position.x+(50*i), position.y, item, rclass).setInteractive().on("pointerdown", index, this));
             this.choiceInsts.push(item);
         }
     }
+
+    storeIndex(index){
+        return function(){
+            return index;
+        }
+    }
+
     randomInst = function(remainingitems){
         let index = Math.floor(Math.random() * (remainingitems.length()));
         let inst = remainingitems[index];

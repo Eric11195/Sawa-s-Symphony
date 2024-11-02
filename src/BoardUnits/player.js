@@ -1,6 +1,8 @@
 import Instrumento from "../Upgrades/instrument.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
+import ItemClass from "../DataDumpFiles/itemTypes.js";
+import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 /**
  * Cambiar la clase Player por la clase character
  * Luego player y enemy heredan de la clase character
@@ -84,5 +86,19 @@ export default class Player extends BoardUnit{
     /**Produce todos los efectos no específicos de instrumentos al tocar al ritmo */
     Tempo(){
         //console.log("tempo");
+    }
+
+    AddItem(iclass, id, apply = undefined){
+        switch (iclass){
+            case ItemClass.instrument:
+                this.instrumentos[apply] = new Instrumento(this.scene,InstrumentDataBase[id], apply);
+                break;
+            case ItemClass.upgrade:
+                //TODO
+                break;
+            case ItemClass.artifact:
+                //TODO
+                break;
+        }
     }
 }
