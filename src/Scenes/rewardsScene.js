@@ -8,6 +8,8 @@ export default class RewardsScene extends Phaser.Scene {
     // Array que contiene los instrumentos ya otorgados.
     rewards;
 
+    remaininginstruments = [];
+
     currentplayer;
 
     // Conchas base obtenidas por completar un nivel.
@@ -32,7 +34,7 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
-        this.ownedinstruments = [0];
+        for (let i = 0; i<InstrumentDataBase.length();i++) this.remaininginstruments.push(i);
     }
     update(){
     }
@@ -59,14 +61,7 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     
-    RandomInstrument = function(){
-        let instruments = InstrumentDataBase.length();
-        if (instruments < ownedinstruments.length() + rewards.length()){
-            let inst = Math.floor(Math.random() * (instruments));
-        
-            return((ContainsInstrument(inst,ownedinstruments) || ContainsInstrument(inst,rewards)) ? RandomInstrument() : inst);
-        }
-    }
+
 
     Select = function(inst){
         let instindex;
@@ -84,6 +79,14 @@ export default class RewardsScene extends Phaser.Scene {
         this.ownedinstruments.push(instrument);
 
         
+    }
+    RandomInstrument = function(){
+        let instruments = InstrumentDataBase.length();
+        if (instruments < ownedinstruments.length() + rewards.length()){
+            let inst = Math.floor(Math.random() * (instruments));
+        
+            return((ContainsInstrument(inst,ownedinstruments) || ContainsInstrument(inst,rewards)) ? RandomInstrument() : inst);
+        }
     }
 }
 function ContainsInstrument(inst, array){   
