@@ -1,8 +1,10 @@
 import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
+import {deltaTime, clockInstance} from "../Scenes/combatScene.js";
+import NotasEffects from "../Effects/notasEffects.js";
 
 
 // no se si deberia extender de phaser.gameobject.sprite o de que, esto lo cambiare cuando sepa
-class Proyectil extends Phaser.GameObjects.Sprite{
+export default class Proyectil extends Phaser.GameObjects.Sprite{
     // Contiene la velocidad en compases por beat, 
     speed;
     //Dirección hacia la que avanza la nota
@@ -13,11 +15,9 @@ class Proyectil extends Phaser.GameObjects.Sprite{
      * @param {*} posY y de la casilla en la que se genera la nota
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
-    constructor(scene, x, y, direction) {
-        super(scene, Tile00PositionX(), Tile00PositionY(), '?');
+    constructor(scene, posX, posY, direction, imageId) {
+        super(scene, Tile00PositionX(), Tile00PositionY(), imageId);
         scene.add.existing(this);
-        this.setScale(2,2);
-        this.setOrigin(0,0.75);
         
         this.x = Tile00PositionX() + posX * TileDiffX();
         this.y = Tile00PositionY() + posY * TileDiffY();
@@ -27,6 +27,19 @@ class Proyectil extends Phaser.GameObjects.Sprite{
         scene.physics.add.existing(this);
         this.body.setSize(20, 20, true);
 
+        this.scene.events.on('postupdate', ()=>{
+            this.PostUpdate();
+        });
+
+        //takes the event postupdate from the scene and makes this function postUpdate be called when received
+        clockInstance.eventEmitter.on("BeatNow", ()=>{
+            if(this.silent > 0) this.silent--;
+        });
+
+    }
+
+    PostUpdate(){
+        if(!this.silent) this.MoveForward();
     }
 
      /**Move forward until it gets out of board*/
@@ -40,6 +53,10 @@ class Proyectil extends Phaser.GameObjects.Sprite{
             this.destroy();
         }
     }
-}
 
-module.exports = Projectile;
+    AddKeyword(config){
+        Object.keys(config).forEach(key => {
+            NotasEffects[key](this, config[key]);
+        });       
+    }
+}
