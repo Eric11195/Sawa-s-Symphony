@@ -1,7 +1,7 @@
 import RewardImages from "../UIelems/rewardImages.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import RewardClass from "../DataDumpFiles/itemTypes.js";
-class Reward{
+export default class Reward{
    number;
    rclass;
    choices = [];
@@ -10,7 +10,6 @@ class Reward{
 
     constructor(scene, position, rclass, number, player, remainingitems){
         this.number = number;
-        this.type = type;
         this.rclass = rclass;
         this.player = player;
         this.choiceInsts = [];

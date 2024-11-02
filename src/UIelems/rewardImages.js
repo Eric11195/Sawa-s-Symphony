@@ -1,6 +1,6 @@
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import RewardClass from "../DataDumpFiles/itemTypes.js";
-class RewardImages extends DescriptionImages{
+export default class RewardImages extends DescriptionImages{
     index;
     constructor (scene, x, y, index, rclass){
         this.index = index;
