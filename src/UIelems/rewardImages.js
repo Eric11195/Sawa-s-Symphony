@@ -9,7 +9,7 @@ export default class RewardImages extends DescriptionImages{
         this.index = index;
         switch (rclass){
             case RewardClass.instrument:
-                super(scene,x,y,"../../assets/img/instruments/"+InstrumentDataBase[index].nombre+".png",InstrumentDataBase[index].nombre, InstrumentDataBase[index].description);
+                super(scene,x,y,InstrumentDataBase[index].nombre,InstrumentDataBase[index].nombre, InstrumentDataBase[index].description);
             break;
             case RewardClass.upgrade:
                 super(scene,x,y,"../../assets/img/upgrades/"+InstrumentUpgrades[index].nombre+".png",InstrumentUpgrades[index].nombre, InstrumentUpgrades[index].description);
