@@ -1,4 +1,4 @@
-import DescriptionImages from "./descriptionImages.js";
+import DescriptionImages from "../UIelems/descriptionImages.js";
 import RewardClass from "../DataDumpFiles/itemTypes.js";
 class RewardImages extends DescriptionImages{
     index;

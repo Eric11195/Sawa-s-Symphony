@@ -1,6 +1,6 @@
-import InstrumentDataBase from "./instrumentDataBase";
-import Player from "./player";
-import Reward from "./reward";
+import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
+import Player from "../BoardUnits/player.js";
+import Reward from "../Rewards/reward.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
