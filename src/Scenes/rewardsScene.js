@@ -1,11 +1,17 @@
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
+import RewardClass from "../DataDumpFiles/itemClass.js";
+import { MidscreenX } from "../Utils/screenPositions.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
     constructor(){
         super({key: "rewardsScene"});
+        this.instrumentsLeft = [];
+        for(let i = 0; i < InstrumentDataBase.length; i++){
+            this.instrumentsLeft[i] = i;
+        }
     }
 
     // Array que contiene los instrumentos del jugador, así como los que ha eliminado de su colección.
@@ -14,6 +20,7 @@ export default class RewardsScene extends Phaser.Scene {
     rewards;
 
     remaininginstruments = [];
+    
 
     currentplayer;
 
@@ -24,26 +31,32 @@ export default class RewardsScene extends Phaser.Scene {
 
     init(data){
         this.currentplayer = data.Player;
-        this.ownedinstruments = [];
+        //this.ownedinstruments = [];
         //Conchas
         //this.currentplayer.shells += baseshells + (data.difficulty*extrashells);
 
         //Instrumentos
         this.rewards = [];
-        this.rewardSprites = [];
-        this.CreateRewards();
+        //this.rewardSprites = [];
+        this.CreateRewards(1);
     }
     preload(){
+
+
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
-            this.load.image(String(InstrumentDataBase[inst].nombre), "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
+            this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
     }
     create(){
-        for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
-    }
-    update(){
+        //for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
     }
 
+    CreateRewards(rewardNumber){
+        ++rewardNumber;
+        new Reward(this,{x:MidscreenX(), y:720/rewardNumber}, RewardClass.instrument, 1, this.currentplayer, this.instrumentsLeft);
+    }
+
+    /*
     CreateRewards(){
         for (let i = 0; i<3; i++) {
             let newinst = this.RandomInstrument();
@@ -54,6 +67,8 @@ export default class RewardsScene extends Phaser.Scene {
             //this.rewardSprites[i].on("pointerdown", this.ChooseInstrument(i));
         }
     }
+        */
+    /*
     CreatePlayerInstruments(inst){
         let playerinsts;
         for (let i = 0; i<3; i++) {
@@ -65,6 +80,7 @@ export default class RewardsScene extends Phaser.Scene {
             });
         }
     }
+        
     
 
 
@@ -93,6 +109,7 @@ export default class RewardsScene extends Phaser.Scene {
             return((ContainsInstrument(inst,ownedinstruments) || ContainsInstrument(inst,rewards)) ? RandomInstrument() : inst);
         }
     }
+        */
 }
 function ContainsInstrument(inst, array){   
     let found = false;

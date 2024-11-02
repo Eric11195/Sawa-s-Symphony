@@ -1,7 +1,7 @@
 import Instrumento from "../Upgrades/instrument.js"
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
-import ItemClass from "../DataDumpFiles/itemTypes.js";
+import ItemClass from "../DataDumpFiles/itemClass.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 /**
  * Cambiar la clase Player por la clase character

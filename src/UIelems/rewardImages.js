@@ -2,13 +2,12 @@ import DescriptionImages from "../UIelems/descriptionImages.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import artifactList from "../Upgrades/artifacts.js";
-import RewardClass from "../DataDumpFiles/itemTypes.js";
+import RewardClass from "../DataDumpFiles/itemClass.js";
 export default class RewardImages extends DescriptionImages{
-    index;
     constructor (scene, x, y, index, rclass){
-        this.index = index;
         switch (rclass){
             case RewardClass.instrument:
+                console.log(InstrumentDataBase[index].nombre);
                 super(scene,x,y,InstrumentDataBase[index].nombre,InstrumentDataBase[index].nombre, InstrumentDataBase[index].description);
             break;
             case RewardClass.upgrade:
@@ -18,8 +17,5 @@ export default class RewardImages extends DescriptionImages{
                 super(scene,x,y,"../../assets/img/artifacts/"+artifactList[index].nombre+".png",artifactList[index].nombre, artifactList[index].description);
             break;
         }
-    }
-    getIndex = function(){
-        return this.index;
     }
 }

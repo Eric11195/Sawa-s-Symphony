@@ -1,18 +1,18 @@
 import RewardImages from "../UIelems/rewardImages.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
-import RewardClass from "../DataDumpFiles/itemTypes.js";
+import RewardClass from "../DataDumpFiles/itemClass.js";
 export default class Reward{
    number;
    rclass;
-   choices = [];
-   choiceInsts;
+   choicesIndexes = [];
+   choicesImages = [];
    player;
 
     constructor(scene, position, rclass, number, player, remainingitems){
+        console.log(remainingitems);
         this.number = number;
         this.rclass = rclass;
         this.player = player;
-        this.choiceInsts = [];
         /*switch (rclass){
             case RewardClass.instrument:
                 break;
@@ -22,25 +22,27 @@ export default class Reward{
                 break;
         }*/
         for (let i = 0; i<number; i++){
-            let item = randomInst(remainingitems);
-            let index = this.storeIndex(item);
-            this.choices.push(new RewardImages(scene, position.x+(50*i), position.y, item, rclass).setInteractive().on("pointerdown", index, this));
-            this.choiceInsts.push(item);
+            this.choicesIndexes.push(this.randomInst(remainingitems));
+            let index = this.clicOnRewardFunc(this.choicesIndexes[i]);
+            console.log(rclass);
+            this.choicesImages.push(new RewardImages(scene, position.x+(50*i), position.y, this.choicesIndexes[i], rclass).setInteractive().on("pointerdown", index, this));
         }
+        console.log(this.choicesImages);
     }
 
-    storeIndex(index){
+    clicOnRewardFunc(index){
         return function(){
-            return index;
+            /** @todo Do things*/
+            //return index;
         }
     }
 
     randomInst = function(remainingitems){
-        let index = Math.floor(Math.random() * (remainingitems.length()));
-        let inst = remainingitems[index];
-        let i = 0;
-        while (i<choiceInsts.length() && inst != choiceInsts[i])i++;
-        return (i == choiceInsts.length() ? inst : RandomInst());
+        let index;
+        do{
+            index = Math.floor(Math.random() * (remainingitems.length));
+        }while(this.choicesIndexes.includes(index));
+        return index;
     }
 
 }
