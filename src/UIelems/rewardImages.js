@@ -16,5 +16,6 @@ export default class RewardImages extends DescriptionImages{
                 super(scene,x,y,"../../assets/img/artifacts/"+artifactList[index].nombre+".png",artifactList[index].nombre, artifactList[index].description);
             break;
         }
+        this.setDisplaySize(100,100);
     }
 }
