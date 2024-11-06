@@ -7,7 +7,6 @@ export default class RewardImages extends DescriptionImages{
     constructor (scene, x, y, index, rclass){
         switch (rclass){
             case RewardClass.instrument:
-                console.log(InstrumentDataBase[index].nombre);
                 super(scene,x,y,InstrumentDataBase[index].nombre,InstrumentDataBase[index].nombre, InstrumentDataBase[index].description);
             break;
             case RewardClass.upgrade:

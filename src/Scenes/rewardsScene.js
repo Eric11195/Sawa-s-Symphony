@@ -38,7 +38,9 @@ export default class RewardsScene extends Phaser.Scene {
         //Instrumentos
         this.rewards = [];
         //this.rewardSprites = [];
-        this.CreateRewards(1);
+
+
+        console.log("init");
     }
     preload(){
 
@@ -46,8 +48,12 @@ export default class RewardsScene extends Phaser.Scene {
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
+        console.log("preload");
     }
     create(){
+        console.log("create");
+
+        this.CreateRewards(1);
         //for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
     }
 

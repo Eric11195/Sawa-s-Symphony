@@ -9,7 +9,6 @@ export default class Reward{
    player;
 
     constructor(scene, position, rclass, number, player, remainingitems){
-        console.log(remainingitems);
         this.number = number;
         this.rclass = rclass;
         this.player = player;
@@ -24,10 +23,9 @@ export default class Reward{
         for (let i = 0; i<number; i++){
             this.choicesIndexes.push(this.randomInst(remainingitems));
             let index = this.clicOnRewardFunc(this.choicesIndexes[i]);
-            console.log(rclass);
             this.choicesImages.push(new RewardImages(scene, position.x+(50*i), position.y, this.choicesIndexes[i], rclass).setInteractive().on("pointerdown", index, this));
         }
-        console.log(this.choicesImages);
+        //console.log(this.choicesImages);
     }
 
     clicOnRewardFunc(index){
