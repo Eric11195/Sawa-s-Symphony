@@ -4,7 +4,7 @@ const InstrumentDataBase = [
 {
     nombre: "Recorder",
     description: 
-    `You've got nothing better?`,
+`You've got nothing better?`,
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
@@ -89,6 +89,16 @@ not only to the eyes`,
     baseCooldown: 4,
     instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
 },
+{
+        nombre: "Grace", //One step from eden Violette's main 
+        description: 
+`She'll compose her own songs,
+and dance to them too`,
+        numeroNotas: 1,
+        tipoNotas: 1,
+        baseCooldown: 4,
+        instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+}
 ];
 
 export default InstrumentDataBase;

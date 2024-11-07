@@ -10,10 +10,10 @@ export default class RewardImages extends DescriptionImages{
                 super(scene,x,y,InstrumentDataBase[index].nombre,InstrumentDataBase[index].nombre, InstrumentDataBase[index].description);
             break;
             case RewardClass.upgrade:
-                super(scene,x,y,"../../assets/img/upgrades/"+InstrumentUpgrades[index].nombre+".png",InstrumentUpgrades[index].nombre, InstrumentUpgrades[index].description);
+                super(scene,x,y,InstrumentUpgrades[index].nombre,InstrumentUpgrades[index].nombre, InstrumentUpgrades[index].description);
             break;
             case RewardClass.artifact:
-                super(scene,x,y,"../../assets/img/artifacts/"+artifactList[index].nombre+".png",artifactList[index].nombre, artifactList[index].description);
+                super(scene,x,y,artifactList[index].nombre,artifactList[index].nombre, artifactList[index].description);
             break;
         }
         this.setDisplaySize(100,100);

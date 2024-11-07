@@ -1,4 +1,6 @@
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
+import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
+import artifactList from "../Upgrades/artifacts.js";
 import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/itemClass.js";
@@ -11,6 +13,10 @@ export default class RewardsScene extends Phaser.Scene {
         this.instrumentsLeft = [];
         for(let i = 0; i < InstrumentDataBase.length; i++){
             this.instrumentsLeft[i] = i;
+        }
+        this.artifactLeft = [];
+        for(let i = 0; i < artifactList.length; i++){
+            this.artifactLeft[i] = i;
         }
     }
 
@@ -45,6 +51,13 @@ export default class RewardsScene extends Phaser.Scene {
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
+
+        for(let instrumentUpgradesIndex = 0; instrumentUpgradesIndex < InstrumentUpgrades.length; instrumentUpgradesIndex++){
+            this.load.image(InstrumentUpgrades[instrumentUpgradesIndex].nombre, "./assets/img/upgrades/" + InstrumentUpgrades[instrumentUpgradesIndex].nombre+".png");
+        }
+        for(let artifactIndex = 0; artifactIndex < artifactList.length; artifactIndex++){
+            this.load.image(artifactList[artifactIndex].nombre, "./assets/img/artifacts/" + artifactList[artifactIndex].nombre+".png");
+        }
     }
     create(){
         this.CreateRewards(1);
@@ -53,7 +66,11 @@ export default class RewardsScene extends Phaser.Scene {
 
     CreateRewards(rewardNumber){
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:720/rewardNumber}, RewardClass.instrument, 2, this.currentplayer, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*150}, RewardClass.instrument, 2, this.currentplayer, this.instrumentsLeft));
+        ++rewardNumber;
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.upgrade, 2, this.currentplayer, InstrumentUpgrades));
+        ++rewardNumber;
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.artifact, 2, this.currentplayer, this.artifactLeft));
     }
 
     /*

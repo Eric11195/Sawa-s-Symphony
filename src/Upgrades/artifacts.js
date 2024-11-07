@@ -8,7 +8,24 @@ const artifactList = [
         effect: function(){
             NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
         },
-        img: "ruta",
+        nombre: "Muffler",
+        description: "The subtle difference",
+    },
+    {
+        effect: function(){
+            //NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
+        },
+        nombre: "Mitosic_Pick",
+        description: `What doesnt kill you
+begins celular processes`,
+    },
+    {
+        effect: function(){
+            //NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
+        },
+        nombre: "Trinity_Pop",
+        description: `Three Chords are
+more than enough`,
     }
 
 ];
