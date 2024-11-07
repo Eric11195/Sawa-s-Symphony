@@ -45,7 +45,6 @@ export default class Reward{
     }
 
     getImagePositionX(startPosX,index, numberOfImages){
-        console.log((index - (numberOfImages-1)/2));
         return (startPosX + this.separationBetweenImages * (index - (numberOfImages-1)/2));
         //return  startPosX + this.separationBetweenImages * index -(this.separationBetweenImages*Math.floor(numberOfImages/2));
     }

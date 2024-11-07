@@ -22,8 +22,6 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
 
         scene.input.setPollOnMove();
 
-        console.log(this.texture);
-
         this.on('pointerover',function(pointer,x,y){
             this.descriptor.alpha = 1;
             this.descriptorTitle.alpha = 1;
