@@ -11,6 +11,7 @@ import BoardUnit from './boardUnit.js';
 //extiende de sprite para usar su cuerpo físico y cambiar la posición y animaciones del personaje según sus acciones
 export default class Player extends BoardUnit{
     normalMoveLimitPos;
+    ancla;
     /**Contiene los 3 instrumentos del player */
     instrumentos;
     /**
@@ -30,19 +31,23 @@ export default class Player extends BoardUnit{
             maxX:2,
             maxY:4
         };
+        this.ancla = 0;
+        console.log(this.ancla);
         /**@todo incluir los instrumentos correspondientes */
         this.instrumentos = [instrumento1, instrumento2, instrumento3];
-        //clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this))
 
+        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this))
         // Agregamos el caballero a las físicas para que Phaser lo tenga en cuenta
 		scene.physics.add.existing(this);
         this.body.setSize(350, 150, true);
     }
 
     TryNormalMove(xAdd,yAdd){
-        if(clockInstance.IsTempo(0).canBePlayed){
+        if(clockInstance.IsTempo(0).canBePlayed && !this.ancla){
             this.NormalMove(xAdd,yAdd)
+
         }
+        
     }
     /**
      * 
@@ -74,6 +79,12 @@ export default class Player extends BoardUnit{
         }
     }
 
+    BeatFunction(){
+        if(this.ancla>0){
+            this.ancla--;
+        }
+        console.log(this.ancla);
+    }
 
     /**@todo estos efectos ahora se aplican por defecto así que igual son innecesarios */
     /**Produce todos los efectos de syncopate al moverse al ritmo*/

@@ -41,12 +41,14 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
     Move(xAdd, yAdd){
         let auxX = this.position.x;
         let auxY = this.position.y;
+        if (!this.ancla){
         //Cambia la posición en x del player y hace que los limites para moverse horizontalmente sean las casillas definidas en limitPositions
         this.position.x = Math.max(this.limitPositions.minX,Math.min(this.limitPositions.maxX,this.position.x+xAdd));
         //Cambia la posición en y del player y hace que los limites para moverse verticalmente sean sean las casillas definidas en limitPositions
         this.position.y = Math.max(this.limitPositions.minY,Math.min(this.limitPositions.maxY,this.position.y+yAdd));
         //actualiza la posición del sprite
         this.UpdatePos();
+        }
         return (Math.abs(this.position.x - auxX) + Math.abs(this.position.y - auxY));
     }
     /**
