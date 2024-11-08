@@ -20,13 +20,8 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
 
-    // Array que contiene los instrumentos del jugador, así como los que ha eliminado de su colección.
-    ownedinstruments;
     // Array que contiene los instrumentos ya otorgados.
     rewards;
-
-    remaininginstruments = [];
-    
 
     currentPlayer;
 
