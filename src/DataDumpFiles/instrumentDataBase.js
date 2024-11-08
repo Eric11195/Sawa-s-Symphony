@@ -4,7 +4,7 @@ const InstrumentDataBase = [
 {
     nombre: "Recorder",
     description: 
-`You've got nothing better?`,
+`Baby's First Woodwind`,
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
@@ -14,7 +14,7 @@ const InstrumentDataBase = [
 {
     nombre: "Piano",
     description: 
-`Can't sound bad`,
+`You know what to do.`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -24,7 +24,7 @@ const InstrumentDataBase = [
 {
     nombre: "Bell",//cascabel
     description: 
-`Slippery thing, stop moving!`,
+`Catch me if you can!`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -33,8 +33,7 @@ const InstrumentDataBase = [
 {
     nombre: "Electric_Guitar",
     description: 
-`Get out of my way
-I'm the star`,
+`Watch and learn!`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -43,7 +42,7 @@ I'm the star`,
 {
     nombre: "Trumpet",
     description: 
-`Jazzy Overflow`,
+`doot`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -53,7 +52,7 @@ I'm the star`,
     nombre: "Ukelele", //ROR reference
     description: 
 `...and his music
-was electric`,
+was electric.`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -62,7 +61,7 @@ was electric`,
 {
     nombre: "Golden_Lute",
     description: 
-`Melody's Favourite`, //Crypt of the necrodancer reference
+`Melody's Favourite.`, //Crypt of the necrodancer reference
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -80,10 +79,9 @@ for one otter`,
 },*/
 {
     //Aumenta las acumulaciones de todas las keywords acumulables que ya existiesen
-    nombre: "Psaltry", //brutal Orchestra enemy
+    nombre: "Psaltery", //brutal Orchestra enemy
     description: 
-`Painful,
-not only to the eyes`,
+`Brutal.`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
@@ -93,7 +91,7 @@ not only to the eyes`,
         nombre: "Grace", //One step from eden Violette's main 
         description: 
 `She'll compose her own songs,
-and dance to them too`,
+and dance to them too.`,
         numeroNotas: 1,
         tipoNotas: 1,
         baseCooldown: 4,
