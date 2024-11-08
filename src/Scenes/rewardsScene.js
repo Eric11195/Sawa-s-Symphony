@@ -42,7 +42,7 @@ export default class RewardsScene extends Phaser.Scene {
         //this.rewardSprites = [];
     }
     preload(){
-
+        this.load.image("shell","./assets/img/shell.png");
 
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
