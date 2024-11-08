@@ -13,13 +13,11 @@ export default class Sostenuto extends BoardUnit{
         this.noteDirection = noteDirection;
         this.duration = Sostenuto.initDuration-1;
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this);
-        console.log(arguments);
         //Por si se spawnea justo antes de un beat;
         this.wait = 0;
         if(wait){
             this.wait = 1
         }
-        console.log(wait, "=>",this.wait);
     }
 
     BeatFunction(){

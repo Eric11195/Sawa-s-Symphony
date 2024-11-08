@@ -44,9 +44,7 @@ export default class Instrumento{
      */
     Play(x,y,cdToAdd,beforeBeat){
         //Sets the cooldown
-        console.log(cdToAdd);
         this.actualCooldown = this.baseCooldown+cdToAdd;
-        console.log(this.actualCooldown);
         //console.log(this.actualCooldown);
         this.ProducirNotas();
         this.cdImage.UpdateCd(this.actualCooldown);

@@ -39,9 +39,14 @@ export default class combatScene extends Phaser.Scene {
 
     preload(){
        
+
         
         /**Todo cambiar clock por la imagen de las notitas que bajan hasta el punto correcto*/
        
+
+       
+        
+
     }
 
     /**
@@ -135,8 +140,9 @@ export default class combatScene extends Phaser.Scene {
         this.physics.add.overlap(this.collideWithPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
             if(!collidingNote.piano && !receivingNote.piano)
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                receivingNote.AddKeyword(collidingNote.efectosAccompaniment);
+                receivingNote.AddKeyword(collidingNote.applyToPlayerNotes);
                 collidingNote.notesCollidedWith.push(receivingNote);
+                console.log(collidingNote.applyToPlayerNotes);
             }
         });
         //Notas del player chocandose contra notas Enemy
@@ -145,10 +151,10 @@ export default class combatScene extends Phaser.Scene {
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
                 //console.log(collidingNote.efectosAccompaniment);
                 //console.log(collidingNote.efectosAccompaniment);
-                receivingNote.destroy();
-                collidingNote.AddKeyword({damage:null});
+                receivingNote.AddKeyword(collidingNote.applyToEnemyNotes);
+                console.log(collidingNote.applyToEnemyNotes);
                 /**@todo hacer que la nota aplique los efectos necesarios */
-                //collidingNote.notesCollidedWith.push(receivingNote);
+                collidingNote.notesCollidedWith.push(receivingNote);
             }
         });
         //--------------------------------------------------------------------------------------------------------------------------

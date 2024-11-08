@@ -21,7 +21,6 @@ export default class Enemy extends BoardUnit{
     }
 
     ReworkedChargeNextBeatActions(){
-        console.log(this.enemyActions[this.enemyActionIndex]);
         for(let i = 0; i < this.enemyActions[this.enemyActionIndex].length; i++){
             this.enemyActions[this.enemyActionIndex][i](this);
         }
