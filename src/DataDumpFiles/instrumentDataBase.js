@@ -9,7 +9,7 @@ const InstrumentDataBase = [
     numeroNotas: 1,
     tipoNotas: 0,
     noteKeywords: {forte:null,allegro:null, accompaniment:{silent:2}},
-    instrumentKeywords: {move:{x:0,y:-1}}
+    instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}}
 },
 {
     nombre: "Piano",
@@ -20,7 +20,8 @@ toca solo por las noches`,
     tipoNotas: 1,
     baseCooldown: 4,
     notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
-    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 1}}
+    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 1}},
+    noteKeywords: {adagio:null}
 }
 ];
 

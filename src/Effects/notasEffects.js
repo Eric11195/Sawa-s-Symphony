@@ -7,8 +7,10 @@ const notaEffects = {
         if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
         if(nota.direction==1){
             nota.scene.collideWithEnemyNotes.add(nota);
+            nota.applyToEnemyNotes = {damage:null};
         }else{
             nota.scene.collideWithPlayerNotes.add(nota);
+            nota.applyToPlayerNotes = {damage:null};
         }
     },
     piano: function(nota)
@@ -32,10 +34,11 @@ const notaEffects = {
         if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
         if(nota.direction == -1){
             nota.scene.collideWithEnemyNotes.add(nota);
+            nota.applyToEnemyNotes = efectosAccompaniment;
         }else{
             nota.scene.collideWithPlayerNotes.add(nota);
+            nota.applyToPlayerNotes = efectosAccompaniment;
         }
-        nota.efectosAccompaniment=efectosAccompaniment;
     },
     silent: function(nota,silentToAdd)
     {
@@ -86,6 +89,27 @@ const notaEffects = {
         }else{
             nota.y -= TileDiffY();
         }
+    },
+    moveNote: function (nota, newPos){
+
+        nota.x += newPos.x * TileDiffX();
+
+        if(nota.y + newPos.y*TileDiffY() > Tile00PositionY() && nota.y + newPos.y*TileDiffY() < Tile00PositionY() + 5*TileDiffY()){
+            nota.y += newPos.y * TileDiffY();
+        }
+    },
+    moveYRandom: function(nota){
+
+        nota.AddKeyword({moveNote:{x:0,y:Math.random() < 0.5 ? -1 : 1}});
+    },
+    vibrato: function (nota){
+        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
+
+        nota.scene.collideWithEnemyNotes.add(nota);
+        nota.scene.collideWithPlayerNotes.add(nota);
+        
+        nota.applyToEnemyNotes = {moveYRandom:null};
+        nota.applyToPlayerNotes = {moveYRandom:null};
     }
 
 }
