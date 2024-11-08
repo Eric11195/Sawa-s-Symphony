@@ -5,8 +5,8 @@ export default class rewardsLobbyScene extends Phaser.Scene{
         super({key: "rewardsLobbyScene"});
     }
 
-    init(){
-
+    init(data){
+        
     }
 
     preload(){
