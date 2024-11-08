@@ -9,23 +9,22 @@ const artifactList = [
             NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
         },
         nombre: "Muffler",
-        description: "The subtle difference",
+        description: " ",
     },
     {
         effect: function(){
             //NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
         },
-        nombre: "Mitosic_Pick",
-        description: `What doesnt kill you
-begins celular processes`,
+        nombre: "Mitotic_Pick",
+        description: `What doesn't kill you
+begins cellular processes.`,
     },
     {
         effect: function(){
             //NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
         },
         nombre: "Trinity_Pop",
-        description: `Three Chords are
-more than enough`,
+        description: `3333 BPM`,
     }
 
 ];
