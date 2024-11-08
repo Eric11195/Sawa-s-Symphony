@@ -18,30 +18,192 @@ const testEnemy = {
                  * delay in ms from beat till actions is done
                  * callback function to be done
                  */
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    new Nota(this.scene,6,1,0,-1);
-                }});
+               new Nota(enemy.scene,6,2,0,-1)            
             },
-            function(enemy){
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 300, callback: function(){
-                    new Nota(this.scene,6,2,0,-1);
-                }});
+        ],
+        [
+            function(enemy){                
+            enemy.Move(0,-1);                
+            },
+        ],
+        [
+            function(enemy){               
+              enemy.Move(0,-1)                
+            },
+        ],
+        [
+            function(enemy){                
+                enemy.Move(0,1)              
+            },
+        ],
+        [
+            function(enemy){              
+              enemy.Move(0,1)              
+            },
+        ],
+        [
+            function(enemy){ 
             },
         ],
         [
             function(enemy){
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    this.Move(0,1);
+                    new Nota(this.scene,6,3,0,-1)
+                    new Nota(this.scene,6,1,0,-1)
+                    new Nota(this.scene,6,2,0,-1)
                 }});
+            },
+        ],
+        [
+            function(enemy){ 
             },
         ],
         [
             function(enemy){
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    new Sostenuto(this.scene,{x:6,y:3}, -1, 2);
+                   this.Move(0,-1)
                 }});
             },
-        ]
+        ], [
+            function(enemy){               
+                  enemy.Move(0,-1)                 
+            },
+        ],                
+                //new Nota(enemy.scene,6,0,0,-1).AddKeyword({adagio:null}) para adagio
+        [
+            function(enemy){                
+                new Nota(enemy.scene,6,0,0,-1)                
+            },
+        ],
+        [
+            function(enemy){                
+                enemy.Move(0,1);                
+            },
+        ],
+        [
+            function(enemy){               
+              new Nota(enemy.scene,6,1,0,-1)                
+            },
+        ],
+        [
+            function(enemy){                
+              enemy.Move(0,1)                
+            },
+        ],
+        [
+            function(enemy){               
+              new Nota(enemy.scene,6,2,0,-1)               
+            },
+        ],
+     
+        [
+            function(enemy){               
+                enemy.Move(0,1)              
+            },
+        ],
+        [
+            function(enemy){               
+              new Nota(enemy.scene,6,3,0,-1)               
+            },
+        ],
+        [
+            function(enemy){               
+               enemy.Move(0,1)                 
+            },
+        ],
+        [
+            function(enemy){              
+            new Nota(enemy.scene,6,4,0,-1)  
+            },
+        ],
+        [
+            function(enemy){
+            },
+        ],
+        [
+            function(enemy){
+                new Nota(enemy.scene,6,4,0,-1)
+            },
+        ],
+        [
+            function(enemy){  
+            enemy.Move(0,-1) 
+            },
+        ],[
+            function(enemy){
+                new Nota(enemy.scene,6,3,0,-1)
+            },
+        ],
+        [
+            function(enemy){
+              enemy.Move(0,-1)
+            },
+        ],
+        [
+            function(enemy){
+                new Nota(enemy.scene,6,2,0,-1)
+            },
+        ],
+        [
+            function(enemy){
+                enemy.Move(0,-1)
+            },
+        ],
+        [
+            function(enemy){ 
+            new Nota(enemy.scene,6,1,0,-1)
+            },
+        ],
+        [
+            function(enemy){
+              enemy.Move(0,-1) 
+            },
+        ],
+        [
+            function(enemy){
+                new Nota(enemy.scene,6,0,0,-1)
+            },
+        ],
+        [
+            function(enemy){
+            },
+        ],
+        [
+            function(enemy){
+              enemy.Move(0,1)  
+            },
+        ],
+        [
+            function(enemy){
+ 
+          enemy.Move(0,1)     
+            },
+        ],
+        [
+            function(enemy){   
+            },
+        ],
+        [
+            function(enemy){ 
+          new Nota(enemy.scene,6,2,0,-1).AddKeyword({adagio:null})    
+            },
+        ],
+        [
+            function(enemy){ 
+                enemy.Move(0,-1)     
+            },
+        ],
+        [
+            function(enemy){
+                enemy.Move(0,1)      
+            },
+        ],
+        [
+            function(enemy){     
+                new Nota(enemy.scene,6,2,0,-1).AddKeyword({allegro:null}) 
+            },
+        ],
+
     ]
     /*
     enemyActions:
