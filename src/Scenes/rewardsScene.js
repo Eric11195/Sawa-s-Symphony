@@ -5,6 +5,7 @@ import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
+import ShellDisplay from "../UIelems/shellDisplay.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
@@ -55,6 +56,7 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
+        new ShellDisplay(this,3333);
         this.CreateRewards(1);
         //for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
     }
