@@ -34,6 +34,10 @@ export default class preloader extends Phaser.Scene
                     this.scene.start("mainMenu",{ num:1});
         
                 });
+                this.load.image("sostenuto", "./assets/img/sostenuto.png");
+                this.load.image("vibrato", "./assets/img/vibrato.png");
+        
+                this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
                 this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
