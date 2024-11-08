@@ -72,61 +72,13 @@ export default class RewardsScene extends Phaser.Scene {
         this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
     }
 
-    /*
-    CreateRewards(){
-        for (let i = 0; i<3; i++) {
-            let newinst = this.RandomInstrument();
-            this.rewards.push(newinst);
-            this.rewardSprites.push(new Reward(this,{x: i*this.game.scale.width/3, y: 0},"inst_"+newinst));
-        }
-        for (let i = 0; i<3; i++){
-            //this.rewardSprites[i].on("pointerdown", this.ChooseInstrument(i));
-        }
-    }
-        */
-    /*
-    CreatePlayerInstruments(inst){
-        let playerinsts;
-        for (let i = 0; i<3; i++) {
-            this.playerinsts.push();
-        }
-        for (let i = 0; i<3; i++){
-            this.playerinsts[i].on("pointerdown", ()=>{
-                this.currentplayer.SwapInstruments(inst, i);
-            });
-        }
-    }
-        
-    
 
+    LoadLobbyScene(){
+        this.scene.start("rewardsLobbyScene", {Player:this.player});
+    }
 
-    Select = function(inst){
-        let instindex;
-        if (inst>=0){
-            //instindex = this.rewards[i];
-        }
-        for (let i = 0; i<3; i++){
-            //this.rewardSprites[i].destroy();
-        }
-        return instindex;
-    }
-    
-    ChooseInstrument = function(inst){
-        let instrument = this.Select(inst);
-        this.ownedinstruments.push(instrument);
-
-        
-    }
-    RandomInstrument = function(){
-        let instruments = InstrumentDataBase.length;
-        if (instruments < this.ownedinstruments.length + this.rewards.length){
-            let inst = Math.floor(Math.random() * (instruments));
-        
-            return((ContainsInstrument(inst,ownedinstruments) || ContainsInstrument(inst,rewards)) ? RandomInstrument() : inst);
-        }
-    }
-        */
 }
+/*
 function ContainsInstrument(inst, array){   
     let found = false;
     let i = 0;
@@ -136,3 +88,4 @@ function ContainsInstrument(inst, array){
     }
     return found;
 }
+*/
