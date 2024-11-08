@@ -42,3 +42,7 @@ export function npcReturnButtonPositionX(){
 export function npcReturnButtonPositionY(){
     return 610;
 }
+
+export function MidscreenX(){
+    return 660;
+}

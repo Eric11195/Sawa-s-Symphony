@@ -12,7 +12,8 @@ export const KEY_BINDINGS = {
     RIGHT: KeyCodes.D,
     BUTTON1: KeyCodes.I,
     BUTTON2: KeyCodes.O,
-    BUTTON3: KeyCodes.P
+    BUTTON3: KeyCodes.P,
+    NEXTSCENE: KeyCodes.T
 };
 
 /**

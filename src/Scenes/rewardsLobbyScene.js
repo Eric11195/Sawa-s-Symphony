@@ -1,12 +1,13 @@
 import NPC from "../NPC/npcClass.js";
 
 export default class rewardsLobbyScene extends Phaser.Scene{
+
     constructor(){
         super({key: "rewardsLobbyScene"});
     }
 
     init(data){
-        
+
     }
 
     preload(){
@@ -27,5 +28,4 @@ de confianza`]
             }
         );
     }
- 
 }

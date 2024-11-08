@@ -12,9 +12,10 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
         super(scene,x,y,imageId);
         scene.add.existing(this);
         this.setInteractive();
-
-        this.descriptor =  scene.add.rectangle( 0, 0, 220, 40+17*(description).split(/\r\n|\r|\n/).length, 0x179bae).setOrigin(0);
-        this.descriptorTitle = scene.add.text( 0, 0, title, { fontFamily: 'Arial', color: '#000', fontSize: '18px', fontFamily:"Grandstander" }).setOrigin(0);
+        let maxLength = 
+        this.descriptor =  scene.add.rectangle( 0, 0, this.CalculateXBoxSize(title,description), 40+17*(description).split(/\r\n|\r|\n/).length, 0x179bae).setOrigin(0);
+        //Quita las underscores de los nombres antes de escribirlos
+        this.descriptorTitle = scene.add.text( 0, 0, title.replace(/(_)/g, " "), { fontFamily: 'Arial', color: '#000', fontSize: '18px', fontFamily:"Grandstander" }).setOrigin(0);
         this.descriptorDescription = scene.add.text( 0, 0, description, { fontFamily: 'Arial', color: '#000',fontSize: '16px', fontFamily:"Grandstander"  }).setOrigin(0);
         this.descriptor.alpha = 0;
         this.descriptorTitle.alpha = 0;
@@ -41,5 +42,27 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
             this.descriptorDescription.x = pointer.x+20;
             this.descriptorDescription.y = pointer.y+45;
         })
+    }
+
+    CalculateXBoxSize(title, description){
+        let array = description.split(/\r\n|\r|\n/);
+        let maxCharacters = array[0].length;
+        for(let i = 1; i<array.length;i++){
+            if(array[i].length > maxCharacters) maxCharacters = array[i].length;
+        }
+        //maxCharacters*=10; //xCharacters Size
+        if(title.length * 9 > maxCharacters * 8.5){
+            maxCharacters = title.length*9;
+        } else maxCharacters *= 8.5;
+        maxCharacters += 20;
+
+        return maxCharacters;
+
+    }
+
+    PrepareToBeErased(){
+        this.descriptor.alpha = 0;
+        this.descriptorTitle.alpha = 0;
+        this.descriptorDescription.alpha = 0;
     }
 }
