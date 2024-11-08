@@ -42,6 +42,15 @@ const instrumentEffects = {
             }
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), createVibrato.bind(instrument));
+    },
+
+    ancla: function(instrument, time){
+        let auxAncla = function(){
+            this.sceneRef.player.ancla = time;
+            //console.log(this.sceneRef.player.ancla);
+        }
+        instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
+       
     }
 }
 
