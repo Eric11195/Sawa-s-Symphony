@@ -1,6 +1,6 @@
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
-import artifactList from "../Upgrades/artifacts.js";
+import artifactList from "../DataDumpFiles/artifacts.js";
 import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
@@ -65,12 +65,11 @@ export default class RewardsScene extends Phaser.Scene {
     }
 
     CreateRewards(rewardNumber){
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.currentPlayer, this.instrumentsLeft));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*150}, RewardClass.instrument, 2, this.currentPlayer, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.currentPlayer, InstrumentUpgrades));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.upgrade, 2, this.currentPlayer, InstrumentUpgrades));
-        ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
     }
 
     /*

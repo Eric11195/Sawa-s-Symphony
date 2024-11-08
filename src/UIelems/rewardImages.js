@@ -1,7 +1,7 @@
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
-import artifactList from "../Upgrades/artifacts.js";
+import artifactList from "../DataDumpFiles/artifacts.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 export default class RewardImages extends DescriptionImages{
     constructor (scene, x, y, index, rclass){

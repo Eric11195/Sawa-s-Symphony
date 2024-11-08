@@ -7,7 +7,7 @@ import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
-import ArtifactList from '../Upgrades/artifacts.js';
+import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 

@@ -22,6 +22,7 @@ export default class Reward{
             case RewardClass.artifact:
                 break;
         }*/
+        this.background = scene.add.rectangle( position.x, position.y, numberOfRewards*(100 + this.separationBetweenImages/3), 150, 0xe69138).setOrigin(0.5);
         for (let i = 0; i<numberOfRewards; i++){
             this.choicesIndexes.push(this.randomInst(remainingitems));
             let index = this.clicOnRewardFunc(this.choicesIndexes[i]);
@@ -36,7 +37,7 @@ export default class Reward{
                 this.choicesImages[i].destroy();
             }
             this.player.Equip(index,this.rewardClass,this.scene);
-
+            this.background.destroy();
 
             //Elimina el index escogido de la lista
             this.choicesIndexes.splice(this.choicesIndexes.indexOf(index),1);

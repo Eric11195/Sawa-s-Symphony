@@ -5,7 +5,7 @@ import ItemClass from "../DataDumpFiles/RewardClass.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
-import ArtifactList from "../Upgrades/artifacts.js";
+import ArtifactList from "../DataDumpFiles/artifacts.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import ChoosePlayerInstrumentMenu from "../UIelems/ChoosePlayerInstrumentMenu.js";
 /**
@@ -116,14 +116,12 @@ export default class Player extends BoardUnit{
         //console.log(this.ChooseInstrumentMenuSpawn);
         switch (rewardClass){
             case RewardClass.artifact:
-                ArtifactList[index]();
+                ArtifactList[index].effect();
                 break;
             case RewardClass.upgrade:
-                this.ChooseInstrumentMenuSpawn(this,newScene).then(
+                this.ChooseInstrumentMenuSpawn(this,newScene, "Aplicar a:", InstrumentUpgrades[index]).then(
                     function(params){
-                        //console.log(params.player);
-                        params.player.instrumentos[params.instrumentIndex].ApplyUpgrade(InstrumentUpgrades[index]);
-                        //console.log(params.player.instrumentos[params.instrumentIndex]);
+                        InstrumentUpgrades[index].effectToApply(params.player.instrumentos[params.instrumentIndex]);;
                     }
                 );
                 break;
@@ -132,8 +130,8 @@ export default class Player extends BoardUnit{
                 while(this.instrumentos[i])i++;
                 //Si tienes 3 instrumentos
                 if(i==3){
-                    this.ChooseInstrumentMenuSpawn(this,newScene).then(
-                        function(instrumentIndex, thisPlayer) {
+                    this.ChooseInstrumentMenuSpawn(this,newScene, "Sustituir por:", InstrumentDataBase[index]).then(
+                        function(params) {
                             //console.log(params.player);
                             params.player.instrumentos[params.instrumentIndex] = InstrumentDataBase[index];
                             //console.log(params.player.instrumentos[params.instrumentIndex]);
@@ -151,14 +149,17 @@ export default class Player extends BoardUnit{
         /**@todo Al volver a la escena principal, los instrumentos que sean solo el objeto config se tiene que convertir en el instrumento real */
 
     }
-    ChooseInstrumentMenuSpawn(thisPlayer,newScene){
+    ChooseInstrumentMenuSpawn(thisPlayer,newScene, textToShow, reward){
         return new Promise(function(returnIndex){
             let imagesArray = [];
+            let fondo = newScene.add.rectangle( 1320/8, 720/8, 1320*6/8, 720*6/8, 0xe69138).setOrigin(0);
+            let letras = newScene.add.text( 1320/3.2, 720/4,textToShow, { fontFamily: 'Arial', color: '#000000', fontSize: '32px', fontFamily:"Grandstander"}).setOrigin(0.5);
             for (let i = 0; i<3; i++){
                 //console.log(thisPlayer.instrumentos[i].nombre);
                 if(thisPlayer.instrumentos[i]!==undefined){
                     let functionCallback = function(){
-                            //console.log(imagesArray.length);
+                            letras.destroy();
+                            fondo.destroy();
                             for(let i = 0; i < imagesArray.length; i++){
                                 imagesArray[i].PrepareToBeErased();
                                 imagesArray[i].destroy();
@@ -166,7 +167,7 @@ export default class Player extends BoardUnit{
                             returnIndex({instrumentIndex:i,player:thisPlayer});
                     }
                     imagesArray
-                        .push(new DescriptionImages(newScene, (i+1)*1320/4, 500, thisPlayer.instrumentos[i].nombre, thisPlayer.instrumentos[i].nombre, thisPlayer.instrumentos[i].description)
+                        .push(new DescriptionImages(newScene, (i+1)*1320/4, 720/2, thisPlayer.instrumentos[i].nombre, thisPlayer.instrumentos[i].nombre, thisPlayer.instrumentos[i].description)
                         .setDisplaySize(100,100)
                         .setInteractive()
                         .on("pointerdown", functionCallback, thisPlayer));
@@ -174,6 +175,7 @@ export default class Player extends BoardUnit{
                         //console.log(imagesArray);
                 }
             }
+            imagesArray.push(new DescriptionImages(newScene, 1320/5, 720/4, reward.nombre, reward.nombre, reward.description).setDisplaySize(100,100));
         })
     }
 }

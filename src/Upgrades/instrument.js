@@ -72,11 +72,6 @@ export default class Instrumento{
         }
     }
 
-    /**Receives a function to be called in this instrument */
-    ApplyUpgrade(upgrade){
-        upgrade.effectToApply(this);
-    }
-
     AddKeyword(config){
         if(config)
         Object.keys(config).forEach(key => {
