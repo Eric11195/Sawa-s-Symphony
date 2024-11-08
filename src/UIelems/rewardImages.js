@@ -2,7 +2,7 @@ import DescriptionImages from "../UIelems/descriptionImages.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import artifactList from "../Upgrades/artifacts.js";
-import RewardClass from "../DataDumpFiles/itemClass.js";
+import RewardClass from "../DataDumpFiles/RewardClass.js";
 export default class RewardImages extends DescriptionImages{
     constructor (scene, x, y, index, rclass){
         switch (rclass){
@@ -13,6 +13,7 @@ export default class RewardImages extends DescriptionImages{
                 super(scene,x,y,InstrumentUpgrades[index].nombre,InstrumentUpgrades[index].nombre, InstrumentUpgrades[index].description);
             break;
             case RewardClass.artifact:
+                console.log();
                 super(scene,x,y,artifactList[index].nombre,artifactList[index].nombre, artifactList[index].description);
             break;
         }

@@ -1,18 +1,19 @@
 import RewardImages from "../UIelems/rewardImages.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
-import RewardClass from "../DataDumpFiles/itemClass.js";
+import RewardClass from "../DataDumpFiles/RewardClass.js";
 export default class Reward{
     numberOfRewards;
-   rclass;
+   rewardClass;
    choicesIndexes = [];
    choicesImages = [];
    player;
    separationBetweenImages = 125;
 
-    constructor(scene, position, rclass, numberOfRewards, player, remainingitems){
+    constructor(scene, position, rewardClass, numberOfRewards, player, remainingitems){
         this.numberOfRewards = numberOfRewards;
-        this.rclass = rclass;
+        this.rewardClass = rewardClass;
         this.player = player;
+        this.scene = scene;
         /*switch (rclass){
             case RewardClass.instrument:
                 break;
@@ -24,19 +25,26 @@ export default class Reward{
         for (let i = 0; i<numberOfRewards; i++){
             this.choicesIndexes.push(this.randomInst(remainingitems));
             let index = this.clicOnRewardFunc(this.choicesIndexes[i]);
-            this.choicesImages.push(new RewardImages(scene, this.getImagePositionX(position.x,i,numberOfRewards), position.y, this.choicesIndexes[i], rclass).setInteractive().on("pointerdown", index, this));
+            this.choicesImages.push(new RewardImages(scene, this.getImagePositionX(position.x,i,numberOfRewards), position.y, this.choicesIndexes[i], rewardClass).setInteractive().on("pointerdown", index, this));
         }
-        //console.log(this.choicesImages);
     }
 
     clicOnRewardFunc(index){
         return function(){
-            /** @todo Do things*/
-            //return index;
+            for(let i = 0; i < this.choicesIndexes.length; i++){
+                this.choicesImages[i].PrepareToBeErased();
+                this.choicesImages[i].destroy();
+            }
+            this.player.Equip(index,this.rewardClass,this.scene);
+
+
+            //Elimina el index escogido de la lista
+            this.choicesIndexes.splice(this.choicesIndexes.indexOf(index),1);
+
         }
     }
 
-    randomInst = function(remainingitems){
+    randomInst(remainingitems){
         let index;
         do{
             index = Math.floor(Math.random() * (remainingitems.length));
@@ -46,7 +54,6 @@ export default class Reward{
 
     getImagePositionX(startPosX,index, numberOfImages){
         return (startPosX + this.separationBetweenImages * (index - (numberOfImages-1)/2));
-        //return  startPosX + this.separationBetweenImages * index -(this.separationBetweenImages*Math.floor(numberOfImages/2));
     }
 
 }

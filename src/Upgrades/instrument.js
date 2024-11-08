@@ -74,7 +74,7 @@ export default class Instrumento{
 
     /**Receives a function to be called in this instrument */
     ApplyUpgrade(upgrade){
-        upgrade(this);
+        upgrade.effectToApply(this);
     }
 
     AddKeyword(config){

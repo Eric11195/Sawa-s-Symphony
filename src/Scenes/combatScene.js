@@ -48,8 +48,10 @@ export default class combatScene extends Phaser.Scene {
         this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
         this.load.image("vsMarker", "./assets/img/vsMarker.png");
 
-        this.load.image("Flauta", "./assets/img/flauta.png");
-        this.load.image("Piano", "./assets/img/piano.png");
+        for (let inst = 0; inst<InstrumentDataBase.length; inst++){
+            this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
+        }
+
        
         this.load.image("sostenuto", "./assets/img/sostenuto.png");
 
@@ -192,6 +194,8 @@ export default class combatScene extends Phaser.Scene {
             this.player.TryPlayingInstrument(1);
         }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.BUTTON3)){
             this.player.TryPlayingInstrument(2);
+        }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.NEXTSCENE)){
+            this.scene.start("rewardsScene", {Player:this.player});
         }
     }
 

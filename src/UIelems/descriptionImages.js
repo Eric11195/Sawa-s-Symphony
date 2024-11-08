@@ -48,11 +48,9 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
         let array = description.split(/\r\n|\r|\n/);
         let maxCharacters = array[0].length;
         for(let i = 1; i<array.length;i++){
-            console.log(array[i].length);
             if(array[i].length > maxCharacters) maxCharacters = array[i].length;
         }
         //maxCharacters*=10; //xCharacters Size
-        console.log(title,"=>" ,title.length*9, " vs ",8.5* maxCharacters);
         if(title.length * 9 > maxCharacters * 8.5){
             maxCharacters = title.length*9;
         } else maxCharacters *= 8.5;
@@ -60,5 +58,11 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
 
         return maxCharacters;
 
+    }
+
+    PrepareToBeErased(){
+        this.descriptor.alpha = 0;
+        this.descriptorTitle.alpha = 0;
+        this.descriptorDescription.alpha = 0;
     }
 }

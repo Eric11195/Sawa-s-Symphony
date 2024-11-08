@@ -1,6 +1,6 @@
-const ItemClass = {
+const RewardClass = {
     instrument: 'instrument',
     upgrade: 'upgrade',
     artifact: 'artifact'
 }
-export default ItemClass;
+export default RewardClass;

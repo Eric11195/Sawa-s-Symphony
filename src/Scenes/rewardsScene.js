@@ -3,7 +3,7 @@ import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import artifactList from "../Upgrades/artifacts.js";
 import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
-import RewardClass from "../DataDumpFiles/itemClass.js";
+import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
@@ -28,7 +28,7 @@ export default class RewardsScene extends Phaser.Scene {
     remaininginstruments = [];
     
 
-    currentplayer;
+    currentPlayer;
 
     // Conchas base obtenidas por completar un nivel.
     baseshells;
@@ -36,7 +36,7 @@ export default class RewardsScene extends Phaser.Scene {
     extrashells;
 
     init(data){
-        this.currentplayer = data.Player;
+        this.currentPlayer = data.Player;
         //this.ownedinstruments = [];
         //Conchas
         //this.currentplayer.shells += baseshells + (data.difficulty*extrashells);
@@ -66,11 +66,11 @@ export default class RewardsScene extends Phaser.Scene {
 
     CreateRewards(rewardNumber){
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*150}, RewardClass.instrument, 2, this.currentplayer, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*150}, RewardClass.instrument, 2, this.currentPlayer, this.instrumentsLeft));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.upgrade, 2, this.currentplayer, InstrumentUpgrades));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.upgrade, 2, this.currentPlayer, InstrumentUpgrades));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.artifact, 2, this.currentplayer, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:150*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
     }
 
     /*
