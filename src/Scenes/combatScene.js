@@ -34,26 +34,14 @@ export default class combatScene extends Phaser.Scene {
     }
 
     init(){
-
+        
     }
 
     preload(){
-        this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
-
-        this.load.image(testEnemy.name, testEnemy.imagePath);
-        this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
-        this.load.image("sawa", "./assets/img/fathomgames500px.png");
-        /**Todo cambiar clock por la imagen de las notitas que bajan hasta el punto correcto*/
-        this.load.image("clock", "./assets/img/discord.png");
-        this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
-        this.load.image("vsMarker", "./assets/img/vsMarker.png");
-
-        this.load.image("Flauta", "./assets/img/flauta.png");
-        this.load.image("Piano", "./assets/img/piano.png");
        
-        this.load.image("sostenuto", "./assets/img/sostenuto.png");
-
-        this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
+        
+        /**Todo cambiar clock por la imagen de las notitas que bajan hasta el punto correcto*/
+       
     }
 
     /**
