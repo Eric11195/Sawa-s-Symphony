@@ -3,11 +3,11 @@ import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 export default class Reward{
     numberOfRewards;
-   rewardClass;
-   choicesIndexes = [];
-   choicesImages = [];
-   player;
-   separationBetweenImages = 125;
+    rewardClass;
+    choicesIndexes = [];
+    choicesImages = [];
+    player;
+    separationBetweenImages = 125;
 
     constructor(scene, position, rewardClass, numberOfRewards, player, remainingitems){
         this.numberOfRewards = numberOfRewards;

@@ -46,7 +46,7 @@ export default class RewardsScene extends Phaser.Scene {
         //this.rewardSprites = [];
     }
     preload(){
-
+        this.load.image("Go_To_Lobby_Button", "./assets/img/Go_To_Lobby_Button.png");
 
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
@@ -60,8 +60,12 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
+        //Spawn rewards
         this.CreateRewards(1);
-        //for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
+
+
+        //Spawn next scene Button
+        this.nextSceneButton = this.add.image(1150,360, "Go_To_Lobby_Button").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadLobbyScene, this);
     }
 
     CreateRewards(rewardNumber){
