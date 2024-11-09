@@ -5,6 +5,7 @@ import Player from "../BoardUnits/player.js";
 import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
+import ShellDisplay from "../UIelems/shellDisplay.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
@@ -20,8 +21,6 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
 
-    // Array que contiene los instrumentos del jugador, así como los que ha eliminado de su colección.
-    ownedinstruments;
     // Array que contiene los instrumentos ya otorgados.
     rewards;
 
@@ -46,7 +45,11 @@ export default class RewardsScene extends Phaser.Scene {
         //this.rewardSprites = [];
     }
     preload(){
+
         this.load.image("Go_To_Lobby_Button", "./assets/img/Go_To_Lobby_Button.png");
+
+        this.load.image("shell","./assets/img/shell.png");
+
 
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
@@ -60,6 +63,8 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
+
+        new ShellDisplay(this,3333);
         //Spawn rewards
         this.CreateRewards(1);
 

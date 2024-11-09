@@ -1,15 +1,11 @@
-import NotasEffects from "../Effects/notasEffects.js"
-import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
-import {deltaTime, clockInstance} from "../Scenes/combatScene.js"
+
+import {clockInstance} from "../Scenes/combatScene.js"
+import baseProjectile from "./baseprojectile.js";
 //import NotesEffects from "../Effects/notasEffects.js";
 
-export default class Nota extends Phaser.GameObjects.Sprite{
+export default class Nota extends baseProjectile{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
     tipoNota;
-    // Contiene la velocidad en compases por beat, 
-    speed;
-    //Dirección hacia la que avanza la nota
-    direction;
     /**
      * @param {*} scene la escena en la que se genera la nota
      * @param {*} posX x de la casilla en la que se genera la nota
@@ -18,30 +14,16 @@ export default class Nota extends Phaser.GameObjects.Sprite{
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
     constructor(scene, posX, posY, tipoNota, direction){
-        super(scene, Tile00PositionX(), Tile00PositionY(), 'notes');
-        scene.add.existing(this);
+        super(scene, posX, posY, direction, "notes");
         this.setScale(2,2);
         this.setOrigin(0,0.75);
 
-        this.x = Tile00PositionX() + posX * TileDiffX();
-        this.y = Tile00PositionY() + posY * TileDiffY();
         //this.tipoNota = notas[tipoNota];
-        this.speed = 1;
         this.silent = 0;
        
-        this.direction = direction;
         this.tipoNota = tipoNota;
         
-        //takes the event postupdate from the scene and makes this function postUpdate be called when received
-        clockInstance.eventEmitter.on("BeatNow", ()=>{
-            if(this.silent > 0) this.silent--;
-        });
-        this.scene.events.on('postupdate', ()=>{
-            this.PostUpdate();
-        });
- 
-        scene.physics.add.existing(this);
-        this.body.setSize(20, 20, true);
+
         //Se define como nota del player o del enemy
         if(this.direction == 1){
             scene.playerNotes.add(this);
@@ -61,25 +43,4 @@ export default class Nota extends Phaser.GameObjects.Sprite{
     //After each update moves note forward
     //this needs to be done because deltaTime is not defined until the first update
 
-    PostUpdate(){
-        if(!this.silent) this.MoveForward();
-    }
-
-    /**Move forward the note until it gets out of board*/
-    MoveForward(){
-        /** @todo Habrá que buscar una manera de implementar el delta time que no implique ponerle contadores a todas las notas
-         */
-        this.x += this.direction * deltaTime/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
-        //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
-        /**@todo investigar si hacer con un trigger en vez de por coordenadas */
-        if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
-            this.destroy();
-        }
-    }
-
-    AddKeyword(config){
-        Object.keys(config).forEach(key => {
-            NotasEffects[key](this, config[key]);
-        });       
-    }
 }
