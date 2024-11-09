@@ -7,7 +7,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
     }
 
     init(data){
-
+        this.player = data.player;
     }
 
     preload(){
@@ -21,7 +21,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
         this.nextBattleButton = this.add.image(1150,360, "NextBattleButton").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadBattleScene, this);
 
         this.testNPC = new NPC(this,
-            {
+            { 
                 name: "jose",
                 posX: 400,
                 posY: 400,
@@ -34,7 +34,7 @@ de confianza`]
 
 
     LoadBattleScene(){
-        this.scene.start("combatScene", {Player:this.player});
+        this.scene.start("combatScene", {player:this.player});
     }
 
 

@@ -12,7 +12,7 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
         super(scene,x,y,imageId);
         scene.add.existing(this);
         this.setInteractive();
-        let maxLength = 
+        //let maxLength = 
         this.descriptor =  scene.add.rectangle( 0, 0, this.CalculateXBoxSize(title,description), 40+17*(description).split(/\r\n|\r|\n/).length, 0x179bae).setOrigin(0);
         //Quita las underscores de los nombres antes de escribirlos
         this.descriptorTitle = scene.add.text( 0, 0, title.replace(/(_)/g, " "), { fontFamily: 'Arial', color: '#000', fontSize: '18px', fontFamily:"Grandstander" }).setOrigin(0);

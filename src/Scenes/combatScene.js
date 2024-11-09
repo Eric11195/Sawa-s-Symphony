@@ -27,14 +27,18 @@ export default class combatScene extends Phaser.Scene {
     constructor(){
 
         super({key: "combatScene"});
- 
+
         this.playerPoints = 0;
         this.enemyPoints = 0;
-
     }
 
-    init(){
-
+    init(data){
+        if(data.player===undefined) console.log("El jugador no ha sido cargado");
+        else{
+            this.player = data.player;
+            this.player.UpdateScene(this);
+            this.player.CreateTheNewInstruments();
+        }
     }
 
     preload(){
@@ -52,7 +56,7 @@ export default class combatScene extends Phaser.Scene {
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
 
-       
+
         this.load.image("sostenuto", "./assets/img/sostenuto.png");
 
         this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
@@ -62,17 +66,22 @@ export default class combatScene extends Phaser.Scene {
      * @todo mover todas las funciones del jugador movimiento y tal a una sola clase
      */
     //MUY IMPORTANTE, cargar antes las imagenes que esten más detras pq si no taparan las que hayamos cargado antes
-    create(){     
-        //iniciar el clock con los BPM como parametro
+    create(){   
+        //Create fondo
+        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
+
         clockInstance = new Clock(this, testEnemy.bpm);
+        if(this.player===undefined){
+            this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
+        }
+        console.log(this.player);
+        //iniciar el clock con los BPM como parametro
         
         //Esta linea crea todas las teclas que usaremos en esta escena a paritr del fichero KEY_BINDINGS
         this.KEYS = this.input.keyboard.addKeys(KEY_BINDINGS);
 
-        //Create fondo
-        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
         //Crea un player con la escena, la pos00x, pos00y, tileDiffx, tileDiffy
-        this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
+        //this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
 
         //Get Artifact
         ArtifactList[0].effect();
@@ -195,12 +204,16 @@ export default class combatScene extends Phaser.Scene {
         }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.BUTTON3)){
             this.player.TryPlayingInstrument(2);
         }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.NEXTSCENE)){
-            this.scene.start("rewardsScene", {Player:this.player});
+            this.ChangeToRewardsScene();
         }
     }
 
 
     startCombatSong(){
         this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - testEnemy.msSongStart, callback: ()=>{music.play()}});
+    }
+
+    ChangeToRewardsScene(){
+        this.scene.start("rewardsScene", {player:this.player});
     }
 }

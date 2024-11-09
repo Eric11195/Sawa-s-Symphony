@@ -28,7 +28,7 @@ export default class RewardsScene extends Phaser.Scene {
     remaininginstruments = [];
     
 
-    currentPlayer;
+    player;
 
     // Conchas base obtenidas por completar un nivel.
     baseshells;
@@ -36,7 +36,7 @@ export default class RewardsScene extends Phaser.Scene {
     extrashells;
 
     init(data){
-        this.currentPlayer = data.Player;
+        this.player = data.player;
         //this.ownedinstruments = [];
         //Conchas
         //this.currentplayer.shells += baseshells + (data.difficulty*extrashells);
@@ -69,16 +69,16 @@ export default class RewardsScene extends Phaser.Scene {
     }
 
     CreateRewards(rewardNumber){
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.currentPlayer, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player, this.instrumentsLeft));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.currentPlayer, InstrumentUpgrades));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player, InstrumentUpgrades));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player, this.artifactLeft));
     }
 
 
     LoadLobbyScene(){
-        this.scene.start("rewardsLobbyScene", {Player:this.player});
+        this.scene.start("rewardsLobbyScene", {player:this.player});
     }
 
 }

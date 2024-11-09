@@ -81,6 +81,19 @@ export default class Player extends BoardUnit{
         }
     }
 
+    UpdateScene(newScene){
+        this.scene = newScene;
+    }
+
+    CreateTheNewInstruments(){
+        for(let i = 0; i < 3; i++){
+            console.log(this.instrumentos[i]);
+            if(!(this.instrumentos[i] instanceof Instrumento) && this.instrumentos[i] !== undefined){
+                this.instrumentos[i] = new Instrumento(this.scene,this.instrumentos[i],i);
+            }
+        }
+    }
+
 
     /**@todo estos efectos ahora se aplican por defecto así que igual son innecesarios */
     /**Produce todos los efectos de syncopate al moverse al ritmo*/
@@ -93,6 +106,7 @@ export default class Player extends BoardUnit{
         //console.log("tempo");
     }
 
+    /*
     AddItem(iclass, id, apply = undefined){
         switch (iclass){
             case ItemClass.instrument:
@@ -105,7 +119,7 @@ export default class Player extends BoardUnit{
                 //TODO
                 break;
         }
-    }
+    }*/
 
     /**
      * 

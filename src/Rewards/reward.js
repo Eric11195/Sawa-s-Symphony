@@ -36,6 +36,7 @@ export default class Reward{
                 this.choicesImages[i].PrepareToBeErased();
                 this.choicesImages[i].destroy();
             }
+            console.log(this.player);
             this.player.Equip(index,this.rewardClass,this.scene);
             this.background.destroy();
 
