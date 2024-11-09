@@ -6,12 +6,12 @@ export default class ShellDisplay extends Phaser.GameObjects.Image{
      * @param {*} shells Conchas del jugador.
      */
     constructor (scene,shells){
-        super(scene,500,0,"shell"); //EL DEMONIO DE BABILONIA SE DISFRAZA CON EL MANTO DE LOS JUSTOS
-        this.setDisplaySize(200,200)
-        console.log(this);  
+        super(scene,1270,20,"shell"); //EL DEMONIO DE BABILONIA SE DISFRAZA CON EL MANTO DE LOS JUSTOS
+        this.setDisplaySize(50,50);
         this.setOrigin(0,0);
         this.shellcount = shells;
-        this.shelltext = this.scene.add.text(this.x,this.y,this.shellcount,{ fontFamily: 'Arial', color: '#4EF', fontSize: '72px', fontFamily:"Grandstander" }).setOrigin(1,0);
+        scene.add.existing(this);
+        this.shelltext = this.scene.add.text(this.x,this.y,this.shellcount,{ fontFamily: 'Arial', color: '#4EF', fontSize: '72px', fontFamily:"Grandstander" }).setOrigin(1,0.2);
         this.on('updateshells', this.ShellUpdate);
     }
     /**
