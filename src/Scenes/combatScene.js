@@ -79,7 +79,9 @@ export default class combatScene extends Phaser.Scene {
         //console.log(this.player);
 
 
-        
+        //Projectile Pool creation-------------------------
+        //this.projectilePool = this.add.projectilePool();
+        //--------------------------------------------
         
         //Esta linea crea todas las teclas que usaremos en esta escena a paritr del fichero KEY_BINDINGS
         this.KEYS = this.input.keyboard.addKeys(KEY_BINDINGS);
@@ -127,16 +129,11 @@ export default class combatScene extends Phaser.Scene {
 
 
         //Colisiones------------------------------------------------------------------------------------------------------------------------
-        this.playerNotes = this.physics.add.group();
-        this.enemyNotes = this.physics.add.group();
-        //Contiene las notas que chocan contra notas del player
-        this.collideWithPlayerNotes = this.physics.add.group();
-        //Contiene las notas del enemigo o del player que chocan entre sí
-        this.collideWithEnemyNotes = this.physics.add.group();
+        this.notes = this.physics.add.group();
 
         //Las notas del enemigo se chocan con el player
-        this.physics.add.overlap(this.enemyNotes, this.player, (player,note)=>{
-            if(!note.piano){
+        this.physics.add.overlap(this.notes, this.player, (player,note)=>{
+            if(!note.piano && note.direction == -1){
                 this.enemyPoints+= Math.pow(2,note.tipoNota);
                 this.enemyMarker.text = this.enemyPoints;
                 this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
@@ -145,8 +142,8 @@ export default class combatScene extends Phaser.Scene {
             /**@todo sumarle puntuación al enemy */
         });
         //Notas del player chocandose contra el enemigo
-        this.physics.add.overlap(this.playerNotes, this.enemy, (enemy,note)=>{
-            if(!note.piano){
+        this.physics.add.overlap(this.notes, this.enemy, (enemy,note)=>{
+            if(!note.piano && note.direction == 1){
                 this.playerPoints+= Math.pow(2,note.tipoNota);
                 this.playerMarker.text = this.playerPoints;
                 this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
@@ -156,24 +153,20 @@ export default class combatScene extends Phaser.Scene {
         });
 
         //Notas del player chocandose contra sus propias notas
-        this.physics.add.overlap(this.collideWithPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
-            if(!collidingNote.piano && !receivingNote.piano)
-            if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                receivingNote.AddKeyword(collidingNote.efectosAccompaniment);
-                collidingNote.notesCollidedWith.push(receivingNote);
-            }
-        });
-        //Notas del player chocandose contra notas Enemy
-        this.physics.add.overlap(this.collideWithEnemyNotes, this.enemyNotes, (collidingNote, receivingNote)=>{
-            if(!collidingNote.piano && !receivingNote.piano)
-            if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                //console.log(collidingNote.efectosAccompaniment);
-                //console.log(collidingNote.efectosAccompaniment);
-                receivingNote.AddKeyword(collidingNote.applyToEnemyNotes);
-                console.log(collidingNote.applyToEnemyNotes);
-                /**@todo hacer que la nota aplique los efectos necesarios */
-                //collidingNote.notesCollidedWith.push(receivingNote);
-            }
+        this.physics.add.overlap(this.notes, undefined, (note1, note2)=>{
+            console.log("choque musical");
+            if(!note1.piano && !note2.piano)
+                if(!note1.notesCollidedWith.includes(note2)){
+                    if(note1.direction == note2.direction){
+                        note1.AddKeyword(note2.applyToAllyNotes);
+                        note2.AddKeyword(note1.applyToAllyNotes);
+                    }else{
+                        note1.AddKeyword(note2.applyToEnemyNotes);
+                        note2.AddKeyword(note1.applyToEnemyNotes);
+                    }
+                    note1.notesCollidedWith.push(note2);
+                    note2.notesCollidedWith.push(note1);
+                }
         });
         //--------------------------------------------------------------------------------------------------------------------------
 
@@ -216,5 +209,10 @@ export default class combatScene extends Phaser.Scene {
 
     ChangeToRewardsScene(){
         this.scene.start("rewardsScene", {player:this.player});
+    }
+
+
+    SpawnProjectile(config){
+        this.projectilePool.spawn();
     }
 }
