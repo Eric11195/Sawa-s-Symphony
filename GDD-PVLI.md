@@ -2,7 +2,7 @@
 
 ## **Grupo 11 \- Fathom Games**
 
-## **Óscar Melquiades Durán Narganes, Izan de Vega López, Sergio Yago Juárez, Diego Martín García**
+## ** Izan de Vega López, Óscar Melquiades Durán Narganes, Sergio Yago Juárez, Diego Martín García**
 
 # **Ficha Técnica**
 
