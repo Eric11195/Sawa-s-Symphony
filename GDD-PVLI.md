@@ -4,33 +4,27 @@
 
 ## **Óscar Melquiades Durán Narganes, Izan de Vega López, Sergio Yago Juárez, Diego Martín García**
 
-# **![][image1]**
+# **Ficha Técnica**
 
-# **Ficha Técnica** {#ficha-técnica}
-
-## **Título** {#título}
+## **Título**
 
 Sawa’s Song
 
-## **Género** {#género}
+## **Género**
 
 Roguelike, Bullet Hell, Disparos, Ritmo
 
-## **Target Audience**  {#target-audience}
+## **Target Audience**
 
 Core Gamers
 
-## **Calificación por edades** {#calificación-por-edades}
+## **Calificación por edades**
 
 PEGI 7
 
-## **Plataforma** {#plataforma}
+## **Plataforma**
 
 Navegador PC
-
-Texto o Secciones coloreadas de verde han sido añadidas nuevas desde la anterior revisión, como está. Si toda una sección es nueva, está señalado solo el título para no dar epilepsia.
-
-Texto o secciones en rojo ya no son parte del documento, y se quiere dar a entender que no se deberían leer, solo figuran para dejar reflejados los cambios tomados desde la anterior revisión
 
 **Índice**
 
@@ -120,30 +114,29 @@ Texto o secciones en rojo ya no son parte del documento, y se quiere dar a enten
 
 [Efectos de Acumulación de Género Musical	17](#efectos-de-acumulación-de-género-musical)
 
-# **Cartas Usadas** {#cartas-usadas}
+# **Cartas Usadas**
 
 **Cuphead**: Bullet hell muchas notas en pantalla a la vez y hay que esquivarlas  
 **Street fighter**: Combate jugador contra enemigo  
 **Nutria con sombrero**: El personaje que controla el jugador es una nutria con un sombrero  
 **Bajo del mar** (+ mecánica de ritmo): Escenario bajo del mar, y mecánica de ritmo
 
-# **Descripción** {#descripción}
+# **Descripción**
 
 Tu objetivo es ganar el torneo de batallas musicales más importante de agua salada.  
 Para ello Sawa la nutria tendrá que ir derrotando a sus oponentes, aprendiendo nuevas técnicas musicales y aprendiendo a tocar nuevos instrumentos.
 
-## **Gameplay Loop** {#gameplay-loop}
-
+## **Gameplay Loop**
 Sawa deberá ganar 5 combates musicales y ganar contra el ganador definitivo de la anterior edición (el Boss). Si hace esto habrá ganado el torneo.  
 Si pierde un encuentro, tendrá que volver a empezar de cero.
 
-## **Paso entre combates** {#paso-entre-combates}
+## **Paso entre combates**
 
 Después de ganar un combate, Sawa recibirá conchas(divisa) y otra recompensa al azar. Después se le presentarán 2 fans cada uno con una selección de recompensas. El jugador elegirá a uno ganando las recompensas que tuviese. Tras escoger fan y ganar sus recompensas, el jugador podrá pulsar el botón siguiente combate para empezarlo en cualquier momento, o tomar su tiempo para leer los efectos de los instrumentos, artefactos y otras recompensas que haya conseguido.
 
-# **Mecánicas** {#mecánicas}
+# **Mecánicas**
 
-## **Zona de Juego** {#zona-de-juego}
+## **Zona de Juego**
 
 La zona de juego está compuesta por un tablero de 7 x 5 casillas.  
 Hay 3 zonas delimitadas por columnas (de izquierda a derecha) en el tablero:
@@ -156,7 +149,7 @@ Los jugadores y el enemigo solo pueden hallarse de forma natural sobre su propia
 
 Las notas musicales en cambio viajarán en línea recta por las filas independientemente de las zonas, pudiendo encontrarse entre 2 casillas a la vez.
 
-## **Acciones del jugador** {#acciones-del-jugador}
+## **Acciones del jugador**
 
 El jugador puede realizar 2 acciones manualmente:
 
@@ -168,19 +161,13 @@ El jugador podrá moverse a otra casilla adyacente a la actual dentro de su zona
 
 El jugador podrá tocar un instrumento. Esta es la principal manera de colocar notas musicales en el tablero.
 
-## **Sistema de Autoestima (PV)** {#sistema-de-autoestima-(pv)}
+## **Sistema de Autoestima (PV)**
 
 El jugador y el enemigo tienen un contador de autoestima cada uno que empieza cada combate a 0 puntos. Cuando una nota del contrario toca a uno de los 2 la autoestima de quien haya lanzado la nota aumenta. El que tenga más autoestima al final del combate gana. Ganar con gran margen mejora las recompensas recibidas al final del combate.  
 La representación de la autoestima es un medidor compartido que empieza al 50% y se mueve en la dirección a quien va perdiendo.   
 Hay marcas cuando la ventaja es del 30, 60 %. Y al acabar un combate se consiguen mejores recompensas por cada marca.  
-El jugador y el rival tienen una cantidad concreta de puntos de autoestima visibles en todo momento. Cuando una nota del rival impacte contra el jugador su autoestima se reducirá en función de la nota que le impacte y viceversa.  
-Cuando el jugador es golpeado este recibe unos instantes de invulnerabilidad. Esto no ocurre al golpear al enemigo.
 
-Cuando la autoestima llega a 0 el personaje se considera derrotado. En caso de ser un rival, el jugador pasará al siguiente combate. En caso de ser el jugador perderá la partida.
-
-La autoestima del jugador se conserva entre combates.
-
-## **Ritmo** {#ritmo}
+## **Ritmo**
 
 Cada enemigo tiene un ritmo. Esto es el latido constante de la música que suena al enfrentarte a él, a partir de ahora beat.   
 El ritmo estará representado de manera visual en la parte de abajo de la pantalla  
@@ -190,18 +177,18 @@ Nótese que no es obligatorio realizar las acciones al ritmo y es solo un efecto
 
 El ritmo coincide con el tiempo que tardan las notas en avanzar una casilla completa.
 
-# **Notas Musicales** {#notas-musicales}
+# **Notas Musicales**
 
 Las notas musicales son los proyectiles que surcan el tablero. Avanzan a velocidad constante (salvo efectos especiales) en dirección al contrario a quien las produjo. De forma normal está velocidad es una casilla por beat.
 
-## **Tipos** {#tipos}
+## **Tipos**
 
 * Redondas (Opcional) → aumenta la autoestima en 8  
 * Blancas → aumenta la autoestima en 4  
 * Negras → aumenta la autoestima en 2  
 * Corcheas → aumenta la autoestima en 1
 
-## **Keywords** {#keywords}
+## **Keywords**
 
 * Adagio → avanzan a x0.5 de velocidad. Aplicar adagio a una nota allegro elimina ambas keywords.  
 * Allegro → avanzan a x2 de velocidad. Aplicar allegro a una nota adagio, elimina ambas keywords.  
@@ -216,11 +203,11 @@ Las notas musicales son los proyectiles que surcan el tablero. Avanzan a velocid
 
 Una nota puede tener forte y piano a la vez. Si esto es así no se chocará con otras notas hasta que se elimine piano.
 
-# **Instrumentos** {#instrumentos}
+# **Instrumentos**
 
-El jugador podrá llevar 3 entre 2 y 4 instrumentos como máximo en todo momento encima. Cada instrumento es único con sus propias estadísticas y forma de generar notas.
+El jugador podrá llevar 3 instrumentos como máximo en todo momento encima. Cada instrumento es único con sus propias estadísticas y forma de generar notas.
 
-## **Estadísticas** {#estadísticas}
+## **Estadísticas**
 
 * Género: Cada instrumento tendrá un género musical asignado con su propio arquetipo. Al tener equipados varios instrumentos del mismo género se aplicarán efectos pasivos dependiendo del género acumulado.  
 * Cooldown: Beats que tienen que pasar hasta que pueda volver a ser usado.  
@@ -229,7 +216,7 @@ El jugador podrá llevar 3 entre 2 y 4 instrumentos como máximo en todo momento
 * Posición de puesta de notas: Generalmente es justo delante del jugador, pero puede ser en carriles adyacentes o con efectos más especiales.  
 * Efectos: Si es que los tienen, pueden ser desde efectos pasivos hasta otros que ocurran al usarlos. 
 
-## **Efectos de los instrumentos** {#efectos-de-los-instrumentos}
+## **Efectos de los instrumentos**
 
 Los siguientes son efectos que contienen multitud de instrumentos. No obstante, los instrumentos pueden tener efectos más complejos.
 
@@ -248,16 +235,16 @@ Los siguientes son efectos que contienen multitud de instrumentos. No obstante, 
 * Canon: keyword que se aplica al jugador. Cada beat reduce en uno las acumulaciones de canon sobre el jugador y gana una carga de ReProduce. Mientras el jugador tenga canon guarda el tipo, posición y numero de notas que produzca cada beat, en un espacio de distinto de una lista (TAD queue: First in First Out). Cuando al jugador se le acaben las acumulaciones de canon se pueden ver los efectos de ReProduce.  
 * ReProduce: keyword que se aplica al jugador. Cada beat reduce en uno las acumulaciones de ReProduce (si no tienes acumulaciones de canon). Mientras el jugador tenga ReProduce (y no tenga acumulaciones de canon) está anclado, (puede seguir tocando instrumentos) y produce cada beat todas las notas que estén en el primer espacio de la lista que guardaba canon. Si tiene o gana acumulaciones de canon , los efectos de ReProduce se ignoran hasta que canon vuelve a ser canon. *Opción 2: Al ganar nuevas acumulaciones de canon elimina todas las acumulaciones de ReProduce.*
 
-# **Artefactos** {#artefactos}
+# **Artefactos**
 
 Equipamiento que puede obtener Sawa con efectos pasivos muy poderosos. El jugador puede tener artefactos ilimitados, pero lo normal es que no consiga más de 3 o 4 durante una run.
 
-# **Clases** {#clases}
+# **Clases**
 
 * El jugador podrá elegir varias clases antes de comenzar la partida. La clase que escoja determinará su Autoestima Inicial, los instrumentos con los que empieza (ya sean 1 o varios) y sus artefactos iniciales. Pese a empezar con un instrumento el jugador siempre tiene espacio para 3 instrumentos.  
 * O bien que te toque un artefacto al azar entre una selección de artefactos iniciales y eliges un arma común.
 
-# **Mejoras** {#mejoras}
+# **Mejoras**
 
 Las mejoras son complementos que se pueden poner a los instrumentos, cada instrumento puede tener una mejora. Las mejoras pueden modificar los 3 siguientes parámetros de un instrumento:
 
@@ -273,7 +260,7 @@ Ejemplos:
 Mejora Simple: Mejora de nota \+1 (si son corcheas, pasa a lanzar negras)  
 Mejora poderosa: Cooldown \-2, \-1 número de notas(si lanzaba 2 ahora lanza 1\)
 
-# **Recompensas** {#recompensas}
+# **Recompensas**
 
 Tras cada combate el jugador entrará en una escena en la que se le darán 2 recompensas. Conchas(El número de conchas es proporcional a lo bien que lo haya hecho el anterior combate) y un instrumento a elegir entre 3\. Puede clicar sobre ellas para equiparlas o ignorarlas y pasar al Lobby. 
 
@@ -286,25 +273,24 @@ Elección de instrumento: Un nuevo instrumento a elegir entre 3
 Elección de instrumento por género: Sólo aparecerá antes del combate contra el boss si tienes varios instrumentos del mismo género.  
 Mejoras: Una mejora que podrás aplicar a uno de tus instrumentos  
 Artefactos: Un objeto con un efecto pasivo muy poderoso  
-Compra de Instrumentos: Tendrá disponibles 3 instrumentos de entre todos los disponibles al azar, puedes adquirir uno o varios. Puedes vender los instrumentos que ya no te hagan falta por una cantidad mínima de conchas  
+Compra de Instrumentos: Tendrá disponibles 3 instrumentos de entre todos los disponibles al azar, puedes adquirir uno o varios.  
 Compra de mejoras: Tiene 3 mejoras generadas automáticamente al azar, puedes adquirir una o varias y aplicarla a uno de tus instrumentos  
 Compra de artefactos: Tiene 3 artefactos de entre todos los disponibles (que no tengas ya) al azar, puedes adquirir uno o varios. Esta tienda es más cara que las 2 anteriores.  
-Motivación: Una recuperación moderada de autoestima 
 
 Todas las Tiendas/ compra de … tienen un botón para rerollear los instrumentos/mejoras/artefactos que hayan salido por un módico precio.
 
-# **HUD** {#hud}
+# **HUD**
 
 # **![][image1]**
 
-## **Explicación** {#explicación}
+## **Explicación**
 
 * Indicadores Vida: Arriba a la derecha se muestra la autoestima del enemigo. Debajo del jugador se muestra la autoestima del jugador  
 * Imágenes de instrumentos: Arriba a la izquierda. Al pulsarlos se mostrará la descripción del instrumento, muestran a qué tecla está asignado cada instrumento  
 * Notas jugador y enemigo: Permiten ver al jugador el estado de juego  
 * Visualización de ritmo: abajo del todo. Olas o símbolos de agua que se mueven hacia el centro a velocidad constante y se chocan en el centro a cada beat.
 
-# **Menús** {#menús}
+# **Menús**
 
 Menú principal
 
@@ -323,15 +309,15 @@ Menú principal
   * Atrás  
 * Salir
 
-# **Estética** {#estética}
+# **Estética**
 
-## **Historia** {#historia}
+## **Historia**
 
 Sawa es una nutría que tras escuchar del SEA (Symphonic Entertainment Arena) abandona su río para competir y ser reconocida como la mejor música del océano.
 
 La historia no se cuenta de manera explícita en ningún momento. Simplemente el juego es de una nutria intentando ganar un campeonato de música.
 
-## **Estilo Gráfico** {#estilo-gráfico}
+## **Estilo Gráfico**
 
 El estilo de dibujo es adorable, cute, kawai. De colores pastel y esponjoso. Por ejemplo:  
  ![][image2]![][image3]![][image4]
@@ -424,7 +410,7 @@ A la hora de hacer condiciones dentro de la nota o para colisiones o demás con 
 (silent) devolvera true si la variable esta definida y es distinta de 0 (con cualquier número negativa sigue siendo falsa no obstante)  
 Si necesitamos cualquier otra condición (que se me haya ocurrido) con números se puede hacer de la manera usual.
 
-# **Referencias** {#referencias}
+# **Referencias**
 
 * Slay the spire (Mega Crit, 2019\) → Artefactos
 
@@ -438,33 +424,33 @@ Si necesitamos cualquier otra condición (que se me haya ocurrido) con números 
 
 * Crypt of the Necrodancer (Brace Yourself Games, 2015\) → Sistema de ritmo 
 
-# **Redes Sociales** {#redes-sociales}
+# **Redes Sociales**
 
-## **Enlace a Github** {#enlace-a-github}
+## **Enlace a Github**
 
 [**https://github.com/IzanDeVegaLopez/proyecto\_PVLI**](https://github.com/IzanDeVegaLopez/proyecto_PVLI)
 
-## **Enlace a Youtube** {#enlace-a-youtube}
+## **Enlace a Youtube**
 
 [**https://www.youtube.com/channel/UCYzZh8CjlzoX60kzE2s3ylw**](https://www.youtube.com/channel/UCYzZh8CjlzoX60kzE2s3ylw)
 
-## **Enlace a Instagram** {#enlace-a-instagram}
+## **Enlace a Instagram**
 
 [**https://www.instagram.com/fathomgames1/**](https://www.instagram.com/fathomgames1/)
 
-## **Enlace a Twitter** {#enlace-a-twitter}
+## **Enlace a Twitter** 
 
 [**https://x.com/FathomGames1**](https://x.com/FathomGames1)
 
-## **Enlace a Discord** {#enlace-a-discord}
+## **Enlace a Discord**
 
 [**https://discord.gg/kZKrkjG527**](https://discord.gg/kZKrkjG527)
 
-# **Anexo: Data Dump** {#anexo:-data-dump}
+# **Anexo: Data Dump** 
 
 A partir de aquí se mostrarán instrumentos, clases y artefactos concretos, con la idea de implementarlos.
 
-## **Clases** {#clases-1}
+## **Clases** 
 
 | Nombre | Rockera |
 | :---- | :---- |
