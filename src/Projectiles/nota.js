@@ -20,16 +20,13 @@ export default class Nota extends baseProjectile{
 
         //this.tipoNota = notas[tipoNota];
         this.silent = 0;
-       
-        this.tipoNota = tipoNota;
         
+        this.tipoNota = tipoNota;
 
         //Se define como nota del player o del enemy
         if(this.direction == 1){
-            scene.playerNotes.add(this);
             this.tint = 0x179bae;
         }else{
-            scene.enemyNotes.add(this);
             this.tint = 0xff8343;
             this.setFlipY(true);
         }
