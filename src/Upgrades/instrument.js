@@ -6,6 +6,7 @@ import InstrumentEffects from "../Effects/instrumentEffects.js";
 export default class Instrumento{
     sceneRef;
     nombre = "default";
+    description = "Lorem Ipsum";
     numeroNotas = 1;
     notePositionMod = [{x:0,y:0}];
     tipoNotas = 1;
@@ -13,16 +14,28 @@ export default class Instrumento{
     baseCooldown = 0;
     noteKeywords={};
 
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod,baseCooldown", "description"]/*, "instrumentKeywords" ];*/
+
     cdImage;
     /**
      * @param instrumentConfig el instrumento de la base de datos con todos los parametros
      */
     constructor(scene, instrumentConfig, instrumentNumber){
         this.sceneRef = scene;
-        Object.keys(instrumentConfig).forEach(key => {
-            this[key] = instrumentConfig[key];
-            //const value = object[key];
-        });
+        if(instrumentConfig instanceof Instrumento){
+            //Modificar solo lo que debería del instrumento ya creado
+            for(let key in this.listOfGetValuesOnCreatedInstrument){
+                console.log(instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]]);
+                this[this.listOfGetValuesOnCreatedInstrument[key]] = instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]];
+            }
+        }else{
+            Object.keys(instrumentConfig).forEach(key => {
+                //console.log(key);
+                this[key] = instrumentConfig[key];
+                //const value = object[key];
+            });
+        }
+
 
         this.AddKeyword(this.instrumentKeywords);
         
@@ -47,7 +60,7 @@ export default class Instrumento{
         this.actualCooldown = this.baseCooldown+cdToAdd;
         //console.log(this.actualCooldown);
         this.ProducirNotas();
-        this.cdImage.UpdateCd(this.actualCooldown);
+        //this.cdImage.UpdateCd(this.actualCooldown);
         //console.log(beforeBeat);
         //Previene que se generen notas fuera del tablero
         
@@ -72,9 +85,9 @@ export default class Instrumento{
 
     AddKeyword(config){
         if(config)
-            console.log(config);
-        Object.keys(config).forEach(key => {
-            InstrumentEffects[key](this, config[key]);
-        });
+            //console.log(config);
+            Object.keys(config).forEach(key => {
+                InstrumentEffects[key](this, config[key]);
+            });
     }
 }

@@ -30,17 +30,16 @@ export default class combatScene extends Phaser.Scene {
 
         this.playerPoints = 0;
         this.enemyPoints = 0;
+
     }
 
     init(data){
         if(data.player===undefined) console.log("El jugador no ha sido cargado");
         else{
             this.player = data.player;
-            this.player.UpdateScene(this);
-            this.player.CreateTheNewInstruments();
         }
     }
-
+    
     preload(){
         this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
 
@@ -55,35 +54,35 @@ export default class combatScene extends Phaser.Scene {
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
-
-
+        
         this.load.image("sostenuto", "./assets/img/sostenuto.png");
         this.load.image("vibrato", "./assets/img/vibrato.png");
 
         this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
-        
     }
 
     /**
      * @todo mover todas las funciones del jugador movimiento y tal a una sola clase
      */
     //MUY IMPORTANTE, cargar antes las imagenes que esten más detras pq si no taparan las que hayamos cargado antes
-    create(){   
-        //Create fondo
-        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
+    create(){     
+
+        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
 
         clockInstance = new Clock(this, testEnemy.bpm);
         if(this.player===undefined){
-            this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[1]);
+        }else{
+            //Si ya tenemos player le damos los parametros del anterior
+            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.instrumentos[3], this.player.Syncopate, this.player.Tempo);
         }
-        console.log(this.player);
-        //iniciar el clock con los BPM como parametro
+        //console.log(this.player);
+
+
+        
         
         //Esta linea crea todas las teclas que usaremos en esta escena a paritr del fichero KEY_BINDINGS
         this.KEYS = this.input.keyboard.addKeys(KEY_BINDINGS);
-
-        //Crea un player con la escena, la pos00x, pos00y, tileDiffx, tileDiffy
-        //this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
 
         //Get Artifact
         ArtifactList[0].effect();
@@ -160,9 +159,8 @@ export default class combatScene extends Phaser.Scene {
         this.physics.add.overlap(this.collideWithPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
             if(!collidingNote.piano && !receivingNote.piano)
             if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                receivingNote.AddKeyword(collidingNote.applyToPlayerNotes);
+                receivingNote.AddKeyword(collidingNote.efectosAccompaniment);
                 collidingNote.notesCollidedWith.push(receivingNote);
-                console.log(collidingNote.applyToPlayerNotes);
             }
         });
         //Notas del player chocandose contra notas Enemy
@@ -174,7 +172,7 @@ export default class combatScene extends Phaser.Scene {
                 receivingNote.AddKeyword(collidingNote.applyToEnemyNotes);
                 console.log(collidingNote.applyToEnemyNotes);
                 /**@todo hacer que la nota aplique los efectos necesarios */
-                collidingNote.notesCollidedWith.push(receivingNote);
+                //collidingNote.notesCollidedWith.push(receivingNote);
             }
         });
         //--------------------------------------------------------------------------------------------------------------------------
