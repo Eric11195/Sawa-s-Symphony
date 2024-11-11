@@ -134,9 +134,11 @@ export default class combatScene extends Phaser.Scene {
         //Las notas del enemigo se chocan con el player
         this.physics.add.overlap(this.notes, this.player, (player,note)=>{
             if(!note.piano && note.direction == -1){
-                this.enemyPoints+= Math.pow(2,note.tipoNota);
-                this.enemyMarker.text = this.enemyPoints;
-                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                if(note.tipoNota !== undefined) {
+                    this.enemyPoints+= Math.pow(2,note.tipoNota);
+                    this.enemyMarker.text = this.enemyPoints;
+                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                }
                 note.destroy();
             }
             /**@todo sumarle puntuación al enemy */
@@ -144,10 +146,12 @@ export default class combatScene extends Phaser.Scene {
         //Notas del player chocandose contra el enemigo
         this.physics.add.overlap(this.notes, this.enemy, (enemy,note)=>{
             if(!note.piano && note.direction == 1){
-                this.playerPoints+= Math.pow(2,note.tipoNota);
-                this.playerMarker.text = this.playerPoints;
-                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
-                note.destroy();
+                if(note.tipoNota !== undefined) {
+                    this.playerPoints+= Math.pow(2,note.tipoNota);
+                    this.playerMarker.text = this.playerPoints;
+                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                    note.destroy();
+                }
             }
             /**@todo sumarle puntuación al player */
         });
