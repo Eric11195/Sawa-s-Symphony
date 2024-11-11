@@ -120,6 +120,7 @@ Navegador PC
 **Street fighter**: Combate jugador contra enemigo  
 **Nutria con sombrero**: El personaje que controla el jugador es una nutria con un sombrero  
 **Bajo del mar** (+ mecánica de ritmo): Escenario bajo del mar, y mecánica de ritmo
+**Nami Cuantica**: Música y sonidos hechos con la boca
 
 # **Descripción**
 
