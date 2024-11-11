@@ -137,7 +137,8 @@ export default class combatScene extends Phaser.Scene {
                 if(note.tipoNota !== undefined) {
                     this.enemyPoints+= Math.pow(2,note.tipoNota);
                     this.enemyMarker.text = this.enemyPoints;
-                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                    this.UpdateVsMarker();
+                    player.AddEarworm(note.earworm);
                 }
                 note.destroy();
             }
@@ -149,9 +150,10 @@ export default class combatScene extends Phaser.Scene {
                 if(note.tipoNota !== undefined) {
                     this.playerPoints+= Math.pow(2,note.tipoNota);
                     this.playerMarker.text = this.playerPoints;
-                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
-                    note.destroy();
+                    this.UpdateVsMarker();
+                    enemy.AddEarworm(note.earworm);
                 }
+                note.destroy();
             }
             /**@todo sumarle puntuación al player */
         });
@@ -160,14 +162,10 @@ export default class combatScene extends Phaser.Scene {
         this.physics.add.overlap(this.notes, undefined, (note1, note2)=>{
             if(!note1.piano && !note2.piano)
                 if(!note1.notesCollidedWith.includes(note2)){
-                    //console.log(note1.notesCollidedWith);
-                    //console.log(note2.notesCollidedWith);
                     if(note1.direction == note2.direction){
-                        console.log("choque musical == ");
                         note1.AddKeyword(note2.applyToAllyNotes);
                         note2.AddKeyword(note1.applyToAllyNotes);
                     }else{
-                        console.log("choque musical != ");
                         note1.AddKeyword(note2.applyToEnemyNotes);
                         note2.AddKeyword(note1.applyToEnemyNotes);
                     }
@@ -221,5 +219,21 @@ export default class combatScene extends Phaser.Scene {
 
     SpawnProjectile(config){
         this.projectilePool.spawn();
+    }
+
+    UpdateVsMarker(){
+        this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+    }
+
+    AddPointsToPlayer(toAdd){
+        this.playerPoints+= toAdd;
+        this.playerMarker.text = this.playerPoints;
+        this.UpdateVsMarker();
+    }
+
+    AddPointsToEnemy(toAdd){
+        this.enemyPoints+= toAdd;
+        this.enemyMarker.text = this.enemyPoints;
+        this.UpdateVsMarker();
     }
 }

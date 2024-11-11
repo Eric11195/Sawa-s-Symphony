@@ -17,7 +17,7 @@ const notaEffects = {
     earworm: function(nota,earwormToAdd){
         if(nota.earworm==undefined){nota.earworm=0;}
         nota.earworm+=earwormToAdd;
-
+        console.log("earworm:", nota.earworm);
     },
     allegro: function(nota){
         nota.speed = 2 ;
