@@ -9,7 +9,9 @@ export default class InstrumentsCdImage extends DescriptionImages{
         this.setDisplaySize(100,100);  
         this.fx = this.preFX.addColorMatrix();
         this.cdNumbers = scene.add.text( this.x-15, this.y-35, "", { fontFamily: 'Arial', fontSize: '60px', fontFamily:"Grandstander",stroke: '#000000',strokeThickness: 10,}).setTint(0xff8343);
+        this.cdNumbers.depth = 2;
         this.UpdateCd(0);
+        this.depth = 1;
     }
 
     UpdateCd(cd){

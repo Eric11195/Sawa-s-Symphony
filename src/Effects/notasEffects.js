@@ -4,13 +4,10 @@ import Nota from "../Projectiles/nota.js";
 const notaEffects = {
     forte: function(nota)
     {
-        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
         if(nota.direction==1){
-            nota.scene.collideWithEnemyNotes.add(nota);
             nota.applyToEnemyNotes = {damage:null};
         }else{
-            nota.scene.collideWithPlayerNotes.add(nota);
-            nota.applyToPlayerNotes = {damage:null};
+            nota.applyToAllyNotes = {damage:null};
         }
     },
     piano: function(nota)
@@ -20,7 +17,7 @@ const notaEffects = {
     earworm: function(nota,earwormToAdd){
         if(nota.earworm==undefined){nota.earworm=0;}
         nota.earworm+=earwormToAdd;
-       
+
     },
     allegro: function(nota){
         nota.speed = 2 ;
@@ -31,13 +28,10 @@ const notaEffects = {
     },
     accompaniment: function(nota,efectosAccompaniment)
     {
-        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
         if(nota.direction == -1){
-            nota.scene.collideWithEnemyNotes.add(nota);
             nota.applyToEnemyNotes = efectosAccompaniment;
         }else{
-            nota.scene.collideWithPlayerNotes.add(nota);
-            nota.applyToPlayerNotes = efectosAccompaniment;
+            nota.applyToAllyNotes = efectosAccompaniment;
         }
     },
     silent: function(nota,silentToAdd)
@@ -69,14 +63,9 @@ const notaEffects = {
             newNota.silent = nota.silent;
             newNota.earworm = nota.earworm;
             newNota.piano = nota.piano;
-            newNota.efectosAccompaniment = nota.efectosAccompaniment;
+            newNota.applyToAllyNotes = nota.applyToAllyNotes;
+            newNota.applyToEnemyNotes = nota.applyToEnemyNotes;
             newNota.notesCollidedWith = [];
-            if(nota.scene.collideWithPlayerNotes.contains(nota)){
-                nota.scene.collideWithPlayerNotes.add(newNota);
-            }
-            if(nota.scene.collideWithEnemyNotes.contains(nota)){
-                nota.scene.collideWithEnemyNotes.add(newNota);
-            }
 
             newNota.x = nota.x + newRelativePos.x * TileDiffX();
             newNota.y = nota.y + newRelativePos.y * TileDiffY();
@@ -102,14 +91,9 @@ const notaEffects = {
 
         nota.AddKeyword({moveNote:{x:0,y:Math.random() < 0.5 ? -1 : 1}});
     },
-    vibrato: function (nota){
-        if(nota.notesCollidedWith==undefined) nota.notesCollidedWith =[];
-
-        nota.scene.collideWithEnemyNotes.add(nota);
-        nota.scene.collideWithPlayerNotes.add(nota);
-        
+    vibrato: function (nota){        
         nota.applyToEnemyNotes = {moveYRandom:null};
-        nota.applyToPlayerNotes = {moveYRandom:null};
+        nota.applyToAllyNotes = {moveYRandom:null};
     }
 
 }

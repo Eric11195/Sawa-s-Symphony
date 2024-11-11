@@ -27,16 +27,19 @@ export default class combatScene extends Phaser.Scene {
     constructor(){
 
         super({key: "combatScene"});
- 
+
         this.playerPoints = 0;
         this.enemyPoints = 0;
 
     }
 
-    init(){
-
+    init(data){
+        if(data.player===undefined) console.log("El jugador no ha sido cargado");
+        else{
+            this.player = data.player;
+        }
     }
-
+    
     preload(){
         this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
 
@@ -51,13 +54,11 @@ export default class combatScene extends Phaser.Scene {
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
-
-       
+        
         this.load.image("sostenuto", "./assets/img/sostenuto.png");
         this.load.image("vibrato", "./assets/img/vibrato.png");
 
         this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
-        
     }
 
     /**
@@ -65,16 +66,25 @@ export default class combatScene extends Phaser.Scene {
      */
     //MUY IMPORTANTE, cargar antes las imagenes que esten más detras pq si no taparan las que hayamos cargado antes
     create(){     
-        //iniciar el clock con los BPM como parametro
+
+        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
+
         clockInstance = new Clock(this, testEnemy.bpm);
+        if(this.player===undefined){
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[1]);
+        }else{
+            //Si ya tenemos player le damos los parametros del anterior
+            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.instrumentos[3], this.player.Syncopate, this.player.Tempo);
+        }
+        //console.log(this.player);
+
+
+        //Projectile Pool creation-------------------------
+        //this.projectilePool = this.add.projectilePool();
+        //--------------------------------------------
         
         //Esta linea crea todas las teclas que usaremos en esta escena a paritr del fichero KEY_BINDINGS
         this.KEYS = this.input.keyboard.addKeys(KEY_BINDINGS);
-
-        //Create fondo
-        this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0);
-        //Crea un player con la escena, la pos00x, pos00y, tileDiffx, tileDiffy
-        this.player = new Player(this, new Instrument(this,InstrumentDataBase[0],0), new Instrument(this, InstrumentDataBase[1],1));
 
         //Get Artifact
         ArtifactList[0].effect();
@@ -119,54 +129,48 @@ export default class combatScene extends Phaser.Scene {
 
 
         //Colisiones------------------------------------------------------------------------------------------------------------------------
-        this.playerNotes = this.physics.add.group();
-        this.enemyNotes = this.physics.add.group();
-        //Contiene las notas que chocan contra notas del player
-        this.collideWithPlayerNotes = this.physics.add.group();
-        //Contiene las notas del enemigo o del player que chocan entre sí
-        this.collideWithEnemyNotes = this.physics.add.group();
+        this.notes = this.physics.add.group();
 
         //Las notas del enemigo se chocan con el player
-        this.physics.add.overlap(this.enemyNotes, this.player, (player,note)=>{
-            if(!note.piano){
-                this.enemyPoints+= Math.pow(2,note.tipoNota);
-                this.enemyMarker.text = this.enemyPoints;
-                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+        this.physics.add.overlap(this.notes, this.player, (player,note)=>{
+            if(!note.piano && note.direction == -1){
+                if(note.tipoNota !== undefined) {
+                    this.enemyPoints+= Math.pow(2,note.tipoNota);
+                    this.enemyMarker.text = this.enemyPoints;
+                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                }
                 note.destroy();
             }
             /**@todo sumarle puntuación al enemy */
         });
         //Notas del player chocandose contra el enemigo
-        this.physics.add.overlap(this.playerNotes, this.enemy, (enemy,note)=>{
-            if(!note.piano){
-                this.playerPoints+= Math.pow(2,note.tipoNota);
-                this.playerMarker.text = this.playerPoints;
-                this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
-                note.destroy();
+        this.physics.add.overlap(this.notes, this.enemy, (enemy,note)=>{
+            if(!note.piano && note.direction == 1){
+                if(note.tipoNota !== undefined) {
+                    this.playerPoints+= Math.pow(2,note.tipoNota);
+                    this.playerMarker.text = this.playerPoints;
+                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                    note.destroy();
+                }
             }
             /**@todo sumarle puntuación al player */
         });
 
         //Notas del player chocandose contra sus propias notas
-        this.physics.add.overlap(this.collideWithPlayerNotes, this.playerNotes, (collidingNote, receivingNote)=>{
-            if(!collidingNote.piano && !receivingNote.piano)
-            if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                receivingNote.AddKeyword(collidingNote.applyToPlayerNotes);
-                collidingNote.notesCollidedWith.push(receivingNote);
-                console.log(collidingNote.applyToPlayerNotes);
-            }
-        });
-        //Notas del player chocandose contra notas Enemy
-        this.physics.add.overlap(this.collideWithEnemyNotes, this.enemyNotes, (collidingNote, receivingNote)=>{
-            if(!collidingNote.piano && !receivingNote.piano)
-            if(!collidingNote.notesCollidedWith.includes(receivingNote)){
-                //console.log(collidingNote.efectosAccompaniment);
-                //console.log(collidingNote.efectosAccompaniment);
-                receivingNote.AddKeyword(collidingNote.applyToEnemyNotes);
-                console.log(collidingNote.applyToEnemyNotes);
-                /**@todo hacer que la nota aplique los efectos necesarios */
-                collidingNote.notesCollidedWith.push(receivingNote);
-            }
+        this.physics.add.overlap(this.notes, undefined, (note1, note2)=>{
+            console.log("choque musical");
+            if(!note1.piano && !note2.piano)
+                if(!note1.notesCollidedWith.includes(note2)){
+                    if(note1.direction == note2.direction){
+                        note1.AddKeyword(note2.applyToAllyNotes);
+                        note2.AddKeyword(note1.applyToAllyNotes);
+                    }else{
+                        note1.AddKeyword(note2.applyToEnemyNotes);
+                        note2.AddKeyword(note1.applyToEnemyNotes);
+                    }
+                    note1.notesCollidedWith.push(note2);
+                    note2.notesCollidedWith.push(note1);
+                }
         });
         //--------------------------------------------------------------------------------------------------------------------------
 
@@ -198,12 +202,21 @@ export default class combatScene extends Phaser.Scene {
         }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.BUTTON3)){
             this.player.TryPlayingInstrument(2);
         }else if(Phaser.Input.Keyboard.JustDown(this.KEYS.NEXTSCENE)){
-            this.scene.start("rewardsScene", {Player:this.player});
+            this.ChangeToRewardsScene();
         }
     }
 
 
     startCombatSong(){
         this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - testEnemy.msSongStart, callback: ()=>{music.play()}});
+    }
+
+    ChangeToRewardsScene(){
+        this.scene.start("rewardsScene", {player:this.player});
+    }
+
+
+    SpawnProjectile(config){
+        this.projectilePool.spawn();
     }
 }

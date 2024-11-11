@@ -24,7 +24,10 @@ export default class RewardsScene extends Phaser.Scene {
     // Array que contiene los instrumentos ya otorgados.
     rewards;
 
-    currentPlayer;
+    remaininginstruments = [];
+    
+
+    player;
 
     // Conchas base obtenidas por completar un nivel.
     baseshells;
@@ -32,7 +35,7 @@ export default class RewardsScene extends Phaser.Scene {
     extrashells;
 
     init(data){
-        this.currentPlayer = data.Player;
+        this.player = data.player;
         //this.ownedinstruments = [];
         //Conchas
         //this.currentplayer.shells += baseshells + (data.difficulty*extrashells);
@@ -42,7 +45,11 @@ export default class RewardsScene extends Phaser.Scene {
         //this.rewardSprites = [];
     }
     preload(){
+
+        this.load.image("Go_To_Lobby_Button", "./assets/img/Go_To_Lobby_Button.png");
+
         this.load.image("shell","./assets/img/shell.png");
+
 
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
@@ -56,22 +63,27 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
+
         new ShellDisplay(this,3333);
+        //Spawn rewards
         this.CreateRewards(1);
-        //for (let i = 0; i<InstrumentDataBase.length;i++) this.remaininginstruments.push(i);
+
+
+        //Spawn next scene Button
+        this.nextSceneButton = this.add.image(1150,360, "Go_To_Lobby_Button").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadLobbyScene, this);
     }
 
     CreateRewards(rewardNumber){
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.currentPlayer, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player, this.instrumentsLeft));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.currentPlayer, InstrumentUpgrades));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player, InstrumentUpgrades));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.currentPlayer, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player, this.artifactLeft));
     }
 
 
     LoadLobbyScene(){
-        this.scene.start("rewardsLobbyScene", {Player:this.player});
+        this.scene.start("rewardsLobbyScene", {player:this.player});
     }
 
 }

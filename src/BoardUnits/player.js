@@ -27,7 +27,7 @@ export default class Player extends BoardUnit{
      *      * @param {*} instrument2
      *      * @param {*} instrument3
      */
-    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined){
+    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo){
         //Crea un sprite con el valor de la escena y la posición inicial del player y la textura de nuestro personaje
         super(scene, {x:1, y:2}, 'sawa');  
         this.setOrigin();
@@ -39,22 +39,24 @@ export default class Player extends BoardUnit{
             maxY:4
         };
         this.ancla = 0;
-        console.log(this.ancla);
+        //console.log(this.ancla);
         /**@todo incluir los instrumentos correspondientes */
         this.instrumentos = [instrumento1, instrumento2, instrumento3];
+        this.CreateTheNewInstruments();
 
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this))
         // Agregamos el caballero a las físicas para que Phaser lo tenga en cuenta
 		scene.physics.add.existing(this);
         this.body.setSize(350, 150, true);
+
+        if(Syncopate !== undefined) this.Syncopate = Syncopate;
+        if(Tempo !== undefined) this.Tempo = Tempo;
     }
 
     TryNormalMove(xAdd,yAdd){
         if(clockInstance.IsTempo(0).canBePlayed && !this.ancla){
             this.NormalMove(xAdd,yAdd)
-
         }
-        
     }
     /**
      * 
@@ -73,8 +75,8 @@ export default class Player extends BoardUnit{
             let auxObj = clockInstance.IsTempo(this.instrumentos[numeroInstrumento].actualCooldown);
             if(auxObj.canBePlayed){
                 //console.log(auxObj.beforeBeat);
+                this.Tempo(numeroInstrumento,auxObj.beforeBeat);
                 this.PlayInstrument(numeroInstrumento,auxObj.beforeBeat);
-                this.Tempo();
             }
         }
     }
@@ -85,38 +87,53 @@ export default class Player extends BoardUnit{
             this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,0,beforeBeat);
         }
     }
+    /*
+    UpdateScene(newScene){
+        //this.scene = newScene;
+        newScene.events.once('update',function(){
+            console.info('Display List:');
+            console.table(this.sys.displayList.list, [ 'name', 'type', 'x', 'y', 'visible', 'renderFlags', 'cameraFilter' ]);
+            console.info('Update List:');
+            console.table(this.sys.updateList.list, [ 'name', 'type', 'active' ]);
+        },newScene)
+
+        this.depth = 100;
+        //this.bringToTop()
+
+        //newScene.add.existing(this);
+        //this.addToDisplayList(newScene.sys.displayList);
+        //this.addToUpdateList(newScene.sys.updateList);
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        this.scene = newScene;
+    }*/
+
+    CreateTheNewInstruments(){
+        for(let i = 0; i < 3; i++){
+            //console.log(this.instrumentos[i]);
+            if(this.instrumentos[i] !== undefined){
+                //Si tiene un config de instrumentos
+                this.instrumentos[i] = new Instrumento(this.scene,this.instrumentos[i],i);
+            }
+        }
+    }
 
     BeatFunction(){
         if(this.ancla>0){
             this.ancla--;
         }
-        console.log(this.ancla);
+        //console.log(this.ancla);
     }
 
-    /**@todo estos efectos ahora se aplican por defecto así que igual son innecesarios */
-    /**Produce todos los efectos de syncopate al moverse al ritmo*/
-    Syncopate(){
+    /**Produce todos los efectos generales al moverse*/
+    Syncopate(xAdd,yAdd){
         /**@todo Lanzar un evento que coje todo cristo con syncopate */
         //console.log("syncopate");
     }
-    /**Produce todos los efectos no específicos de instrumentos al tocar al ritmo */
-    Tempo(){
-        //console.log("tempo");
+    /**Produce todos los efectos especiales generales al tocar al ritmo */
+    Tempo(numeroInstrumento,beforeBeat){
+        
     }
 
-    AddItem(iclass, id, apply = undefined){
-        switch (iclass){
-            case ItemClass.instrument:
-                this.instrumentos[apply] = new Instrumento(this.scene,InstrumentDataBase[id], apply);
-                break;
-            case ItemClass.upgrade:
-                //TODO
-                break;
-            case ItemClass.artifact:
-                //TODO
-                break;
-        }
-    }
 
     /**
      * 
