@@ -13,8 +13,7 @@ export default class Instrumento{
     actualCooldown = 0;
     baseCooldown = 0;
     noteKeywords={};
-
-    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod,baseCooldown", "description"]/*, "instrumentKeywords" ];*/
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod, baseCooldown", "description"]/*, "instrumentKeywords" ];*/
 
     cdImage;
     /**
@@ -44,7 +43,7 @@ export default class Instrumento{
         clockInstance.eventEmitter.on("BeatNow", ()=>{
             if(this.actualCooldown!=0){
                 this.actualCooldown--;
-                this.cdImage.UpdateCd(this.actualCooldown);
+                this.UpdateImageCd();
             }
         });
     }
@@ -60,6 +59,7 @@ export default class Instrumento{
         this.actualCooldown = this.baseCooldown+cdToAdd;
         //console.log(this.actualCooldown);
         this.ProducirNotas();
+        this.UpdateImageCd();
         //this.cdImage.UpdateCd(this.actualCooldown);
         //console.log(beforeBeat);
         //Previene que se generen notas fuera del tablero
@@ -80,6 +80,7 @@ export default class Instrumento{
     SpawnNotes(posX,posY, tipoNotas){
         if(posY < 5 && posY >= 0){
             new Nota(this.sceneRef, posX, posY, tipoNotas, 1).AddKeyword(this.noteKeywords);
+
         }
     }
 
@@ -89,5 +90,9 @@ export default class Instrumento{
             Object.keys(config).forEach(key => {
                 InstrumentEffects[key](this, config[key]);
             });
+    }
+
+    UpdateImageCd(){
+        this.cdImage.UpdateCd(this.actualCooldown);
     }
 }
