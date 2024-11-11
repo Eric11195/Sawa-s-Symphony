@@ -88,8 +88,18 @@ const notaEffects = {
         }
     },
     moveYRandom: function(nota){
+        //Esta arriba del todo
+        if(nota.y == Tile00PositionY()){
+            nota.AddKeyword({moveNote:{x:0,y:1}});
+        }//Está abajo del todo
+        else if(nota.y == Tile00PositionY()+4*TileDiffY()){
+            nota.AddKeyword({moveNote:{x:0,y:-1}});
+        }//Otherwise
+        else{
+            nota.AddKeyword({moveNote:{x:0,y:Math.random() < 0.5 ? -1 : 1}});
+        }
 
-        nota.AddKeyword({moveNote:{x:0,y:Math.random() < 0.5 ? -1 : 1}});
+
     },
     vibrato: function (nota){        
         nota.applyToEnemyNotes = {moveYRandom:null};

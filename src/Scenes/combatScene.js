@@ -158,13 +158,16 @@ export default class combatScene extends Phaser.Scene {
 
         //Notas del player chocandose contra sus propias notas
         this.physics.add.overlap(this.notes, undefined, (note1, note2)=>{
-            console.log("choque musical");
             if(!note1.piano && !note2.piano)
                 if(!note1.notesCollidedWith.includes(note2)){
+                    //console.log(note1.notesCollidedWith);
+                    //console.log(note2.notesCollidedWith);
                     if(note1.direction == note2.direction){
+                        console.log("choque musical == ");
                         note1.AddKeyword(note2.applyToAllyNotes);
                         note2.AddKeyword(note1.applyToAllyNotes);
                     }else{
+                        console.log("choque musical != ");
                         note1.AddKeyword(note2.applyToEnemyNotes);
                         note2.AddKeyword(note1.applyToEnemyNotes);
                     }
