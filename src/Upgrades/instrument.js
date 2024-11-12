@@ -63,7 +63,6 @@ export default class Instrumento{
 
         thisInstrument.actualCooldown = thisInstrument.baseCooldown+cdToAdd;
 
-        console.log(this.actualCooldown, " ", thisInstrument.actualCooldown, " ", thisInstrument.baseCooldown);
 
 
         //console.log(this.actualCooldown);

@@ -211,6 +211,7 @@ export default class combatScene extends Phaser.Scene {
     }
 
     ChangeToRewardsScene(){
+        music.stop();
         this.scene.start("rewardsScene", {player:this.player});
     }
 
