@@ -11,8 +11,8 @@ export default class ProjectilePool extends Phaser.GameObjects.Group
 	}
 
     //Spawn new note
-    spawn(){
-
+    spawn(newNoteConfig){
+        this.get(newNoteConfig);
     }
 
     //Despawns given note

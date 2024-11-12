@@ -10,6 +10,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     //Dirección hacia la que avanza la nota
     direction;
     notesCollidedWith = [];
+    acceptsKeywords = true;
     /**
      * @param {*} scene la escena en la que se genera la nota
      * @param {*} posX x de la casilla en la que se genera la nota
@@ -58,7 +59,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     AddKeyword(config){
-        if(config)
+        if(config && this.acceptsKeywords)
             Object.keys(config).forEach(key => {
                 NotasEffects[key](this, config[key]);
             });       
