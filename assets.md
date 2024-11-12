@@ -3,6 +3,6 @@ La estética es kawai o mona, debido a que queríamos hacer un juego arcade que 
 
 Licencia
 
-Solo puedes usar nuestros assets para proyetos no comerciales.
-Puedes modifcar los assets.
+Solo puedes usar nuestros assets para proyetos no comerciales.\
+Puedes modifcar los assets.\
 No puedes redistribuirlos ni venderlos aunque los hayas modificado
