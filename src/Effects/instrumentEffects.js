@@ -8,8 +8,8 @@ const instrumentEffects = {
      * @param {Instrument} instrument 
      */
     move: function(instrument, move){
-        let auxMove = function(){
-            this.sceneRef.player.NormalMove(move.x,move.y);
+        let auxMove = function(x,y,cdToWait, wait, thisInstrument){
+            thisInstrument.sceneRef.player.NormalMove(move.x,move.y);
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxMove.bind(instrument));
     },
@@ -45,12 +45,11 @@ const instrumentEffects = {
     },
 
     ancla: function(instrument, time){
-        let auxAncla = function(){
-            this.sceneRef.player.ancla = time;
+        let auxAncla = function(x,y,cdToWait, wait, thisInstrument){
+            thisInstrument.sceneRef.player.ancla = time + cdToWait;
             //console.log(this.sceneRef.player.ancla);
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
-       
     }
 }
 

@@ -18,6 +18,8 @@ export default class Enemy extends BoardUnit{
 
         scene.physics.add.existing(this);
         this.body.setSize(30, 10, true);
+
+        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this)
     }
 
     ReworkedChargeNextBeatActions(){
@@ -25,10 +27,18 @@ export default class Enemy extends BoardUnit{
             this.enemyActions[this.enemyActionIndex][i](this);
         }
         this.enemyActionIndex++;
+        console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
         if(this.enemyActionIndex == this.enemyActions.length) {
             clockInstance.eventEmitter.removeListener("BeatNow", this.ReworkedChargeNextBeatActions,this);
             //Fin del nivel
         }
             
+    }
+
+    BeatFunction(){
+        if(this.earworm > 0){
+            this.scene.AddPointsToPlayer(this.earworm);
+            this.earworm = Math.floor(this.earworm/2);
+        }
     }
 }

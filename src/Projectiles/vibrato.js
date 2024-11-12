@@ -11,6 +11,7 @@ class VibratoProjectile extends BaseProjectile {
         this.silent = 1;
         this.speed = 2;
         this.AddKeyword({vibrato:null});
+        this.acceptsKeywords = false;
     }
 
     

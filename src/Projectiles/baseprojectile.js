@@ -9,6 +9,8 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     speed;
     //Dirección hacia la que avanza la nota
     direction;
+    notesCollidedWith = [];
+    acceptsKeywords = true;
     /**
      * @param {*} scene la escena en la que se genera la nota
      * @param {*} posX x de la casilla en la que se genera la nota
@@ -36,14 +38,16 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             if(this.silent > 0) this.silent--;
         });
 
+        scene.notes.add(this);
+
     }
 
     PostUpdate(){
         if(!this.silent) this.MoveForward();
     }
 
-     /**Move forward until it gets out of board*/
-     MoveForward(){
+    /**Move forward until it gets out of board*/
+    MoveForward(){
         /** @todo Habrá que buscar una manera de implementar el delta time que no implique ponerle contadores a todas las notas
          */
         this.x += this.direction * deltaTime/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
@@ -55,8 +59,9 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     AddKeyword(config){
-        Object.keys(config).forEach(key => {
-            NotasEffects[key](this, config[key]);
-        });       
+        if(config && this.acceptsKeywords)
+            Object.keys(config).forEach(key => {
+                NotasEffects[key](this, config[key]);
+            });       
     }
 }

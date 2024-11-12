@@ -32,6 +32,7 @@ export default class Clock{
         this.eventEmitter = new Phaser.Events.EventEmitter();
     }
 
+    
     /**Pauses clock */
     PauseClock(){
         this.timerEvent.PauseClock();
@@ -47,6 +48,7 @@ export default class Clock{
         this.clockConfig.reset();
         this.UpdateLastBeat();
     }
+
     /**Updates the last beat timer */
     UpdateLastBeat(){
         this.lastBeat = new Date();

@@ -25,7 +25,7 @@ export default class Sostenuto extends BoardUnit{
             new Nota(this.scene, this.position.x,this.position.y,this.tipoNota, this.noteDirection);
             this.duration--;
             if(this.duration <= 0) {
-                clockInstance.eventEmitter.removeListener("BeatNow", this.BeatFunction,this)
+                clockInstance.eventEmitter.removeListener("BeatNow", this.BeatFunction,this);
                 this.destroy();
             }
         }

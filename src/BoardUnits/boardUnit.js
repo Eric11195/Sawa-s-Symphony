@@ -11,6 +11,7 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
      *  Con estos valores podría estar en cualquier casilla entre (minX,minY) y (maxX,maxY) --> (0,0) y (2,4)
      */
     limitPositions;
+    earworm = 0;
     /**
      * @param {*} scene la escena en la que está el personaje
      * @param {*} startPos objeto con x e y, con la posición en la que empieza esta unidad
@@ -58,5 +59,10 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
     UpdatePos(){
         this.x = Tile00PositionX() + this.position.x * TileDiffX();
         this.y = Tile00PositionY() + this.position.y * TileDiffY();
+    }
+
+    AddEarworm(toAdd){
+        if(toAdd!==undefined)
+            this.earworm += toAdd;
     }
 }
