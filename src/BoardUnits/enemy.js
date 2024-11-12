@@ -10,6 +10,7 @@ export default class Enemy extends BoardUnit{
     /**Hacer un constructor que reciba un objeto de forma similar al de los instrumentos */
     constructor(scene, enemyData){
         super(scene, {x:6,y:enemyData.startPosY}, enemyData.name);
+        console.log(this.x, this);
         this.setOrigin();
         this.setDisplaySize(100,100);
         this.enemyActions = enemyData.enemyActions;
@@ -27,7 +28,7 @@ export default class Enemy extends BoardUnit{
             this.enemyActions[this.enemyActionIndex][i](this);
         }
         this.enemyActionIndex++;
-        console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
+        //console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
         if(this.enemyActionIndex == this.enemyActions.length) {
             clockInstance.eventEmitter.removeListener("BeatNow", this.ReworkedChargeNextBeatActions,this);
             //Fin del nivel

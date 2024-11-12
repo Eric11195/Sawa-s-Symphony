@@ -6,6 +6,7 @@ import baseProjectile from "./baseprojectile.js";
 export default class Nota extends baseProjectile{
     /** Contiene uno de los objetos de notas (la array-like object de arriba) */
     tipoNota;
+    pool;
     /**
      * @param {*} scene la escena en la que se genera la nota
      * @param {*} posX x de la casilla en la que se genera la nota
@@ -13,17 +14,21 @@ export default class Nota extends baseProjectile{
      * @param {*} tipoNota 0 para corchea, 1 para negra y 2 para blanca
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
-    constructor(scene, posX, posY, tipoNota, direction){
-        super(scene, posX, posY, direction, "notes");
+    constructor(scene, pool){
+        super(scene, "notes");
         this.setScale(2,2);
         this.setOrigin(0,0.75);
 
-        //this.tipoNota = notas[tipoNota];
-        this.silent = 0;
-        
-        this.tipoNota = tipoNota;
-
+        this.pool = pool;        
         //Se define como nota del player o del enemy
+
+
+        //this.UpdateImage();
+    }
+
+    SetSpawnImage(){
+        this.UpdateImage();
+        console.log(this.direction, " = direction");
         if(this.direction == 1){
             this.tint = 0x179bae;
         }else{
@@ -31,7 +36,7 @@ export default class Nota extends baseProjectile{
             this.setFlipY(true);
         }
 
-        this.UpdateImage();
+        console.log(this.x);
     }
     UpdateImage(){
         this.play("notes"+this.tipoNota);
@@ -39,5 +44,9 @@ export default class Nota extends baseProjectile{
 
     //After each update moves note forward
     //this needs to be done because deltaTime is not defined until the first update
+
+    DestroyMe(){
+        this.pool.Release();
+    }
 
 }

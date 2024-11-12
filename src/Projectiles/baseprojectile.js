@@ -17,13 +17,11 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
      * @param {*} posY y de la casilla en la que se genera la nota
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
-    constructor(scene, posX, posY, direction, imageId) {
-        super(scene, Tile00PositionX(), Tile00PositionY(), imageId);
+    constructor(scene, imageId) {
+        super(scene, 0, 0, imageId);
         scene.add.existing(this);
         
-        this.x = Tile00PositionX() + posX * TileDiffX();
-        this.y = Tile00PositionY() + posY * TileDiffY();
-        this.direction = direction;
+        //this.direction = direction;
         this.speed = 1;
 
         scene.physics.add.existing(this);
@@ -38,7 +36,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             if(this.silent > 0) this.silent--;
         });
 
-        scene.notes.add(this);
+        //scene.notes.add(this);
 
     }
 
@@ -63,5 +61,28 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             Object.keys(config).forEach(key => {
                 NotasEffects[key](this, config[key]);
             });       
+    }
+
+    /*config needs: 
+        -direction
+        -tipoNota
+    */
+    SetSpawnParameters(x,y,direction, tipoNota){
+        this.setX(Tile00PositionX() + x * TileDiffX());
+        this.setY(Tile00PositionY() + y * TileDiffY());
+        console.log(this.x, this);
+
+        //console.log(x, "=>", this.x);
+        //console.log(y, "=>", this.y);
+        this.direction = direction;
+        this.tipoNota = tipoNota;
+        this.speed = 1;
+        this.silent = 0;
+        this.earworm = 0;
+        this.piano = false;
+        this.applyToEnemyNotes = [];
+        this.applyToAllyNotes = [];
+        this.notesCollidedWith = [];
+        return this;
     }
 }

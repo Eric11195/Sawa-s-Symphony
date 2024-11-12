@@ -19,7 +19,7 @@ const InstrumentDataBase = [
     tipoNotas: 1,
     baseCooldown: 4,
     notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
-    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 1}}
+    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 0}}
 }, 
 {
     nombre: "Bell",//cascabel

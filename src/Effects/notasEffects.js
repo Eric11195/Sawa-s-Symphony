@@ -15,9 +15,8 @@ const notaEffects = {
         nota.piano = true;
     },
     earworm: function(nota,earwormToAdd){
-        if(nota.earworm==undefined){nota.earworm=0;}
         nota.earworm+=earwormToAdd;
-        console.log("earworm:", nota.earworm);
+        //console.log("earworm:", nota.earworm);
     },
     allegro: function(nota){
         nota.speed = 2 ;
@@ -36,7 +35,6 @@ const notaEffects = {
     },
     silent: function(nota,silentToAdd)
     {
-        if(nota.silent==undefined){nota.silent=0;}
         nota.silent+=silentToAdd;
     },
     damage: function(nota){

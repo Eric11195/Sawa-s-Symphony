@@ -10,11 +10,14 @@ import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
+import Pool from "../Projectiles/projectilePool.js";
+import Nota from '../Projectiles/nota.js';
 
 let deltaTime;
 let clockInstance;
+let notasPool;
 let music;
-export {deltaTime, clockInstance};
+export {deltaTime, clockInstance, notasPool};
 
 /*Escena de Phaser*/
 export default class combatScene extends Phaser.Scene {
@@ -76,18 +79,21 @@ export default class combatScene extends Phaser.Scene {
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.instrumentos[3], this.player.Syncopate, this.player.Tempo);
         }
-        //console.log(this.player);
 
-
-        //Projectile Pool creation-------------------------
-        //this.projectilePool = this.add.projectilePool();
-        //--------------------------------------------
+        //Creamos una pool de notas
+		notasPool = new Pool(this, 100, false);	
+		let notas = [];
+		for (let i = 0; i < 100; i++) {
+			let nota = new Nota(this, notasPool);
+			notas.push(nota);
+		}
+		notasPool.addMultipleEntity(notas);
         
         //Esta linea crea todas las teclas que usaremos en esta escena a paritr del fichero KEY_BINDINGS
         this.KEYS = this.input.keyboard.addKeys(KEY_BINDINGS);
 
         //Get Artifact
-        ArtifactList[0].effect();
+        //ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
         this.enemy = new Enemy(this, testEnemy);
 
