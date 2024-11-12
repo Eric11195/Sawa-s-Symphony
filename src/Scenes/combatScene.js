@@ -137,7 +137,8 @@ export default class combatScene extends Phaser.Scene {
                 if(note.tipoNota !== undefined) {
                     this.enemyPoints+= Math.pow(2,note.tipoNota);
                     this.enemyMarker.text = this.enemyPoints;
-                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+                    this.UpdateVsMarker();
+                    player.AddEarworm(note.earworm);
                 }
                 note.destroy();
             }
@@ -149,9 +150,10 @@ export default class combatScene extends Phaser.Scene {
                 if(note.tipoNota !== undefined) {
                     this.playerPoints+= Math.pow(2,note.tipoNota);
                     this.playerMarker.text = this.playerPoints;
-                    this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
-                    note.destroy();
+                    this.UpdateVsMarker();
+                    enemy.AddEarworm(note.earworm);
                 }
+                note.destroy();
             }
             /**@todo sumarle puntuación al player */
         });
@@ -218,5 +220,21 @@ export default class combatScene extends Phaser.Scene {
 
     SpawnProjectile(config){
         this.projectilePool.spawn();
+    }
+
+    UpdateVsMarker(){
+        this.vsMarker.UpdatePos(this.playerPoints,this.enemyPoints);
+    }
+
+    AddPointsToPlayer(toAdd){
+        this.playerPoints+= toAdd;
+        this.playerMarker.text = this.playerPoints;
+        this.UpdateVsMarker();
+    }
+
+    AddPointsToEnemy(toAdd){
+        this.enemyPoints+= toAdd;
+        this.enemyMarker.text = this.enemyPoints;
+        this.UpdateVsMarker();
     }
 }

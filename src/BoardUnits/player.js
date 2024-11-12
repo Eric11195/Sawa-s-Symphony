@@ -44,7 +44,7 @@ export default class Player extends BoardUnit{
         this.instrumentos = [instrumento1, instrumento2, instrumento3];
         this.CreateTheNewInstruments();
 
-        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction.bind(this))
+        clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this);
         // Agregamos el caballero a las físicas para que Phaser lo tenga en cuenta
 		scene.physics.add.existing(this);
         this.body.setSize(350, 150, true);
@@ -120,6 +120,10 @@ export default class Player extends BoardUnit{
     BeatFunction(){
         if(this.ancla>0){
             this.ancla--;
+        }
+        if(this.earworm > 0){
+            this.scene.AddPointsToEnemy(this.earworm);
+            this.earworm = Math.floor(this.earworm/2);
         }
         //console.log(this.ancla);
     }
