@@ -82,9 +82,9 @@ export default class Player extends BoardUnit{
     }
     PlayInstrument(numeroInstrumento, beforeBeat){
         if(beforeBeat){
-            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,1,beforeBeat);
+            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,1,beforeBeat, this.instrumentos[numeroInstrumento]);
         }else{
-            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,0,beforeBeat);
+            this.instrumentos[numeroInstrumento].Play(this.position.x,this.position.y,0,beforeBeat, this.instrumentos[numeroInstrumento]);
         }
     }
     /*

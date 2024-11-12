@@ -45,12 +45,11 @@ const instrumentEffects = {
     },
 
     ancla: function(instrument, time){
-        let auxAncla = function(){
-            this.sceneRef.player.ancla = time;
+        let auxAncla = function(x,y,cdToWait){
+            this.sceneRef.player.ancla = time + cdToWait;
             //console.log(this.sceneRef.player.ancla);
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
-       
     }
 }
 
