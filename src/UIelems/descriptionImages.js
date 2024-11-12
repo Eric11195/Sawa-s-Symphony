@@ -20,6 +20,9 @@ export default class DescriptionImages extends Phaser.GameObjects.Image{
         this.descriptor.alpha = 0;
         this.descriptorTitle.alpha = 0;
         this.descriptorDescription.alpha = 0;
+        this.descriptor.depth = 3;
+        this.descriptorTitle.depth = 3;
+        this.descriptorDescription.depth = 3;
 
         scene.input.setPollOnMove();
 
