@@ -38,7 +38,7 @@ const notaEffects = {
     damage: function(nota){
         nota.tipoNota--;
         if(nota.tipoNota < 0){
-            nota.destroy();
+            nota.DestroyMe();
             return null;
         }
         //Si no se ha destruido entra aquí. Esto hace que aquí se puedan meter funciones por detrás para hacer artifacts

@@ -68,7 +68,8 @@ export default class Pool {
             entity.SetSpawnParameters(x,y,direction,tipoNota);
 			if(whatToSpawn == "nota"){
 				entity.setTexture("notes");
-				entity.play("notes"+this.tipoNota);
+				entity.play("notes"+entity.tipoNota);
+				//console.log(entity.tipoNota);
 				//console.log(this.direction, " = direction");
 				if(entity.direction == 1){
 					entity.tint = 0x179bae;
@@ -79,10 +80,11 @@ export default class Pool {
 				}
 			}
 			else if(whatToSpawn == "vibrato"){
-				entity.tint = 0xffffff;
 				entity.setTexture("vibrato");
+				entity.tint = 0xffffff;
 				entity.AddKeyword({vibrato:null, presto:null});
 				entity.SetAcceptsKeywords(false);
+				//console.log(entity);
 			}
 			entity.body.checkCollision.none = false;
 		}
@@ -94,6 +96,7 @@ export default class Pool {
 	 * @param {Object} entity - entidad de la pool que queremos marcar como libre
 	 */
 	Release (entity) {
+		entity.stop();
 		entity.body.checkCollision.none = true;
 		this._group.killAndHide(entity);
 	}

@@ -14,11 +14,10 @@ import Pool from "../Projectiles/projectilePool.js";
 import BaseProjectile from "../Projectiles/baseprojectile.js";
 
 
-let deltaTime;
 let clockInstance;
 let notasPool;
 let music;
-export {deltaTime, clockInstance, notasPool};
+export {clockInstance, notasPool};
 
 /*Escena de Phaser*/
 export default class combatScene extends Phaser.Scene {
@@ -191,11 +190,6 @@ export default class combatScene extends Phaser.Scene {
     }
 
     update(){
-        ///delta time calculation
-        deltaTime = new Date() - this.lastFrameTime;
-        this.lastFrameTime = new Date();
-
-        
         //Ejemplo de como llamar ejecutar funciones cuando una tecla se pulse (solo se ejecuta una vez por cada pulsación de tecla)
         //KEYS.UP.isDown se puede usar si queremos hacerlo mientras se mantenga pulsado
         if (Phaser.Input.Keyboard.JustDown(this.KEYS.UP)) {

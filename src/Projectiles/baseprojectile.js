@@ -1,5 +1,5 @@
 import { Tile00PositionX, Tile00PositionY,  TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
-import {deltaTime, clockInstance} from "../Scenes/combatScene.js";
+import {clockInstance} from "../Scenes/combatScene.js";
 import NotasEffects from "../Effects/notasEffects.js";
 
 
@@ -58,7 +58,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
         /**@todo investigar si hacer con un trigger en vez de por coordenadas */
         if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
-            this.destroy();
+            this.DestroyMe();
         }
     }
 
@@ -66,7 +66,9 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         if(config && this.acceptsKeywords)
             Object.keys(config).forEach(key => {
                 NotasEffects[key](this, config[key]);
-            });       
+            });      
+            
+        console.log("Keyword");
     }
 
     /*config needs: 
@@ -99,7 +101,8 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     UpdateImage(){
-        //this.play("notes"+this.tipoNota);
+        //console.log(this.tipoNota);
+        this.play("notes"+this.tipoNota);
     }
 
     DestroyMe(){

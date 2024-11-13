@@ -52,6 +52,7 @@ export default class Clock{
     /**Updates the last beat timer */
     UpdateLastBeat(){
         this.lastBeat = new Date();
+        console.clear();
         this.eventEmitter.emit("BeatNow");
     }
 
