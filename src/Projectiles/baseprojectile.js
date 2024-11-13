@@ -67,8 +67,6 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             Object.keys(config).forEach(key => {
                 NotasEffects[key](this, config[key]);
             });      
-            
-        console.log("Keyword");
     }
 
     /*config needs: 
@@ -78,10 +76,6 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     SetSpawnParameters(x,y,direction, tipoNota){
         this.setX(Tile00PositionX() + x * TileDiffX());
         this.setY(Tile00PositionY() + y * TileDiffY());
-        //console.log(this.x, this);
-
-        //console.log(x, "=>", this.x);
-        //console.log(y, "=>", this.y);
         this.direction = direction;
         this.tipoNota = tipoNota;
         this.speed = 1;
@@ -91,9 +85,9 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.applyToEnemyNotes = [];
         this.applyToAllyNotes = [];
         this.notesCollidedWith = [];
+        this.applyToSelfOnEnemyNoteImpact = [];
+        this.applyToSelfOnAllyNoteImpact = [];
         this.acceptsKeywords = true;
-        //this.body.setVelocityX();
-        return this;
     }
 
     SetAcceptsKeywords(bool){

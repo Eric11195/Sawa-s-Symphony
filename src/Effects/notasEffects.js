@@ -38,7 +38,7 @@ const notaEffects = {
     damage: function(nota){
         nota.tipoNota--;
         if(nota.tipoNota < 0){
-            nota.DestroyMe();
+            nota.AddKeyword({destroy:null});
             return null;
         }
         //Si no se ha destruido entra aquí. Esto hace que aquí se puedan meter funciones por detrás para hacer artifacts
@@ -100,8 +100,7 @@ const notaEffects = {
 
     },
     vibrato: function (nota){        
-        nota.applyToEnemyNotes = {moveYRandom:null};
-        nota.applyToAllyNotes = {moveYRandom:null};
+        nota.AddKeyword({accompaniment:{moveYRandom:null}});
     },
     destroy: function(nota){
         nota.DestroyMe();
