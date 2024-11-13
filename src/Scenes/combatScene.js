@@ -170,19 +170,14 @@ export default class combatScene extends Phaser.Scene {
         this.physics.add.overlap(notasPool.getPhaserGroup(), undefined, (note1, note2)=>{
             if(!note1.piano && !note2.piano)
                 if(!(note1.notesCollidedWith.includes(note2) && note2.notesCollidedWith.includes(note1))){
-
                     if(note1.direction == note2.direction){
-                        //console.log(note1.applyToAllyNotes, note2.applyToAllyNotes);
                         note1.AddKeyword(note2.applyToAllyNotes);
                         note2.AddKeyword(note1.applyToAllyNotes);
                         note1.AddKeyword(note1.applyToSelfOnAllyNoteImpact);
                         note2.AddKeyword(note2.applyToSelfOnAllyNoteImpact);
                     }else{
-                        //console.log(note1.applyToEnemyNotes, note2.applyToEnemyNotes);
-                        //console.log(note2, note1)
                         note1.AddKeyword(note2.applyToEnemyNotes);
                         note2.AddKeyword(note1.applyToEnemyNotes);
-                        //console.log(note2, note1)
                         note1.AddKeyword(note1.applyToSelfOnEnemyNoteImpact);
                         note2.AddKeyword(note2.applyToSelfOnEnemyNoteImpact);
                     }

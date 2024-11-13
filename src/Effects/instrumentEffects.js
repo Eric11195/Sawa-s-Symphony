@@ -38,7 +38,7 @@ const instrumentEffects = {
             let vibratoPos = {x:config.x+x, y:config.y+y};
             //Crearlo solo si esta dentro de la pantalla
             if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
-                notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1)//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
+                notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
             }
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), createVibrato.bind(instrument));
@@ -47,7 +47,6 @@ const instrumentEffects = {
     ancla: function(instrument, time){
         let auxAncla = function(x,y,cdToWait, wait, thisInstrument){
             thisInstrument.sceneRef.player.ancla = time + cdToWait;
-            //console.log(this.sceneRef.player.ancla);
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
     }
