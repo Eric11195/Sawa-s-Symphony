@@ -1,120 +1,12 @@
-# GDD \- Sawa’s Song V2
+# $\color{rgb(118,165,175)} {\textbf{Sawa's Song}}$
+![Screenshot of Sawa's Song game](assets/img/Sawa'sSongGameImage.png)
 
-## **Grupo 11 \- Fathom Games**
 
-## ** Izan de Vega López, Óscar Melquiades Durán Narganes, Sergio Yago Juárez, Diego Martín García**
+### **Grupo 11 \- Fathom Games**
 
-# **Ficha Técnica**
+### Izan de Vega López, Óscar Melquiades Durán Narganes, Sergio Yago Juárez, Diego Martín García
 
-## **Título**
-
-Sawa’s Song
-
-## **Género**
-
-Roguelike, Bullet Hell, Disparos, Ritmo
-
-## **Target Audience**
-
-Core Gamers
-
-## **Calificación por edades**
-
-PEGI 7
-
-## **Plataforma**
-
-Navegador PC
-
-**Índice**
-
-[Ficha Técnica	1](#ficha-técnica)
-
-[Título	1](#título)
-
-[Género	1](#género)
-
-[Target Audience	1](#target-audience)
-
-[Calificación por edades	1](#calificación-por-edades)
-
-[Plataforma	1](#plataforma)
-
-[Cartas Usadas	3](#cartas-usadas)
-
-[Descripción	3](#descripción)
-
-[Gameplay Loop	3](#gameplay-loop)
-
-[Paso entre combates	3](#paso-entre-combates)
-
-[Mecánicas	3](#mecánicas)
-
-[Zona de Juego	3](#zona-de-juego)
-
-[Acciones del jugador	3](#acciones-del-jugador)
-
-[Sistema de Autoestima (PV)	4](#sistema-de-autoestima-\(pv\))
-
-[Ritmo	4](#ritmo)
-
-[Notas Musicales	5](#notas-musicales)
-
-[Tipos	5](#tipos)
-
-[Keywords	5](#keywords)
-
-[Instrumentos	6](#instrumentos)
-
-[Estadísticas	6](#estadísticas)
-
-[Efectos de los instrumentos	6](#efectos-de-los-instrumentos)
-
-[Artefactos	7](#artefactos)
-
-[Clases	7](#clases)
-
-[Mejoras	7](#mejoras)
-
-[Recompensas	8](#recompensas)
-
-[HUD	10](#hud)
-
-[Explicación	10](#explicación)
-
-[Menús	10](#menús)
-
-[Estética	11](#estética)
-
-[Historia	11](#historia)
-
-[Estilo Gráfico	11](#estilo-gráfico)
-
-[Referencias	11](#referencias)
-
-[Redes Sociales	12](#redes-sociales)
-
-[Enlace a Github	12](#enlace-a-github)
-
-[Enlace a Youtube	12](#enlace-a-youtube)
-
-[Enlace a Instagram	12](#enlace-a-instagram)
-
-[Enlace a Twitter	12](#enlace-a-twitter)
-
-[Enlace a Discord	12](#enlace-a-discord)
-
-[Anexo: Data Dump	13](#anexo:-data-dump)
-
-[Clases	13](#clases-1)
-
-[Instrumentos	14](#instrumentos-1)
-
-[Artefactos	17](#artefactos-1)
-
-[Efectos de Acumulación de Género Musical	17](#efectos-de-acumulación-de-género-musical)
-
-# **Cartas Usadas**
+## $\color{rgb(230,145,56)} {\textbf{Cartas Usadas}}$
 
 **Cuphead**: Bullet hell muchas notas en pantalla a la vez y hay que esquivarlas  
 **Street fighter**: Combate jugador contra enemigo  
@@ -122,22 +14,22 @@ Navegador PC
 **Bajo del mar** (+ mecánica de ritmo): Escenario bajo del mar, y mecánica de ritmo
 **Nami Cuantica**: Música y sonidos hechos con la boca
 
-# **Descripción**
+## $\color{rgb(230,145,56)} {\textbf{Descripción}}$
 
 Tu objetivo es ganar el torneo de batallas musicales más importante de agua salada.  
 Para ello Sawa la nutria tendrá que ir derrotando a sus oponentes, aprendiendo nuevas técnicas musicales y aprendiendo a tocar nuevos instrumentos.
 
-## **Gameplay Loop**
+## $\color{rgb(230,145,56)} {\textbf{Gameplay Loop}}$
 Sawa deberá ganar 5 combates musicales y ganar contra el ganador definitivo de la anterior edición (el Boss). Si hace esto habrá ganado el torneo.  
 Si pierde un encuentro, tendrá que volver a empezar de cero.
 
-## **Paso entre combates**
+## $\color{rgb(230,145,56)} {\textbf{Paso entre Combates}}$
 
-Después de ganar un combate, Sawa recibirá conchas(divisa) y otra recompensa al azar. Después se le presentarán 2 fans cada uno con una selección de recompensas. El jugador elegirá a uno ganando las recompensas que tuviese. Tras escoger fan y ganar sus recompensas, el jugador podrá pulsar el botón siguiente combate para empezarlo en cualquier momento, o tomar su tiempo para leer los efectos de los instrumentos, artefactos y otras recompensas que haya conseguido.
+Después de ganar un combate, Sawa recibirá conchas(divisa) y otra recompensa al azar. Despuéspodrá ir al lobby en lo que espera al siguiente combate. Aquí podra hablar con los fans y posiblemente alguno le de algún regalo. El jugador podrá pulsar el botón siguiente combate para empezarlo en cualquier momento, o tomar su tiempo para leer los efectos de los instrumentos, artefactos y otras recompensas que haya conseguido.
 
-# **Mecánicas**
+# $\color{rgb(230,145,56)} {\textbf{Mecánicas}}$
 
-## **Zona de Juego**
+## $\color{rgb(230,145,56)} {\textbf{Zona de Juego}}$
 
 La zona de juego está compuesta por un tablero de 7 x 5 casillas.  
 Hay 3 zonas delimitadas por columnas (de izquierda a derecha) en el tablero:
@@ -150,7 +42,7 @@ Los jugadores y el enemigo solo pueden hallarse de forma natural sobre su propia
 
 Las notas musicales en cambio viajarán en línea recta por las filas independientemente de las zonas, pudiendo encontrarse entre 2 casillas a la vez.
 
-## **Acciones del jugador**
+## $\color{rgb(230,145,56)} {\textbf{Acciones del Jugador}}$
 
 El jugador puede realizar 2 acciones manualmente:
 
@@ -162,13 +54,13 @@ El jugador podrá moverse a otra casilla adyacente a la actual dentro de su zona
 
 El jugador podrá tocar un instrumento. Esta es la principal manera de colocar notas musicales en el tablero.
 
-## **Sistema de Autoestima (PV)**
+## $\color{rgb(230,145,56)} {\textbf{Sistema de Autoestima}}$
 
 El jugador y el enemigo tienen un contador de autoestima cada uno que empieza cada combate a 0 puntos. Cuando una nota del contrario toca a uno de los 2 la autoestima de quien haya lanzado la nota aumenta. El que tenga más autoestima al final del combate gana. Ganar con gran margen mejora las recompensas recibidas al final del combate.  
 La representación de la autoestima es un medidor compartido que empieza al 50% y se mueve en la dirección a quien va perdiendo.   
 Hay marcas cuando la ventaja es del 30, 60 %. Y al acabar un combate se consiguen mejores recompensas por cada marca.  
 
-## **Ritmo**
+## $\color{rgb(230,145,56)} {\textbf{Ritmo}}$
 
 Cada enemigo tiene un ritmo. Esto es el latido constante de la música que suena al enfrentarte a él, a partir de ahora beat.   
 El ritmo estará representado de manera visual en la parte de abajo de la pantalla  
@@ -178,18 +70,18 @@ Nótese que no es obligatorio realizar las acciones al ritmo y es solo un efecto
 
 El ritmo coincide con el tiempo que tardan las notas en avanzar una casilla completa.
 
-# **Notas Musicales**
+# $\color{rgb(230,145,56)} {\textbf{Notas Musicales}}$
 
 Las notas musicales son los proyectiles que surcan el tablero. Avanzan a velocidad constante (salvo efectos especiales) en dirección al contrario a quien las produjo. De forma normal está velocidad es una casilla por beat.
 
-## **Tipos**
+## $\color{rgb(230,145,56)} {\textbf{Tipos}}$
 
 * Redondas (Opcional) → aumenta la autoestima en 8  
 * Blancas → aumenta la autoestima en 4  
 * Negras → aumenta la autoestima en 2  
 * Corcheas → aumenta la autoestima en 1
 
-## **Keywords**
+## $\color{rgb(230,145,56)} {\textbf{Keywords}}$
 
 * Adagio → avanzan a x0.5 de velocidad. Aplicar adagio a una nota allegro elimina ambas keywords.  
 * Allegro → avanzan a x2 de velocidad. Aplicar allegro a una nota adagio, elimina ambas keywords.  
@@ -204,11 +96,11 @@ Las notas musicales son los proyectiles que surcan el tablero. Avanzan a velocid
 
 Una nota puede tener forte y piano a la vez. Si esto es así no se chocará con otras notas hasta que se elimine piano.
 
-# **Instrumentos**
+# $\color{rgb(230,145,56)} {\textbf{Instrumentos}}$
 
 El jugador podrá llevar 3 instrumentos como máximo en todo momento encima. Cada instrumento es único con sus propias estadísticas y forma de generar notas.
 
-## **Estadísticas**
+## $\color{rgb(230,145,56)} {\textbf{Estadísticas}}$
 
 * Género: Cada instrumento tendrá un género musical asignado con su propio arquetipo. Al tener equipados varios instrumentos del mismo género se aplicarán efectos pasivos dependiendo del género acumulado.  
 * Cooldown: Beats que tienen que pasar hasta que pueda volver a ser usado.  
@@ -217,7 +109,7 @@ El jugador podrá llevar 3 instrumentos como máximo en todo momento encima. Cad
 * Posición de puesta de notas: Generalmente es justo delante del jugador, pero puede ser en carriles adyacentes o con efectos más especiales.  
 * Efectos: Si es que los tienen, pueden ser desde efectos pasivos hasta otros que ocurran al usarlos. 
 
-## **Efectos de los instrumentos**
+## $\color{rgb(230,145,56)} {\textbf{Efectos de Instrumentos}}$
 
 Los siguientes son efectos que contienen multitud de instrumentos. No obstante, los instrumentos pueden tener efectos más complejos.
 
@@ -236,16 +128,16 @@ Los siguientes son efectos que contienen multitud de instrumentos. No obstante, 
 * Canon: keyword que se aplica al jugador. Cada beat reduce en uno las acumulaciones de canon sobre el jugador y gana una carga de ReProduce. Mientras el jugador tenga canon guarda el tipo, posición y numero de notas que produzca cada beat, en un espacio de distinto de una lista (TAD queue: First in First Out). Cuando al jugador se le acaben las acumulaciones de canon se pueden ver los efectos de ReProduce.  
 * ReProduce: keyword que se aplica al jugador. Cada beat reduce en uno las acumulaciones de ReProduce (si no tienes acumulaciones de canon). Mientras el jugador tenga ReProduce (y no tenga acumulaciones de canon) está anclado, (puede seguir tocando instrumentos) y produce cada beat todas las notas que estén en el primer espacio de la lista que guardaba canon. Si tiene o gana acumulaciones de canon , los efectos de ReProduce se ignoran hasta que canon vuelve a ser canon. *Opción 2: Al ganar nuevas acumulaciones de canon elimina todas las acumulaciones de ReProduce.*
 
-# **Artefactos**
+# $\color{rgb(230,145,56)} {\textbf{Artefactos}}$
 
 Equipamiento que puede obtener Sawa con efectos pasivos muy poderosos. El jugador puede tener artefactos ilimitados, pero lo normal es que no consiga más de 3 o 4 durante una run.
 
-# **Clases**
+# $\color{rgb(230,145,56)} {\textbf{Clases}}$
 
 * El jugador podrá elegir varias clases antes de comenzar la partida. La clase que escoja determinará su Autoestima Inicial, los instrumentos con los que empieza (ya sean 1 o varios) y sus artefactos iniciales. Pese a empezar con un instrumento el jugador siempre tiene espacio para 3 instrumentos.  
 * O bien que te toque un artefacto al azar entre una selección de artefactos iniciales y eliges un arma común.
 
-# **Mejoras**
+# $\color{rgb(230,145,56)} {\textbf{Mejoras}}$
 
 Las mejoras son complementos que se pueden poner a los instrumentos, cada instrumento puede tener una mejora. Las mejoras pueden modificar los 3 siguientes parámetros de un instrumento:
 
@@ -261,14 +153,14 @@ Ejemplos:
 Mejora Simple: Mejora de nota \+1 (si son corcheas, pasa a lanzar negras)  
 Mejora poderosa: Cooldown \-2, \-1 número de notas(si lanzaba 2 ahora lanza 1\)
 
-# **Recompensas**
+# $\color{rgb(230,145,56)} {\textbf{Recompensas}}$
 
 Tras cada combate el jugador entrará en una escena en la que se le darán 2 recompensas. Conchas(El número de conchas es proporcional a lo bien que lo haya hecho el anterior combate) y un instrumento a elegir entre 3\. Puede clicar sobre ellas para equiparlas o ignorarlas y pasar al Lobby. 
 
 En el lobby el jugador podrá cliclar sobre los diferentes personajes que aparecen. Aparecerán más cuanto mejor lo haya hecho el anterior combate.  
 Al clicar sobre un personaje. Este mostrará un breve diálogo y presentará una serie de recompensas o elecciones. Cuando el NPC haya completado sus acciones aparecerá un botón de volver. Al pulsarlo se vuelve al lobby y el personaje con el que hablamos se pone en blanco y negro y está desactivado.
 
-**Tipos de recompensas**  
+## $\color{rgb(230,145,56)} {\textbf{Tipos de Recompensas}}$ 
 Conchas: Una cantidad generosa de conchas, te permiten comprar cosas  
 Elección de instrumento: Un nuevo instrumento a elegir entre 3  
 Elección de instrumento por género: Sólo aparecerá antes del combate contra el boss si tienes varios instrumentos del mismo género.  
@@ -280,18 +172,11 @@ Compra de artefactos: Tiene 3 artefactos de entre todos los disponibles (que no 
 
 Todas las Tiendas/ compra de … tienen un botón para rerollear los instrumentos/mejoras/artefactos que hayan salido por un módico precio.
 
-# **HUD**
+# $\color{rgb(230,145,56)} {\textbf{Lobby}}$
+Tras cada combate, después de recoger tus recompensas accederás al lobby. Aquí habrá fans (más cuanto mejor lo hayas hecho en el anterior combate) con los que podrás hablar pulsando sobre ellos. Al clicarlos se desplegará un Overlay con una imagen ampliada de ellos un bocadilla de dialogos que en la mayoría de los casos no cambiará, y botones o recompensas addicionales. A menudo estos NPCs representan una elección y algunos de ellos serán una tienda en la que comprar mejoras.
+Opcional: Puede que alguno de ellos incluso tenga algún tipo de minijuego
 
-# **![][image1]**
-
-## **Explicación**
-
-* Indicadores Vida: Arriba a la derecha se muestra la autoestima del enemigo. Debajo del jugador se muestra la autoestima del jugador  
-* Imágenes de instrumentos: Arriba a la izquierda. Al pulsarlos se mostrará la descripción del instrumento, muestran a qué tecla está asignado cada instrumento  
-* Notas jugador y enemigo: Permiten ver al jugador el estado de juego  
-* Visualización de ritmo: abajo del todo. Olas o símbolos de agua que se mueven hacia el centro a velocidad constante y se chocan en el centro a cada beat.
-
-# **Menús**
+## $\color{rgb(230,145,56)} {\textbf{Menús}}$
 
 Menú principal
 
@@ -310,108 +195,20 @@ Menú principal
   * Atrás  
 * Salir
 
-# **Estética**
+# $\color{rgb(230,145,56)} {\textbf{Estética}}$
 
-## **Historia**
+## $\color{rgb(230,145,56)} {\textbf{Historia}}$
 
 Sawa es una nutría que tras escuchar del SEA (Symphonic Entertainment Arena) abandona su río para competir y ser reconocida como la mejor música del océano.
 
 La historia no se cuenta de manera explícita en ningún momento. Simplemente el juego es de una nutria intentando ganar un campeonato de música.
 
-## **Estilo Gráfico**
+## $\color{rgb(230,145,56)} {\textbf{Estilo Artístico}}$
 
 El estilo de dibujo es adorable, cute, kawai. De colores pastel y esponjoso. Por ejemplo:  
  ![][image2]![][image3]![][image4]
-
-# **Creación de Instrumentos**
-
-Este espacio está reservado a la explicación de cómo se crea un instrumento musical en nuestro juego. Ya que creemos que es relevante al haberle dedicado bastante trabajo para hacer que generar instrumentos sea lo más fácil posible. Y para que sirva como guía de como crear instrumentos
-
-## 
-
-## **Valores por defecto**
-
-Cuando creamos un nuevo instrumento se inicializa con los siguientes valores.
-
-* Número de notas: 1  
-* Nombre: default  
-* Tipo de Nota: 1 (negra). (0 para corchea y 2 para blanca)  
-* Cooldown: 0  
-* Modificador de posición de nota : \[{x:0,y:0}\] (respecto a la posición actual del player). Al meter más objetos con posiciones en la array se producirá una nota en cada posición relativa
-
-Y con las siguientes funciones relevantes:
-
-* Play(posX,posY): posX y posY es desde que casilla se tocó este instrumento. Este método se llama una única vez y llama a ProducirNotas(posX,posY)  
-* ProducirNotas(posX,posY): posX y posY es la posición en la que se tocó el instrumento. Llama a ThrowNotes(posX,posY) por defecto en el instante inicial, y luego si número de notas es mayor de 1 crea notas espaciadas en el tiempo de forma que hasta el próximo beat se generen con esperas de tiempo iguales entre unas y otras todas las notas necesarias.   
-* ThrowNotes(posX,posY): posX y posY es desde la casilla que se tocó este instrumento. Por cada posición en Modificador de Posición de nota crea llama a SpawnNote(posX,posY, tipoNotas) en cada una de ellas cada vez que se le invoca.  
-* ThrowNotes(posX,posY,tipoNotas) posX y posY son las posiciones en las que se generará la nota. Y tipoNotas es un valor entre 0 y 2\.
-
-## **Constructor de instrumentos básicos**
-
-El constructor de instrumento recibe la escena actual y un objeto de configuración del instrumento. El objeto de configuración del instrumento es opcional pero es lo que necesitará para crear instrumentos.  
-![][image5]  
-Dado el objeto de configuración de instrumentos el constructor del objeto dará el valor de cada key a las variables existentes del objeto, en caso de no existir simplemente las creará (JavaScript a tope).
-
-Un objeto de configuración para un instrumento muy básico sería por ejemplo:  
-{  
-    nombre: "Flauta",  
-    baseCooldown: 2,  
-    numeroNotas: 1,  
-    tipoNotas: 0,  
-}
-
-Pero esta no es la gracia de nuestro sistema sino que podemos sobrescribir cómo funcionan las funciones por defecto para un instrumento dado si queremos que haga efectos mucho más complejos.
-
-## **Sobrescribir funciones básicas**
-
-Por ejemplo, podríamos querer hacer un instrumento más complejo que hiciese algo único una sola vez al tocarlo. Para hacer esto lo más fácil sería sobrescribir la función Play()
-
-Para ello escribir lo siguiente dentro de nuestro objeto de configuración:  
-    Play: function(posX,posY){  
-        this.actualCooldown \= this.baseCooldown; //x defecto  
-        this.ProducirNotas(posX, posY); //x defecto
-
-        //Incluir código de nuestras funciones locas  
-    }  
-Esto automáticamente haría que esta fuese la nueva función play de nuestro objeto.  
-Si nuestros métodos son muy complejos podemos crear nuevas claves con funciones auxiliares(clave con nombre distinto a todas las anteriores del objeto y que no haya ningún método o variable en el instrumento con ese nombre).
-
-## **Añadir efectos a las notas**
-
-**Efectos**  
-Los efectos de notas están en el fichero “NotasEffects.js” dentro de un objeto llamado notaEffects. En este objeto cada clave es el nombre de un efecto, y su valor es una función que al ser ejecutada dentro de la nota nos daría el efecto que queremos. Estas funciones pueden tener parámetros. Aquí se pueden incluir todos los efectos que vayan a necesitar hacer las notas, ya sea que lo hagan solo por 1 instrumento o lo usan varios. Pq a la hora de hacer deep copies de notas debe estar disponible para todos los casos.  
-**Objeto de configuración del instrumento**  
-Si queremos añadir efectos a nuestras notas tendremos que incluir la siguiente clave en nuestro objeto de configuración:  
-noteKeywords: {}  
-En el objeto que contiene deberíamos escribir en la clave, el nombre del efecto (igual al escrito el NotasEffects), y en su valor una array con los parámetros que requiere.  
-Todas esta información se guardará en la variable homónima dentro del instrumento en cuestión.  
-La función ThrowNotes() por defecto ejecuta la siguiente linea para crear una nota.  
-new Nota(this.sceneRef,posX, posY,tipoNotas,1).AddKeyword(this.noteKeywords);
-
-Cada vez que creamos una nota ejecutamos la función AddKeyword(); como parámetro el mismo objeto que le pasamos en configuración.  
-Para entender como esto funciona  veamos el método AddKeyword()  
-**Aplicar Keyword**  
-La siguiente función es la que hace la “magia” de aplicar los efectos de nuestras notas:  
-**AddKeyword(config){**  
-        **Object.keys(config).forEach(key \=\> {**  
-            **NotesEffects\[key\].apply(this, config\[key\]);**  
-        **});**        
-    **}**  
-Lo que hace verdaderamente es por cada keyword de nuestro objeto de configuración  
-llama a la funcion de NotesEffects que se corresponda en nombre con la clave y como parametros el valor asociado. Y todo esto hacemos que se ejecute dentro del objeto de nuestra nueva nota.
-
-## 
-
-## **Condiciones con variables no definidas**
-
-A la hora de hacer condiciones dentro de la nota o para colisiones o demás con variables que no están creadas por defecto como piano (bool) o silent (int) podemos hacerlo de la siguiente manera.  
-**Bool**  
-(piano) devolvera true solo si la variable esta definida y es verdadera  
-**Int**  
-(silent) devolvera true si la variable esta definida y es distinta de 0 (con cualquier número negativa sigue siendo falsa no obstante)  
-Si necesitamos cualquier otra condición (que se me haya ocurrido) con números se puede hacer de la manera usual.
-
-# **Referencias**
+ 
+# $\color{rgb(230,145,56)} {\textbf{Referencias}}$
 
 * Slay the spire (Mega Crit, 2019\) → Artefactos
 
@@ -425,33 +222,33 @@ Si necesitamos cualquier otra condición (que se me haya ocurrido) con números 
 
 * Crypt of the Necrodancer (Brace Yourself Games, 2015\) → Sistema de ritmo 
 
-# **Redes Sociales**
+# $\color{rgb(230,145,56)} {\textbf{Redes sociales}}$
 
-## **Enlace a Github**
+### $\color{rgb(230,145,56)} {\textbf{Enlace a Github}}$
 
 [**https://github.com/IzanDeVegaLopez/proyecto\_PVLI**](https://github.com/IzanDeVegaLopez/proyecto_PVLI)
 
-## **Enlace a Youtube**
+### $\color{rgb(230,145,56)} {\textbf{Enlace a Youtube}}$
 
 [**https://www.youtube.com/channel/UCYzZh8CjlzoX60kzE2s3ylw**](https://www.youtube.com/channel/UCYzZh8CjlzoX60kzE2s3ylw)
 
-## **Enlace a Instagram**
+### $\color{rgb(230,145,56)} {\textbf{Enlace a Instagram}}$
 
 [**https://www.instagram.com/fathomgames1/**](https://www.instagram.com/fathomgames1/)
 
-## **Enlace a Twitter** 
+### $\color{rgb(230,145,56)} {\textbf{Enlace a Twitter}}$
 
 [**https://x.com/FathomGames1**](https://x.com/FathomGames1)
 
-## **Enlace a Discord**
+### $\color{rgb(230,145,56)} {\textbf{Enlace a Discord}}$
 
 [**https://discord.gg/kZKrkjG527**](https://discord.gg/kZKrkjG527)
 
-# **Anexo: Data Dump** 
+# $\color{rgb(230,145,56)} {\textbf{Anexo: Data Dump}}$
 
 A partir de aquí se mostrarán instrumentos, clases y artefactos concretos, con la idea de implementarlos.
 
-## **Clases** 
+## $\color{rgb(230,145,56)} {\textbf{Clases}}$
 
 | Nombre | Rockera |
 | :---- | :---- |
@@ -477,7 +274,7 @@ A partir de aquí se mostrarán instrumentos, clases y artefactos concretos, con
 | **Artefacto** |  |
 | **Explicación** | Enfocado al movimiento |
 
-## **Instrumentos** {#instrumentos-1}
+## $\color{rgb(230,145,56)} {\textbf{Instrumentos}}$
 
 Enfoque según género musical:
 
@@ -569,7 +366,7 @@ Plantilla:
 | :---- | :---- |
 | **Efectos** | Genera notas y luego lanza cascabeles en todas las casillas que te rodean |
 
-## **Artefactos** {#artefactos-1}
+## $\color{rgb(230,145,56)} {\textbf{Artefactos}}$
 
 * Altavoces gigantes: vibrato hace 2 de daño al enemigo al golpearlo.  
 * Pua en llamas: tus vibratos hace 1 de daño a todas las notas que toque. (Sinergia con lo siguiente)  
@@ -586,7 +383,7 @@ Plantilla:
 * cangrejos de rio percusionistas: Al producir una nota blanca, los cangrejos producen notas en las casillas arriba y debajo de las tuyas.   
 * Sordina: Al provocarle a una nota silent. Esta sube una categoría
 
-## **Efectos de Acumulación de Género Musical** {#efectos-de-acumulación-de-género-musical}
+## $\color{rgb(230,145,56)} {\textbf{Efectos de Acumulación de Género Musical}}$
 
 Al tener 2 instrumentos del mismo género se activa un efecto especial pasivo dependiendo del género músical de ambos. Al coger un 3er instrumento se ganará un segundo efecto pasivo dependiente del género musical de este 3er instrumento.  
 Los listados a continuación son los efectos conseguidos al tener 2 instrumentos del mismo tipo, y los invitados, el efecto con el 3er instrumento.
@@ -622,7 +419,7 @@ En principio haremos solo los efectos de 2 instrumentos, en caso de sobrarnos ti
 * Hip hop: efectos de movimiento y Syncopate  
 * lo-fi ?: notas adagio, daño indirecto
 
-**Ideas builds:**   
+## $\color{rgb(230,145,56)} {\textbf{Ideas Builds}}$ 
 Copy: usar silent en una nota, buffarla y luego crear copias de ella por doquier.  
 Trinity: bufos lanzando grupos de 3 notas  
 
