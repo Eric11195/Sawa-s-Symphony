@@ -1,4 +1,5 @@
 import { Tile00PositionY, TileDiffY, TileDiffX } from "../Utils/screenPositions.js";
+import { notasPool } from "../Scenes/combatScene.js";
 
 const notaEffects = {
     forte: function(nota)
@@ -51,7 +52,7 @@ const notaEffects = {
     copy: function(nota, newRelativePos){
         //Compruebo que este dentro del tablero
         if(nota.y + newRelativePos.y*TileDiffY() > Tile00PositionY() && nota.y + newRelativePos.y*TileDiffY() < Tile00PositionY() + 5*TileDiffY()){
-            const newNota = new Nota(nota.scene,0,0,nota.tipoNota,1);
+            const newNota = notasPool.Spawn(0,0,1,nota.tipoNota);//new Nota(nota.scene,0,0,nota.tipoNota,1);
 
             /**@todo IMPORTANTE, cada vez que se meta una nueva propiedad que debería ser copiada hay que meterla aquí */
             newNota.speed = nota.speed;
@@ -60,6 +61,8 @@ const notaEffects = {
             newNota.piano = nota.piano;
             newNota.applyToAllyNotes = nota.applyToAllyNotes;
             newNota.applyToEnemyNotes = nota.applyToEnemyNotes;
+            newNota.applyToSelfOnEnemyNoteImpact = nota.applyToSelfOnEnemyNoteImpact;
+            newNota.applyToSelfOnAllyNoteImpact = nota.applyToSelfOnAllyNoteImpact;
             newNota.notesCollidedWith = [];
 
             newNota.x = nota.x + newRelativePos.x * TileDiffX();
@@ -69,7 +72,7 @@ const notaEffects = {
     split: function(nota){
         nota.AddKeyword({copy:{x:0,y:1}});
         if(nota.y - TileDiffY() < Tile00PositionY()){
-            nota.destroy();
+            nota.DestroyMe();
         }else{
             nota.y -= TileDiffY();
         }
@@ -101,7 +104,7 @@ const notaEffects = {
         nota.applyToAllyNotes = {moveYRandom:null};
     },
     destroy: function(nota){
-        nota.destroy();
+        nota.DestroyMe();
     },
     presto: function(nota){
         nota.speed = 3;

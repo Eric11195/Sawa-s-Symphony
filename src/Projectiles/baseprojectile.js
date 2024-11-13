@@ -17,8 +17,8 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
      * @param {*} posY y de la casilla en la que se genera la nota
      * @param {*} direction 1 si es la lanza el jugador, -1 si la lanza el enemigo
      */
-    constructor(scene, imageId, pool) {
-        super(scene, 0, 0, imageId);
+    constructor(scene, pool) {
+        super(scene, 0, 0, "notes");
         scene.add.existing(this);
         this.pool = pool;
         this.setScale(2,2);
@@ -89,6 +89,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.applyToEnemyNotes = [];
         this.applyToAllyNotes = [];
         this.notesCollidedWith = [];
+        this.acceptsKeywords = true;
         //this.body.setVelocityX();
         return this;
     }
@@ -98,10 +99,10 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     UpdateImage(){
-        this.play("notes"+this.tipoNota);
+        //this.play("notes"+this.tipoNota);
     }
 
     DestroyMe(){
-        this.pool.Release();
+        this.pool.Release(this);
     }
 }

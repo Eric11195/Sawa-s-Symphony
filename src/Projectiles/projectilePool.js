@@ -46,7 +46,7 @@ export default class Pool {
 				let newEntities = [];
 				let newMax = this.max.value < this._group.getLength()*2 ? this.max.value-this._group.getLength() : this._group.getLength()
 				for(let i=0; i<newMax; i++){ //En este caso hemos elegido duplicar el tamaño
-					entity = new Nota(this.scene, this._group);
+					entity = new BaseProjectile(this.scene, this._group);
 					newEntities.push(entity);
 				}	
 				this.addMultipleEntity(newEntities);
@@ -72,12 +72,14 @@ export default class Pool {
 				//console.log(this.direction, " = direction");
 				if(entity.direction == 1){
 					entity.tint = 0x179bae;
+					entity.setFlipY(false);
 				}else{
 					entity.tint = 0xff8343;
 					entity.setFlipY(true);
 				}
 			}
 			else if(whatToSpawn == "vibrato"){
+				entity.tint = 0xffffff;
 				entity.setTexture("vibrato");
 				entity.AddKeyword({vibrato:null, presto:null});
 				entity.SetAcceptsKeywords(false);
@@ -91,7 +93,7 @@ export default class Pool {
 	 * Método para liberar una entidad
 	 * @param {Object} entity - entidad de la pool que queremos marcar como libre
 	 */
-	release (entity) {
+	Release (entity) {
 		entity.body.checkCollision.none = true;
 		this._group.killAndHide(entity);
 	}

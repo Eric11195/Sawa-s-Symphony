@@ -148,13 +148,13 @@ export default class combatScene extends Phaser.Scene {
                     this.UpdateVsMarker();
                     player.AddEarworm(note.earworm);
                 }
-                note.destroy();
+                note.DestroyMe();
             }
             /**@todo sumarle puntuación al enemy */
         });
         //Notas del player chocandose contra el enemigo
         this.physics.add.overlap(notasPool.getPhaserGroup(), this.enemy, (note,enemy)=>{
-            console.log(note, enemy);
+            //console.log(note, enemy);
             if(!note.piano && note.direction == 1){
                 if(note.tipoNota !== undefined) {
                     this.playerPoints+= Math.pow(2,note.tipoNota);
@@ -162,7 +162,7 @@ export default class combatScene extends Phaser.Scene {
                     this.UpdateVsMarker();
                     enemy.AddEarworm(note.earworm);
                 }
-                note.destroy();
+                note.DestroyMe();
             }
             /**@todo sumarle puntuación al player */
         });
