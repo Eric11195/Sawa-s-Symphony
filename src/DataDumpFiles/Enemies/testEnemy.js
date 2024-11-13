@@ -1,6 +1,6 @@
 import Enemy from "../../BoardUnits/enemy.js";
 import Sostenuto from "../../BoardUnits/sostenuto.js";
-import Nota from "../../Projectiles/nota.js";
+import { notasPool } from "../../Scenes/combatScene.js";
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const testEnemy = {
@@ -19,12 +19,14 @@ const testEnemy = {
                  * callback function to be done
                  */
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    new Nota(this.scene,6,1,0,-1);
+                    notasPool.Spawn("nota",6,1,-1,0).AddKeyword(this.noteKeywords);
+                    //new Nota(this.scene,6,1,0,-1);
                 }});
             },//fin acción 1
             function(enemy){
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 300, callback: function(){
-                    new Nota(this.scene,6,2,0,-1);
+                    notasPool.Spawn("nota",6,2,-1,0).AddKeyword(this.noteKeywords);
+                    //new Nota(this.scene,6,2,0,-1);
                 }});
             },//fin acción 2
         ],

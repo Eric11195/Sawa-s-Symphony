@@ -11,7 +11,8 @@ import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import Pool from "../Projectiles/projectilePool.js";
-import Nota from '../Projectiles/nota.js';
+import BaseProjectile from "../Projectiles/baseprojectile.js";
+
 
 let deltaTime;
 let clockInstance;
@@ -84,7 +85,7 @@ export default class combatScene extends Phaser.Scene {
 		notasPool = new Pool(this, 100, false);	
 		let notas = [];
 		for (let i = 0; i < 100; i++) {
-			let nota = new Nota(this, notasPool);
+			let nota = new BaseProjectile(this, notasPool);
 			notas.push(nota);
 		}
 		notasPool.addMultipleEntity(notas);

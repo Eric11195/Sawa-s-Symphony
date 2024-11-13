@@ -1,5 +1,4 @@
 import { Tile00PositionY, TileDiffY, TileDiffX } from "../Utils/screenPositions.js";
-import Nota from "../Projectiles/nota.js";
 
 const notaEffects = {
     forte: function(nota)
@@ -103,6 +102,9 @@ const notaEffects = {
     },
     destroy: function(nota){
         nota.destroy();
+    },
+    presto: function(nota){
+        nota.speed = 3;
     }
 
 }

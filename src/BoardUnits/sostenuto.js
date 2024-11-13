@@ -1,5 +1,4 @@
 import { clockInstance, notasPool } from "../Scenes/combatScene.js";
-import Nota from "../Projectiles/nota.js";
 import BoardUnit from "./boardUnit.js";
 
 export default class Sostenuto extends BoardUnit{
@@ -24,7 +23,7 @@ export default class Sostenuto extends BoardUnit{
     BeatFunction(){
         if(!this.wait){
             //console.log(this.position.x, " ", this.position.y, " ", this.noteDirection, " ", this.tipoNota);
-            notasPool.Spawn(this.position.x,this.position.y,this.noteDirection,this.tipoNota).AddKeyword(this.noteKeywords);
+            notasPool.Spawn("nota", this.position.x,this.position.y,this.noteDirection,this.tipoNota).AddKeyword(this.noteKeywords);
             this.duration--;
             if(this.duration <= 0) {
                 clockInstance.eventEmitter.removeListener("BeatNow", this.BeatFunction,this);

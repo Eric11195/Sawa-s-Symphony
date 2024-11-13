@@ -1,4 +1,3 @@
-import Nota from "../Projectiles/nota.js";
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 

@@ -1,4 +1,4 @@
-import Nota from "./nota.js";
+import BaseProjectile from "./baseprojectile.js";
 
 export default class Pool {
 	/**
@@ -31,7 +31,7 @@ export default class Pool {
 		});
 	}
 	
-	Spawn (x, y, direction,tipoNota) {
+	Spawn (whatToSpawn,x, y, direction,tipoNota) {
 		let entity = this._group.getFirstDead();
 		
 		/* 
@@ -66,10 +66,22 @@ export default class Pool {
             entity.setActive(true);
 			entity.setVisible(true); 
             entity.SetSpawnParameters(x,y,direction,tipoNota);
-
-			//console.log(entity, entity.x);
-			entity.SetSpawnImage();
-
+			if(whatToSpawn == "nota"){
+				entity.setTexture("notes");
+				entity.play("notes"+this.tipoNota);
+				//console.log(this.direction, " = direction");
+				if(entity.direction == 1){
+					entity.tint = 0x179bae;
+				}else{
+					entity.tint = 0xff8343;
+					entity.setFlipY(true);
+				}
+			}
+			else if(whatToSpawn == "vibrato"){
+				entity.setTexture("vibrato");
+				entity.AddKeyword({vibrato:null, presto:null});
+				entity.SetAcceptsKeywords(false);
+			}
 			entity.body.checkCollision.none = false;
 		}
 		return entity;
