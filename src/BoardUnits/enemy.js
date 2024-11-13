@@ -10,7 +10,6 @@ export default class Enemy extends BoardUnit{
     /**Hacer un constructor que reciba un objeto de forma similar al de los instrumentos */
     constructor(scene, enemyData){
         super(scene, {x:6,y:enemyData.startPosY}, enemyData.name);
-        console.log(this.x, this);
         this.setOrigin();
         this.setDisplaySize(100,100);
         this.enemyActions = enemyData.enemyActions;

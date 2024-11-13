@@ -23,7 +23,7 @@ export default class Sostenuto extends BoardUnit{
 
     BeatFunction(){
         if(!this.wait){
-            console.log(this.position.x, " ", this.position.y, " ", this.noteDirection, " ", this.tipoNota);
+            //console.log(this.position.x, " ", this.position.y, " ", this.noteDirection, " ", this.tipoNota);
             notasPool.Spawn(this.position.x,this.position.y,this.noteDirection,this.tipoNota).AddKeyword(this.noteKeywords);
             this.duration--;
             if(this.duration <= 0) {

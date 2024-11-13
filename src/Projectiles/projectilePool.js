@@ -67,7 +67,7 @@ export default class Pool {
 			entity.setVisible(true); 
             entity.SetSpawnParameters(x,y,direction,tipoNota);
 
-			console.log(entity, entity.x);
+			//console.log(entity, entity.x);
 			entity.SetSpawnImage();
 
 			entity.body.checkCollision.none = false;

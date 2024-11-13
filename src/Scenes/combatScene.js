@@ -138,7 +138,7 @@ export default class combatScene extends Phaser.Scene {
         this.notes = this.physics.add.group();
 
         //Las notas del enemigo se chocan con el player
-        this.physics.add.overlap(this.notes, this.player, (player,note)=>{
+        this.physics.add.overlap(notasPool.getPhaserGroup(), this.player, (player,note)=>{
             if(!note.piano && note.direction == -1){
                 if(note.tipoNota !== undefined) {
                     this.enemyPoints+= Math.pow(2,note.tipoNota);
@@ -151,7 +151,7 @@ export default class combatScene extends Phaser.Scene {
             /**@todo sumarle puntuación al enemy */
         });
         //Notas del player chocandose contra el enemigo
-        this.physics.add.overlap(this.notes, this.enemy, (enemy,note)=>{
+        this.physics.add.overlap(notasPool.getPhaserGroup(), this.enemy, (enemy,note)=>{
             if(!note.piano && note.direction == 1){
                 if(note.tipoNota !== undefined) {
                     this.playerPoints+= Math.pow(2,note.tipoNota);
@@ -165,7 +165,7 @@ export default class combatScene extends Phaser.Scene {
         });
 
         //Notas del player chocandose contra sus propias notas
-        this.physics.add.overlap(this.notes, undefined, (note1, note2)=>{
+        this.physics.add.overlap(notasPool.getPhaserGroup(), undefined, (note1, note2)=>{
             if(!note1.piano && !note2.piano)
                 if(!note1.notesCollidedWith.includes(note2)){
                     if(note1.direction == note2.direction){

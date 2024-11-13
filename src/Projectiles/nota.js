@@ -28,7 +28,7 @@ export default class Nota extends baseProjectile{
 
     SetSpawnImage(){
         this.UpdateImage();
-        console.log(this.direction, " = direction");
+        //console.log(this.direction, " = direction");
         if(this.direction == 1){
             this.tint = 0x179bae;
         }else{
@@ -36,7 +36,7 @@ export default class Nota extends baseProjectile{
             this.setFlipY(true);
         }
 
-        console.log(this.x);
+        //console.log(this.x);
     }
     UpdateImage(){
         this.play("notes"+this.tipoNota);

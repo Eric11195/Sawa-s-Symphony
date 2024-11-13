@@ -27,28 +27,33 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         scene.physics.add.existing(this);
         this.body.setSize(20, 20, true);
 
-        this.scene.events.on('postupdate', ()=>{
-            this.PostUpdate();
-        });
-
         //takes the event postupdate from the scene and makes this function postUpdate be called when received
         clockInstance.eventEmitter.on("BeatNow", ()=>{
             if(this.silent > 0) this.silent--;
         });
+        
 
         //scene.notes.add(this);
 
     }
 
-    PostUpdate(){
-        if(!this.silent) this.MoveForward();
+    preUpdate(t,dt){
+        //console.log(dt);
+        super.preUpdate(t,dt);
+        console.log(this.silent);
+        if(!this.silent) this.MoveForward(dt);
+
+        //console.log(this.silent);
     }
 
     /**Move forward until it gets out of board*/
-    MoveForward(){
+    MoveForward(dt){
         /** @todo Habrá que buscar una manera de implementar el delta time que no implique ponerle contadores a todas las notas
          */
-        this.x += this.direction * deltaTime/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
+        this.x += this.direction * dt/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
+        
+        //console.log("dir ",this.direction, " dt ", this.deltaTime, " sp ",this.speed, "clT", clockInstance.delayTimer);
+
         //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
         /**@todo investigar si hacer con un trigger en vez de por coordenadas */
         if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
@@ -70,7 +75,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     SetSpawnParameters(x,y,direction, tipoNota){
         this.setX(Tile00PositionX() + x * TileDiffX());
         this.setY(Tile00PositionY() + y * TileDiffY());
-        console.log(this.x, this);
+        //console.log(this.x, this);
 
         //console.log(x, "=>", this.x);
         //console.log(y, "=>", this.y);
@@ -83,6 +88,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.applyToEnemyNotes = [];
         this.applyToAllyNotes = [];
         this.notesCollidedWith = [];
+        //this.body.setVelocityX();
         return this;
     }
 }
