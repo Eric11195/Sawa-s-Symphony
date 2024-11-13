@@ -80,8 +80,8 @@ const notaEffects = {
     moveNote: function (nota, newPos){
 
         nota.x += newPos.x * TileDiffX();
-
-        if(nota.y + newPos.y*TileDiffY() > Tile00PositionY() && nota.y + newPos.y*TileDiffY() < Tile00PositionY() + 5*TileDiffY()){
+        console.log(newPos, "=>", Tile00PositionY(),"<",nota.y + newPos.y*TileDiffY(),"<",Tile00PositionY() + 5*TileDiffY());
+        if(nota.y + newPos.y*TileDiffY() >= Tile00PositionY() && nota.y + newPos.y*TileDiffY() <= Tile00PositionY() + 4*TileDiffY()){
             nota.y += newPos.y * TileDiffY();
         }
     },
