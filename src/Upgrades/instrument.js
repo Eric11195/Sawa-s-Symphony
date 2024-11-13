@@ -1,5 +1,4 @@
-import Nota from "../Projectiles/nota.js"
-import { clockInstance } from "../Scenes/combatScene.js";
+import { clockInstance, notasPool} from "../Scenes/combatScene.js";
 import InstrumentCdImage from "../UIelems/instrumentsCdImage.js";
 import InstrumentEffects from "../Effects/instrumentEffects.js";
 
@@ -89,9 +88,8 @@ export default class Instrumento{
     }
     SpawnNotes(posX,posY, tipoNotas){
         //Previene que se generen notas fuera del tablero
-        if(posY < 5 && posY >= 0){
-            new Nota(this.sceneRef, posX, posY, tipoNotas, 1).AddKeyword(this.noteKeywords);
-
+        if(posY < 5 && posY >= 0){           
+            notasPool.Spawn("nota",posX,posY,1,tipoNotas).AddKeyword(this.noteKeywords);
         }
     }
 

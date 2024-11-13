@@ -1,4 +1,3 @@
-import Nota from "../Projectiles/nota.js";
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 
@@ -27,7 +26,7 @@ export default class Enemy extends BoardUnit{
             this.enemyActions[this.enemyActionIndex][i](this);
         }
         this.enemyActionIndex++;
-        console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
+        //console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
         if(this.enemyActionIndex == this.enemyActions.length) {
             clockInstance.eventEmitter.removeListener("BeatNow", this.ReworkedChargeNextBeatActions,this);
             //Fin del nivel

@@ -1,6 +1,6 @@
 import Enemy from "../../BoardUnits/enemy.js";
 import Sostenuto from "../../BoardUnits/sostenuto.js";
-import Nota from "../../Projectiles/nota.js";
+import { notasPool } from "../../Scenes/combatScene.js";
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const testEnemy = {
@@ -18,8 +18,21 @@ const testEnemy = {
                  * delay in ms from beat till actions is done
                  * callback function to be done
                  */
-               new Nota(enemy.scene,6,2,0,-1)            
+/*
+                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
+                    notasPool.Spawn("nota",6,1,-1,0).AddKeyword(this.noteKeywords);
+                    //new Nota(this.scene,6,1,0,-1);
+                }});
+            },//fin acción 1
+            function(enemy){
+                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 300, callback: function(){
+                    notasPool.Spawn("nota",6,2,-1,0).AddKeyword(this.noteKeywords);
+                    //new Nota(this.scene,6,2,0,-1);
+                }});
+            },//fin acción 2
+*/             notasPool.Spawn("nota",6,2,-1,0);      
             },
+
         ],
         [
             function(enemy){                
@@ -48,9 +61,9 @@ const testEnemy = {
         [
             function(enemy){
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    new Nota(this.scene,6,3,0,-1)
-                    new Nota(this.scene,6,1,0,-1)
-                    new Nota(this.scene,6,2,0,-1)
+                    notasPool.Spawn("nota",6,3,-1,0);
+                    notasPool.Spawn("nota",6,1,-1,0);
+                    notasPool.Spawn("nota",6,2,-1,0);
                 }});
             },
         ],
@@ -71,8 +84,8 @@ const testEnemy = {
         ],                
                 //new Nota(enemy.scene,6,0,0,-1).AddKeyword({adagio:null}) para adagio
         [
-            function(enemy){                
-                new Nota(enemy.scene,6,0,0,-1)                
+            function(enemy){       
+                notasPool.Spawn("nota",6,0,-1,0);              
             },
         ],
         [
@@ -81,8 +94,8 @@ const testEnemy = {
             },
         ],
         [
-            function(enemy){               
-              new Nota(enemy.scene,6,1,0,-1)                
+            function(enemy){    
+              notasPool.Spawn("nota",6,1,-1,0);              
             },
         ],
         [
@@ -91,8 +104,8 @@ const testEnemy = {
             },
         ],
         [
-            function(enemy){               
-              new Nota(enemy.scene,6,2,0,-1)               
+            function(enemy){       
+              notasPool.Spawn("nota",6,2,-1,0);              
             },
         ],
      
@@ -102,8 +115,8 @@ const testEnemy = {
             },
         ],
         [
-            function(enemy){               
-              new Nota(enemy.scene,6,3,0,-1)               
+            function(enemy){     
+              notasPool.Spawn("nota",6,3,-1,0);             
             },
         ],
         [
@@ -112,8 +125,8 @@ const testEnemy = {
             },
         ],
         [
-            function(enemy){              
-            new Nota(enemy.scene,6,4,0,-1)  
+            function(enemy){    
+              notasPool.Spawn("nota",6,4,-1,0);
             },
         ],
         [
@@ -122,7 +135,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-                new Nota(enemy.scene,6,4,0,-1)
+              notasPool.Spawn("nota",6,4,-1,0);
             },
         ],
         [
@@ -131,7 +144,7 @@ const testEnemy = {
             },
         ],[
             function(enemy){
-                new Nota(enemy.scene,6,3,0,-1)
+                notasPool.Spawn("nota",6,3,-1,0);
             },
         ],
         [
@@ -141,7 +154,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-                new Nota(enemy.scene,6,2,0,-1)
+              notasPool.Spawn("nota",6,2,-1,0);
             },
         ],
         [
@@ -151,7 +164,7 @@ const testEnemy = {
         ],
         [
             function(enemy){ 
-            new Nota(enemy.scene,6,1,0,-1)
+              notasPool.Spawn("nota",6,1,-1,0);
             },
         ],
         [
@@ -161,7 +174,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-                new Nota(enemy.scene,6,0,0,-1)
+              notasPool.Spawn("nota",6,0,-1,0);
             },
         ],
         [
@@ -185,7 +198,7 @@ const testEnemy = {
         ],
         [
             function(enemy){ 
-          new Nota(enemy.scene,6,2,0,-1).AddKeyword({adagio:null})    
+              notasPool.Spawn("nota",6,2,-1,0).AddKeyword({adagio:null});   
             },
         ],
         [
@@ -199,8 +212,8 @@ const testEnemy = {
             },
         ],
         [
-            function(enemy){     
-                new Nota(enemy.scene,6,2,0,-1).AddKeyword({allegro:null}) 
+            function(enemy){ 
+                notasPool.Spawn("nota",6,2,-1,0).AddKeyword({allegro:null});
             },
         ],
 
