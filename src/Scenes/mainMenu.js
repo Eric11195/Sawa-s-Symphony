@@ -2,6 +2,13 @@
 import CombatScene from "./combatScene.js";
 export default class mainmenu extends Phaser.Scene
 {
+    constructor(){
+
+        super({key: "mainMenu"});
+ 
+       
+
+    }
     init()
     {
         //console.log("1");
