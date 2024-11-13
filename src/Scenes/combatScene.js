@@ -138,7 +138,8 @@ export default class combatScene extends Phaser.Scene {
         this.notes = this.physics.add.group();
 
         //Las notas del enemigo se chocan con el player
-        this.physics.add.overlap(notasPool.getPhaserGroup(), this.player, (player,note)=>{
+        this.physics.add.overlap(notasPool.getPhaserGroup(), this.player, (note,player)=>{
+
             if(!note.piano && note.direction == -1){
                 if(note.tipoNota !== undefined) {
                     this.enemyPoints+= Math.pow(2,note.tipoNota);
@@ -151,7 +152,8 @@ export default class combatScene extends Phaser.Scene {
             /**@todo sumarle puntuación al enemy */
         });
         //Notas del player chocandose contra el enemigo
-        this.physics.add.overlap(notasPool.getPhaserGroup(), this.enemy, (enemy,note)=>{
+        this.physics.add.overlap(notasPool.getPhaserGroup(), this.enemy, (note,enemy)=>{
+            console.log(note, enemy);
             if(!note.piano && note.direction == 1){
                 if(note.tipoNota !== undefined) {
                     this.playerPoints+= Math.pow(2,note.tipoNota);
@@ -171,9 +173,13 @@ export default class combatScene extends Phaser.Scene {
                     if(note1.direction == note2.direction){
                         note1.AddKeyword(note2.applyToAllyNotes);
                         note2.AddKeyword(note1.applyToAllyNotes);
+                        note1.AddKeyword(note1.applyToSelfOnAllyNoteImpact);
+                        note2.AddKeyword(note2.applyToSelfOnAllyNoteImpact);
                     }else{
                         note1.AddKeyword(note2.applyToEnemyNotes);
                         note2.AddKeyword(note1.applyToEnemyNotes);
+                        note1.AddKeyword(note1.applyToSelfOnEnemyNoteImpact);
+                        note2.AddKeyword(note2.applyToSelfOnEnemyNoteImpact);
                     }
                     note1.notesCollidedWith.push(note2);
                     note2.notesCollidedWith.push(note1);

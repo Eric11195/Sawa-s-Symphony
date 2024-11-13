@@ -40,7 +40,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     preUpdate(t,dt){
         //console.log(dt);
         super.preUpdate(t,dt);
-        console.log(this.silent);
+        //console.log(this.silent);
         if(!this.silent) this.MoveForward(dt);
 
         //console.log(this.silent);

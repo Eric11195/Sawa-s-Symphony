@@ -4,11 +4,9 @@ import Nota from "../Projectiles/nota.js";
 const notaEffects = {
     forte: function(nota)
     {
-        if(nota.direction==1){
-            nota.applyToEnemyNotes = {damage:null};
-        }else{
-            nota.applyToAllyNotes = {damage:null};
-        }
+        nota.applyToEnemyNotes = {destroy:null};
+        nota.applyToSelfOnEnemyNoteImpact = {damage:null};
+        
     },
     piano: function(nota)
     {
@@ -102,6 +100,9 @@ const notaEffects = {
     vibrato: function (nota){        
         nota.applyToEnemyNotes = {moveYRandom:null};
         nota.applyToAllyNotes = {moveYRandom:null};
+    },
+    destroy: function(nota){
+        nota.destroy();
     }
 
 }
