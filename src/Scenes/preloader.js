@@ -1,6 +1,7 @@
 
 import Mainmenu from "./mainMenu.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 export default class preloader extends Phaser.Scene
 {
     constructor(){
@@ -47,8 +48,9 @@ export default class preloader extends Phaser.Scene
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
                 this.load.image("vsMarker", "./assets/img/vsMarker.png");
         
-                this.load.image("Flauta", "./assets/img/flauta.png");
-                this.load.image("Piano", "./assets/img/piano.png");
+                for (let inst = 0; inst<InstrumentDataBase.length; inst++){
+                    this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
+                }
                
                 this.load.image("sostenuto", "./assets/img/sostenuto.png");
         
