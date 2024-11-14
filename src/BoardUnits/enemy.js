@@ -16,7 +16,8 @@ export default class Enemy extends BoardUnit{
         clockInstance.eventEmitter.on("BeatNow", this.ReworkedChargeNextBeatActions,this);
 
         scene.physics.add.existing(this);
-        this.body.setSize(30, 10, true);
+        console.log(enemyData.height);
+        this.body.setSize(30, enemyData.height*30, true);
 
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this)
     }
