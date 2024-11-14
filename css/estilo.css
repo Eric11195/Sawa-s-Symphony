@@ -22,6 +22,8 @@ h2{
   font-size: 48px;
   font-weight: 400;
   text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 h3{
   color: #4158A6;
@@ -42,7 +44,6 @@ p {
     white-space: pre-wrap;
     text-align: center;
 }
-
 
 body {
     background: #F1DEC6;
@@ -67,9 +68,23 @@ hr{
     float: left;
     width: 50%;
 }
+.column3left {
+  margin-left: 2.5%;
+  float: left;
+  width: 45%;
+}
+.column3right {
+  margin-right: 2.5%;
+  float: right;
+  width: 45%;
+}
 
 .blankspace{
   height: 800px;
+  width: auto;
+}
+.littleblankspace{
+  height:250px;
   width: auto;
 }
 .smallimages{
