@@ -16,6 +16,6 @@ export default class ShellDisplay extends Phaser.GameObjects.Image{
         player.shellEmitter.on(ShellUpdateEvent, ()=>{
             this.shelltext.text = this.player.GetShells()
         });
-        console.log(player);
     };
+
 }
