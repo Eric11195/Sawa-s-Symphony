@@ -38,6 +38,7 @@ export default class Reward{
             }
             //console.log(this.player);
             this.player.Equip(index,this.rewardClass,this.scene);
+            this.player.AddShells();
             this.background.destroy();
 
             //Elimina el index escogido de la lista

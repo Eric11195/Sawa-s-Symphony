@@ -17,6 +17,8 @@ import ChoosePlayerInstrumentMenu from "../UIelems/ChoosePlayerInstrumentMenu.js
 //Clase player tiene todas las funciones de movimiento, toca instrumentos y demás
 //extiende de sprite para usar su cuerpo físico y cambiar la posición y animaciones del personaje según sus acciones
 export default class Player extends BoardUnit{
+    shells;
+    shellEmitter;
     normalMoveLimitPos;
     ancla;
     /**Contiene los 3 instrumentos del player */
@@ -27,7 +29,7 @@ export default class Player extends BoardUnit{
      *      * @param {*} instrument2
      *      * @param {*} instrument3
      */
-    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo){
+    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 0){
         //Crea un sprite con el valor de la escena y la posición inicial del player y la textura de nuestro personaje
         super(scene, {x:1, y:2}, 'sawa');  
         this.setOrigin();
@@ -51,6 +53,9 @@ export default class Player extends BoardUnit{
 
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
+
+        this.shells = shells;
+        this.shellEmitter = new Phaser.Events.EventEmitter();
     }
 
     TryNormalMove(xAdd,yAdd){
@@ -209,5 +214,20 @@ export default class Player extends BoardUnit{
             }
             imagesArray.push(new DescriptionImages(newScene, 1320/5, 720/4, reward.nombre, reward.nombre, reward.description).setDisplaySize(100,100));
         })
+    }
+    /** Añade shells al jugador, o sustrae si se trata de un parámetro negativo.
+     * 
+     * @param {integer} shellta Las shells añadidas al jugador.
+     */
+    AddShells(shellta = 0){
+        this.shells+=shellta;
+        this.shellEmitter.emit('updateshells');
+    }
+    /**
+     * 
+     * @returns Las shells del jugador.
+     */
+    GetShells(){
+        return this.shells;
     }
 }
