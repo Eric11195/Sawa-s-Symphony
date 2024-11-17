@@ -30,9 +30,10 @@ export default class RewardsScene extends Phaser.Scene {
     player;
 
     // Conchas base obtenidas por completar un nivel.
-    baseshells;
+    baseshells = 0; //TODO: Concretar valor
     // Conchas adicionales basadas en la dificultad.
-    extrashells;
+    extrashells = 0; //TODO: Concretar valor
+    performanceModifier = 0; //TODO: Concretar mecánicas
 
     init(data){
         this.player = data.player;
@@ -63,7 +64,7 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
-
+        this.player.AddShells(this.baseshells+(this.extrashells*this.performanceModifier));
         new ShellDisplay(this,this.player);
         //Spawn rewards
         this.CreateRewards(1);
@@ -74,11 +75,11 @@ export default class RewardsScene extends Phaser.Scene {
     }
 
     CreateRewards(rewardNumber){
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player, this.instrumentsLeft, false));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player, InstrumentUpgrades));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player, InstrumentUpgrades, false));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player, this.artifactLeft, false));
     }
 
 
