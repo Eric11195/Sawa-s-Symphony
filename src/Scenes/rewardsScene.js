@@ -64,7 +64,7 @@ export default class RewardsScene extends Phaser.Scene {
         }
     }
     create(){
-        this.player.AddShells(this.baseshells+(this.extrashells*this.performanceModifier));
+        this.player.AddShells(this.baseshells+(this.extrashells*this.performanceModifier*this.player.GetLevel()));
         new ShellDisplay(this,this.player);
         //Spawn rewards
         this.CreateRewards(1);

@@ -71,7 +71,7 @@ export default class combatScene extends Phaser.Scene {
             this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[1]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
-            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);
+            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo,this.player.shells,this.player.level+1);
         }
 
         //Creamos una pool de notas

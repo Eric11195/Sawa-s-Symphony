@@ -9,7 +9,7 @@ export default class Reward{
     player;
     separationBetweenImages = 125;
     baseprice = 10;
-
+    
     constructor(scene, position, rewardClass, numberOfRewards, player, remainingitems, paid = false){
         this.numberOfRewards = numberOfRewards;
         this.rewardClass = rewardClass;
@@ -67,7 +67,7 @@ export default class Reward{
         return (startPosX + this.separationBetweenImages * (index - (numberOfImages-1)/2));
     }
     randomPrice(){
-        let extra = Math.floor(Math.random()*10); //TODO: Añadir escalado por nivel
+        let extra = Math.floor(Math.random()*10)*this.player.GetLevel(); //TODO: Añadir escalado por nivel
         return this.baseprice+extra;
     }
 }
