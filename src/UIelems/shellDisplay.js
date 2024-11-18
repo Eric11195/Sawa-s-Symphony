@@ -15,16 +15,20 @@ export default class ShellDisplay extends Phaser.GameObjects.Image{
         this.setOrigin(0,0);
         scene.add.existing(this);
         this.shelltext = this.scene.add.text(this.x,this.y,currentShells,{ fontFamily: 'Arial', color: '#4EF', fontSize: '72px', fontFamily:"Grandstander" }).setOrigin(1,0.2);
-        scene.events.on(SHELL_UPDATE_EVENT, (shellMod)=>{
-            AddShells(shellMod);
-            this.shelltext.text = currentShells;
-        });
+        scene.events.on(SHELL_UPDATE_EVENT, this.UpdateNewShells, this);
+        this.scene = scene;
         this.depth = 10;
         this.shelltext.depth = 10;
     };
 
     PrepareToBeDeleted(){
+        this.scene.events.off(SHELL_UPDATE_EVENT, this.UpdateNewShells, this);
+    }
 
+    UpdateNewShells(shellMod){
+        console.log(this);
+        AddShells(shellMod);
+        this.shelltext.text = currentShells;
     }
 
 }

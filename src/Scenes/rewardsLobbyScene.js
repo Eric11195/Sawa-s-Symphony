@@ -22,7 +22,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
     }
 
     create(){
-        new ShellDisplay(this);
+        this.shellDisplay = new ShellDisplay(this);
 
         this.nextBattleButton = this.add.image(1150,360, "NextBattleButton").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadBattleScene, this);
 
@@ -52,6 +52,7 @@ de confianza`]
 
 
     LoadBattleScene(){
+        this.shellDisplay.PrepareToBeDeleted();
         this.scene.start("combatScene", {player:this.player});
     }
 

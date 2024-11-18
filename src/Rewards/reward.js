@@ -3,7 +3,8 @@ import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { InstrumentsLeft, ArtifactsLeft, UpgradesLeft } from "./RewardsLeft.js";
 import artifactList from "../DataDumpFiles/artifacts.js";
-import { SHELL_UPDATE_EVENT } from "../UIelems/shellDisplay.js";
+import { SHELL_UPDATE_EVENT,  } from "../UIelems/shellDisplay.js";
+import {currentShells } from "../Rewards/RewardsLeft.js";
 
 export default class Reward{
     numberOfRewards;
@@ -20,8 +21,6 @@ export default class Reward{
         this.player = player;
         this.scene = scene;
         this.paid = paid;
-        /*switch (rclass){
-
         switch (rewardClass){
 
             case RewardClass.instrument:
@@ -35,7 +34,7 @@ export default class Reward{
                 this.remainingitems = ArtifactsLeft;
                 break;
 
-        }*/
+        }
         this.background = scene.add.rectangle( position.x, position.y, numberOfRewards*(100 + this.separationBetweenImages/3), 150, 0xe69138).setOrigin(0.5);
         for (let i = 0; i<numberOfRewards; i++){
             this.choicesIndexes.push(this.randomInst(this.remainingitems));
@@ -52,7 +51,8 @@ export default class Reward{
 
     clicOnRewardFunc(index,price){
         return function(){
-            if (this.player.GetShells()>=price){
+            console.log(price, " <== ", currentShells );
+            if (currentShells>=price){
 
                 for(let i = 0; i < this.choicesIndexes.length; i++){
                     if(this.paid) this.choicesImages[i].RemoveShellUI();
@@ -62,7 +62,7 @@ export default class Reward{
                 console.log(this.player);
                 this.player.Equip(index,this.rewardClass,this.scene);
                 this.background.destroy();
-                this.scene.events.emit(SHELL_UPDATE_EVENT, -this.cost);
+                this.scene.events.emit(SHELL_UPDATE_EVENT, -price);
                 //Elimina el index escogido de la lista
                 this.choicesIndexes.splice(this.choicesIndexes.indexOf(index),1);
             }
@@ -93,7 +93,7 @@ export default class Reward{
         return (startPosX + this.separationBetweenImages * (index - (numberOfImages-1)/2));
     }
     randomPrice(){
-        let extra = Math.floor(Math.random()*10)*this.player.GetLevel(); //TODO: Añadir escalado por nivel
+        let extra = Math.floor(Math.random()*10);// *this.player.GetLevel(); //TODO: Añadir escalado por nivel
         return this.baseprice+extra;
     }
 }
