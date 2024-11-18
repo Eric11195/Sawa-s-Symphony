@@ -6,6 +6,7 @@ import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
+import { SHELL_UPDATE_EVENT } from "../UIelems/shellDisplay.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 

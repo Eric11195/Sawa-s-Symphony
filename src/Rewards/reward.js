@@ -36,7 +36,6 @@ export default class Reward{
                 break;
 
         }*/
-        }
         this.background = scene.add.rectangle( position.x, position.y, numberOfRewards*(100 + this.separationBetweenImages/3), 150, 0xe69138).setOrigin(0.5);
         for (let i = 0; i<numberOfRewards; i++){
             this.choicesIndexes.push(this.randomInst(this.remainingitems));
