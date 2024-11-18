@@ -108,24 +108,7 @@ export default class combatScene extends Phaser.Scene {
         //Crea los marcadores de ritmo
         new RhythmMarker(this, 3);
 
-        this.anims.create({
-			key: 'notes0',
-			frames: this.anims.generateFrameNumbers('notes', {start:0, end:0}),
-			frameRate: 1,
-			repeat: -1
-		});
-        this.anims.create({
-			key: 'notes1',
-			frames: this.anims.generateFrameNumbers('notes', {start:1, end:1}),
-			frameRate: 1,
-			repeat: -1
-		});
-        this.anims.create({
-			key: 'notes2',
-			frames: this.anims.generateFrameNumbers('notes', {start:2, end:2}),
-			frameRate: 1,
-			repeat: -1
-		});
+
 
 
         //Colisiones------------------------------------------------------------------------------------------------------------------------

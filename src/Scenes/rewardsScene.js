@@ -24,7 +24,7 @@ export default class RewardsScene extends Phaser.Scene {
     // Array que contiene los instrumentos ya otorgados.
     rewards;
 
-    remaininginstruments = [];
+    //remaininginstruments = [];
     
 
     player;
@@ -50,7 +50,7 @@ export default class RewardsScene extends Phaser.Scene {
 
         this.load.image("shell","./assets/img/shell.png");
 
-
+        /*
         for (let inst = 0; inst<InstrumentDataBase.length; inst++){
             this.load.image(InstrumentDataBase[inst].nombre, "./assets/img/instruments/"+InstrumentDataBase[inst].nombre+".png");
         }
@@ -61,10 +61,11 @@ export default class RewardsScene extends Phaser.Scene {
         for(let artifactIndex = 0; artifactIndex < artifactList.length; artifactIndex++){
             this.load.image(artifactList[artifactIndex].nombre, "./assets/img/artifacts/" + artifactList[artifactIndex].nombre+".png");
         }
+            */
     }
     create(){
 
-        new ShellDisplay(this,this.player);
+        new ShellDisplay(this);
         //Spawn rewards
         this.CreateRewards(1);
 
@@ -74,11 +75,11 @@ export default class RewardsScene extends Phaser.Scene {
     }
 
     CreateRewards(rewardNumber){
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player, this.instrumentsLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player, InstrumentUpgrades));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player, this.artifactLeft));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player));
     }
 
 
