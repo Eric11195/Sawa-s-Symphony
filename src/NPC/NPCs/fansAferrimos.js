@@ -17,9 +17,7 @@ un hijo tuyo!`];
 
     TalkToNPC(){
         super.TalkToNPC();
-        this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:(1/4)*windowHeight()}, RewardClass.instrument, 1, this.player));
-        this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:(2/4)*windowHeight()}, RewardClass.artifact, 1, this.player));
-        this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:(3/4)*windowHeight()}, RewardClass.upgrade, 1, this.player));
+        this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:(3/4)*windowHeight()}, RewardClass.upgrade, 3, this.player));
         
         this.SpawnReturnButton();
     }
