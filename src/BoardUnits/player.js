@@ -55,10 +55,7 @@ export default class Player extends BoardUnit{
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
 
-        this.shells = shells;
-        this.shellEmitter = new Phaser.Events.EventEmitter();
-
-        this.level = level;
+        //----------------------------------------------------------------------------------------------------------------------------------------this.level = level;
     }
 
     TryNormalMove(xAdd,yAdd){
@@ -218,22 +215,26 @@ export default class Player extends BoardUnit{
             imagesArray.push(new DescriptionImages(newScene, 1320/5, 720/4, reward.nombre, reward.nombre, reward.description).setDisplaySize(100,100));
         })
     }
+
+    /*
     /** Añade shells al jugador, o sustrae si se trata de un parámetro negativo.
      * 
      * @param {integer} shellta Las shells añadidas al jugador.
-     */
+    
     AddShells(shellta = 0){
         this.shells+=shellta;
-        this.shellEmitter.emit('updateshells');
+        this.shellEmitter.emit('updateshells', this.shells);
     }
     /**
      * 
      * @returns Las shells del jugador.
      */
+/*
     GetShells(){
         return this.shells;
     }
     GetLevel(){
         return this.level;
     }
+*/
 }

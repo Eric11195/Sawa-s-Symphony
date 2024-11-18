@@ -66,7 +66,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         if(config && this.acceptsKeywords)
             Object.keys(config).forEach(key => {
                 NotasEffects[key](this, config[key]);
-            });      
+            });
     }
 
     /*config needs: 
