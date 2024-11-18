@@ -21,6 +21,7 @@ export default class Player extends BoardUnit{
     shellEmitter;
     normalMoveLimitPos;
     ancla;
+    level;
     /**Contiene los 3 instrumentos del player */
     instrumentos;
     /**
@@ -29,7 +30,7 @@ export default class Player extends BoardUnit{
      *      * @param {*} instrument2
      *      * @param {*} instrument3
      */
-    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 0){
+    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 100, level = 1){
         //Crea un sprite con el valor de la escena y la posición inicial del player y la textura de nuestro personaje
         super(scene, {x:1, y:2}, 'sawa');  
         this.setOrigin();
@@ -54,7 +55,7 @@ export default class Player extends BoardUnit{
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
 
-        //this.shells = shells;
+        //----------------------------------------------------------------------------------------------------------------------------------------this.level = level;
     }
 
     TryNormalMove(xAdd,yAdd){
@@ -228,4 +229,12 @@ export default class Player extends BoardUnit{
      * 
      * @returns Las shells del jugador.
      */
+/*
+    GetShells(){
+        return this.shells;
+    }
+    GetLevel(){
+        return this.level;
+    }
+*/
 }

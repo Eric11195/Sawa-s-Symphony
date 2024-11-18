@@ -6,6 +6,7 @@ import Reward from "../Rewards/reward.js";
 import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
+import { SHELL_UPDATE_EVENT } from "../UIelems/shellDisplay.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
@@ -30,9 +31,10 @@ export default class RewardsScene extends Phaser.Scene {
     player;
 
     // Conchas base obtenidas por completar un nivel.
-    baseshells;
+    baseshells = 0; //TODO: Concretar valor
     // Conchas adicionales basadas en la dificultad.
-    extrashells;
+    extrashells = 0; //TODO: Concretar valor
+    performanceModifier = 0; //TODO: Concretar mecánicas
 
     init(data){
         this.player = data.player;
@@ -64,8 +66,9 @@ export default class RewardsScene extends Phaser.Scene {
             */
     }
     create(){
-
-        new ShellDisplay(this);
+        //this.player.AddShells(this.baseshells+(this.extrashells*this.performanceModifier*this.player.GetLevel()));
+        this.shellDisplay = new ShellDisplay(this);
+        this.events.emit(SHELL_UPDATE_EVENT, 100);
         //Spawn rewards
         this.CreateRewards(1);
 
@@ -75,15 +78,16 @@ export default class RewardsScene extends Phaser.Scene {
     }
 
     CreateRewards(rewardNumber){
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:rewardNumber*200}, RewardClass.instrument, 4, this.player,true));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player,true));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player,false));
     }
 
 
     LoadLobbyScene(){
+        this.shellDisplay.PrepareToBeDeleted();
         this.scene.start("rewardsLobbyScene", {player:this.player});
     }
 

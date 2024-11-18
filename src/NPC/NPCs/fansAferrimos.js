@@ -3,6 +3,8 @@ import Reward from "../../Rewards/reward.js";
 import RewardClass from "../../DataDumpFiles/RewardClass.js";
 import { windowWidth, windowHeight } from "../../Utils/screenPositions.js";
 
+
+//Añadir que salgan siempre después de salir la 1era vez
 export default class fansAferrimos extends NpcClass{
     posX = 400;
     posY = 400;
