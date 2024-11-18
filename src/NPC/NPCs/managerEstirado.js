@@ -1,0 +1,28 @@
+import NpcClass from "../npcClass.js";
+import Reward from "../../Rewards/reward.js";
+import RewardClass from "../../DataDumpFiles/RewardClass.js";
+import { windowWidth, windowHeight } from "../../Utils/screenPositions.js";
+
+//añadir que la 2a vez que salga se enfade contigo y tenga un minijuego si le das a no aceptar
+//La 1era vez te da una recompensa, la 2a te da a elegir entre un artefacto que buffa y debuffa o no cogerlo
+//Si no lo coges pasa el minijuego PvZ o algo así
+export default class managerEstirado extends NpcClass{
+    posX = 400;
+    posY = 400;
+    constructor(scene, player){
+        super(scene,600,200, "managerEstirado", player);
+        this.dialogo = [`Te sonará el grupo
+nyan nyan Subacuatico`,
+`Esta es mi tarjeta de 
+contacto, considéralo...`];
+//Se ve la tarjeta junto con una reward
+        this.scale = 0.4;
+    }
+
+    TalkToNPC(){
+        super.TalkToNPC();
+        //Poner 2 cronos, 1 para cambiar el txt, y el siguiente para la tarjeta y lo otro
+            //this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.instrument, 1, this.player));
+        this.SpawnReturnButton();
+    }
+}

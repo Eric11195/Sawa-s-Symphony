@@ -1,5 +1,6 @@
 import NPC from "../NPC/npcClass.js";
 import fansAferrimos from "../NPC/NPCs/fansAferrimos.js";
+import managerEstirado from "../NPC/NPCs/managerEstirado.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
 
 export default class rewardsLobbyScene extends Phaser.Scene{
@@ -27,7 +28,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
 
 
         //Adds al NPCs to spawn pool
-        this.npcSpawnPool = [fansAferrimos];
+        this.npcSpawnPool = [fansAferrimos, managerEstirado];
 
         /*
         this.testNPC = new NPC(this,
@@ -43,8 +44,10 @@ de confianza`]
         */
 
         //Spawn all NPCs
-        console.log(this.player);
-        new this.npcSpawnPool[Math.floor(this.npcSpawnPool.length*Math.random())](this,this.player);
+        //Por el momento spawnea todos los npcs
+        for(let i = 0; i < this.npcSpawnPool.length; i++)
+            new this.npcSpawnPool[i](this,this.player);
+        //new this.npcSpawnPool[Math.floor(this.npcSpawnPool.length*Math.random())](this,this.player);
     }
 
 
