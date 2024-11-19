@@ -127,11 +127,11 @@ and dance to them too.`,
                         if(myRelativePosX==0 && myRelativePosY == 0)
                             instrument.sceneRef.player.earworm = 1;
                         else if(myRelativePosX==-1 && myRelativePosY == 0){
-                            notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y,1,0).AddKeyword({forte:null});
+                            notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y,1,0).AddKeyword({adagio: null, forte:null});
                             if(instrument.sceneRef.player.position.y < 4)
-                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y+1,1,0).AddKeyword({forte:null});
+                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y+1,1,0).AddKeyword({adagio:null,forte:null});
                             if(instrument.sceneRef.player.position.y > 0)
-                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y-1,1,0).AddKeyword({forte:null});
+                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y-1,1,0).AddKeyword({adagio:null, forte:null});
                         
                         }else if(myRelativePosX==0 && myRelativePosY == -1)
                             console.log(0,-1);
