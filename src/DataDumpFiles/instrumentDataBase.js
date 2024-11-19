@@ -53,9 +53,10 @@ const InstrumentDataBase = [
 `...and his music
 was electric.`,
     numeroNotas: 1,
-    tipoNotas: 1,
+    tipoNotas: 0,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    noteKeywords: {presto:null,clash:{self:{moveYRandom:null},other:{adagio:1}},accompaniment:{self:{moveYRandom:null},other:{allegro:null}}}
+    //instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
 },
 {
     nombre: "Golden_Lute",
