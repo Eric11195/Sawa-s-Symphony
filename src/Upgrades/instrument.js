@@ -102,7 +102,12 @@ export default class Instrumento{
     }
 
     UpdateImageCd(){
-
         this.cdImage.UpdateCd(this.actualCooldown);
     }
+
+
+    Syncopate(){
+        
+    }
+
 }

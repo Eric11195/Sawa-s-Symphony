@@ -49,6 +49,10 @@ const instrumentEffects = {
             thisInstrument.sceneRef.player.ancla = time + cdToWait;
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
+    },
+
+    syncopate: function(instrument, func){
+        instrument.Syncopate = AddToFunctionAfter(instrument.Syncopate.bind(this), func.bind(this));
     }
 }
 

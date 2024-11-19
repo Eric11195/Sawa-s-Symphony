@@ -1,3 +1,5 @@
+import { clockInstance, notasPool} from "../Scenes/combatScene.js";
+
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const InstrumentDataBase = [
 {
@@ -65,7 +67,14 @@ was electric.`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    instrumentKeywords: {syncopate:
+        function(xPos,yPos){
+            if(yPos < 4)
+                notasPool.Spawn("nota",xPos,yPos+1,1,0).AddKeyword(this.noteKeywords);
+            if(yPos>0)
+                notasPool.Spawn("nota",xPos,yPos-1,1,0).AddKeyword(this.noteKeywords);
+        }
+    }
 },/*
 {
     nombre: "Otter_Orchestra",
