@@ -1,3 +1,4 @@
+import { canClick } from "../Utils/ClickInhibitor.js";
 import { npcReturnButtonPositionX, npcReturnButtonPositionY, npcDialoguePositionX, npcDialoguePositionY } from "../Utils/screenPositions.js";
 
 export default class npcClass extends Phaser.GameObjects.Image{
@@ -39,12 +40,15 @@ export default class npcClass extends Phaser.GameObjects.Image{
     }
 
     CloseNPCMenu(){
-        this.fondo.destroy();
-        this.returnButton.destroy();
-        this.npcDialogue.destroy();
-        this.preFX.addColorMatrix().grayscale(1);
-        for(let i = 0; i < this.rewards.length; i++){
-            this.rewards[i].destroyReward();
+        if(canClick){
+            this.fondo.destroy();
+            if(this.returnButton)
+                this.returnButton.destroy();
+            this.npcDialogue.destroy();
+            this.preFX.addColorMatrix().grayscale(1);
+            for(let i = 0; i < this.rewards.length; i++){
+                this.rewards[i].destroyReward();
+            }
         }
     }
 

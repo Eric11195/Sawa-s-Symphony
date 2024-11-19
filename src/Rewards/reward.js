@@ -5,6 +5,7 @@ import { InstrumentsLeft, ArtifactsLeft, UpgradesLeft } from "./RewardsLeft.js";
 import artifactList from "../DataDumpFiles/artifacts.js";
 import { SHELL_UPDATE_EVENT,  } from "../UIelems/shellDisplay.js";
 import {currentShells } from "../Rewards/RewardsLeft.js";
+import { canClick } from "../Utils/ClickInhibitor.js";
 
 export default class Reward{
     numberOfRewards;
@@ -51,8 +52,7 @@ export default class Reward{
 
     clicOnRewardFunc(index,price){
         return function(){
-            console.log(price, " <== ", currentShells );
-            if (currentShells>=price){
+            if (currentShells>=price && canClick){
 
                 for(let i = 0; i < this.choicesIndexes.length; i++){
                     if(this.paid) this.choicesImages[i].RemoveShellUI();

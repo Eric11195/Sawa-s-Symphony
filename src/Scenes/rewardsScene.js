@@ -7,6 +7,7 @@ import RewardClass from "../DataDumpFiles/RewardClass.js";
 import { MidscreenX } from "../Utils/screenPositions.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
 import { SHELL_UPDATE_EVENT } from "../UIelems/shellDisplay.js";
+import { canClick } from "../Utils/ClickInhibitor.js";
 /*Escena de Phaser*/
 export default class RewardsScene extends Phaser.Scene {
 
@@ -87,8 +88,10 @@ export default class RewardsScene extends Phaser.Scene {
 
 
     LoadLobbyScene(){
-        this.shellDisplay.PrepareToBeDeleted();
-        this.scene.start("rewardsLobbyScene", {player:this.player});
+        if(canClick){
+            this.shellDisplay.PrepareToBeDeleted();
+            this.scene.start("rewardsLobbyScene", {player:this.player});
+        }
     }
 
 }

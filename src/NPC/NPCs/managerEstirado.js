@@ -15,7 +15,7 @@ export default class managerEstirado extends NpcClass{
 nyan nyan Subacuatico`,
 `Esta es mi tarjeta de 
 contacto, considéralo...`,
-`Y Esto es un obsequio
+`Y esto es un obsequio
 de mi parte`, 
 "Sé que eligirás bien"];
 //Se ve la tarjeta junto con una reward
@@ -55,6 +55,7 @@ de mi parte`,
     }
 
     CloseNPCMenu(){
+        this.scene.time.removeAllEvents();
         super.CloseNPCMenu();
         this.contactCard.destroy();
     }

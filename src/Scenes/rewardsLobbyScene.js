@@ -1,7 +1,9 @@
 import NPC from "../NPC/npcClass.js";
 import fansAferrimos from "../NPC/NPCs/fansAferrimos.js";
 import managerEstirado from "../NPC/NPCs/managerEstirado.js";
+import toxicFan from "../NPC/NPCs/toxicFan.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
+import { canClick } from "../Utils/ClickInhibitor.js";
 
 export default class rewardsLobbyScene extends Phaser.Scene{
 
@@ -28,7 +30,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
 
 
         //Adds al NPCs to spawn pool
-        this.npcSpawnPool = [fansAferrimos, managerEstirado];
+        this.npcSpawnPool = [fansAferrimos, managerEstirado, toxicFan];
 
         /*
         this.testNPC = new NPC(this,
@@ -52,8 +54,10 @@ de confianza`]
 
 
     LoadBattleScene(){
-        this.shellDisplay.PrepareToBeDeleted();
-        this.scene.start("combatScene", {player:this.player});
+        if(canClick){
+            this.shellDisplay.PrepareToBeDeleted();
+            this.scene.start("combatScene", {player:this.player});
+        }
     }
 
 
