@@ -46,16 +46,6 @@ export default class combatScene extends Phaser.Scene {
     }
     
     preload(){
-
-       
-
-        
-        /**Todo cambiar clock por la imagen de las notitas que bajan hasta el punto correcto*/
-       
-
-       
-        
-
     }
 
     /**
@@ -68,10 +58,10 @@ export default class combatScene extends Phaser.Scene {
 
         clockInstance = new Clock(this, testEnemy.bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[1]);
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[8], InstrumentDataBase[5]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
-            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo,this.player.shells,this.player.level+1);
+            this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);
         }
 
         //Creamos una pool de notas
@@ -108,7 +98,24 @@ export default class combatScene extends Phaser.Scene {
         //Crea los marcadores de ritmo
         new RhythmMarker(this, 3);
 
-
+        this.anims.create({
+			key: 'notes0',
+			frames: this.anims.generateFrameNumbers('notes', {start:0, end:0}),
+			frameRate: 1,
+			repeat: -1
+		});
+        this.anims.create({
+			key: 'notes1',
+			frames: this.anims.generateFrameNumbers('notes', {start:1, end:1}),
+			frameRate: 1,
+			repeat: -1
+		});
+        this.anims.create({
+			key: 'notes2',
+			frames: this.anims.generateFrameNumbers('notes', {start:2, end:2}),
+			frameRate: 1,
+			repeat: -1
+		});
 
 
         //Colisiones------------------------------------------------------------------------------------------------------------------------

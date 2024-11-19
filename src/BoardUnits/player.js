@@ -43,6 +43,7 @@ export default class Player extends BoardUnit{
             maxY:4
         };
         this.ancla = 0;
+        this.depth = 100;
         //console.log(this.ancla);
         /**@todo incluir los instrumentos correspondientes */
         this.instrumentos = [instrumento1, instrumento2, instrumento3];
@@ -72,7 +73,7 @@ export default class Player extends BoardUnit{
     NormalMove(xAdd, yAdd){
         if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
             if(this.Move(xAdd,yAdd) > 0){
-                this.Syncopate();
+                this.Syncopate(this.position.x, this.position.y);
             }
         }
     }
@@ -135,7 +136,10 @@ export default class Player extends BoardUnit{
     }
 
     /**Produce todos los efectos generales al moverse*/
-    Syncopate(xAdd,yAdd){
+    Syncopate(xPos,yPos){
+        for(let i = 0; i < this.instrumentos.length; i++){
+            this.instrumentos[i].Syncopate(xPos,yPos);
+        }
         /**@todo Lanzar un evento que coje todo cristo con syncopate */
         //console.log("syncopate");
     }
