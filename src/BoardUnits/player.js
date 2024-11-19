@@ -8,6 +8,7 @@ import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from "../DataDumpFiles/artifacts.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import ChoosePlayerInstrumentMenu from "../UIelems/ChoosePlayerInstrumentMenu.js";
+import { canClick, setCanClick } from "../Utils/ClickInhibitor.js";
 /**
  * Cambiar la clase Player por la clase character
  * Luego player y enemy heredan de la clase character
@@ -159,6 +160,7 @@ export default class Player extends BoardUnit{
                 this.ChooseInstrumentMenuSpawn(this,newScene, "Aplicar a:", InstrumentUpgrades[index]).then(
                     function(params){
                         InstrumentUpgrades[index].effectToApply(params.player.instrumentos[params.instrumentIndex]);;
+                        setCanClick(true);
                     }
                 );
                 break;
@@ -172,6 +174,7 @@ export default class Player extends BoardUnit{
                             //console.log(params.player);
                             params.player.instrumentos[params.instrumentIndex] = InstrumentDataBase[index];
                             //console.log(params.player.instrumentos[params.instrumentIndex]);
+                            setCanClick(true);
                         }
                     )
                 }else{
@@ -187,6 +190,7 @@ export default class Player extends BoardUnit{
 
     }
     ChooseInstrumentMenuSpawn(thisPlayer,newScene, textToShow, reward){
+        setCanClick(false);
         return new Promise(function(returnIndex){
             let imagesArray = [];
             let fondo = newScene.add.rectangle( 1320/8, 720/8, 1320*6/8, 720*6/8, 0xe69138).setOrigin(0);
