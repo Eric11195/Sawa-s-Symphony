@@ -92,10 +92,19 @@ for one otter`,
     nombre: "Psaltery", //brutal Orchestra enemy
     description: 
 `Brutal.`,
-    numeroNotas: 1,
+    numeroNotas: 0,
     tipoNotas: 1,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    ThrowNotes: function()
+    {
+        this.PsalteryIndex = this.PsalteryIndex ?? -1;
+        this.PsalteryIndex *= -1;
+        this.SpawnNotes(this.sceneRef.player.position.x, this.sceneRef.player.position.y+this.PsalteryIndex, this.tipoNotas);
+    }
+    ,
+    instrumentKeywords: {solo:function(instrument){
+        instrument.ProducirNotas();
+    }}
 },
 {//8
         nombre: "Grace", //One step from eden Violette's main 
@@ -127,11 +136,11 @@ and dance to them too.`,
                         if(myRelativePosX==0 && myRelativePosY == 0)
                             instrument.sceneRef.player.earworm = 1;
                         else if(myRelativePosX==-1 && myRelativePosY == 0){
-                            notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y,1,0).AddKeyword({forte:null});
+                            notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y,1,0).AddKeyword({adagio: null, forte:null});
                             if(instrument.sceneRef.player.position.y < 4)
-                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y+1,1,0).AddKeyword({forte:null});
+                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y+1,1,0).AddKeyword({adagio:null,forte:null});
                             if(instrument.sceneRef.player.position.y > 0)
-                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y-1,1,0).AddKeyword({forte:null});
+                                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y-1,1,0).AddKeyword({adagio:null, forte:null});
                         
                         }else if(myRelativePosX==0 && myRelativePosY == -1)
                             console.log(0,-1);

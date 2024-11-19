@@ -1,5 +1,5 @@
 import { AddToFunctionAfter, AddToFunctionBefore } from "../Utils/addToFunction.js";
-import {notasPool} from "../Scenes/combatScene.js";
+import {clockInstance, notasPool} from "../Scenes/combatScene.js";
 import Instrument from "../Upgrades/instrument.js";
 import Sostenuto from "../BoardUnits/sostenuto.js";
 
@@ -57,7 +57,27 @@ const instrumentEffects = {
     }, 
     tempo: function(instrument, func){
         let myNewFunc = func(instrument);
-        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), myNewFunc.bind(this))
+        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), myNewFunc.bind(this));
+    }, 
+    solo: function(instrument,func){
+        var mySolistFunction;
+        let myNewFunc = function(posX,posY){return function(){
+            if(posX - instrument.sceneRef.player.position.x == 0 && posY - instrument.sceneRef.player.position.y==0){
+                func(instrument);
+            }else{
+                //se movio
+                clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+            }
+        }}
+        //clockInstance.on("BeatNow", );
+        
+        let suscribe = function(){
+            if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+            mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
+            clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
+            //console.log(clockInstance.eventEmitter.listeners("BeatNow"));
+        }
+        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), suscribe.bind(this));
     }
 
 }
