@@ -46,7 +46,6 @@ export default class preloader extends Phaser.Scene
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
-                this.load.image("clock", "./assets/img/discord.png");
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
                 this.load.image("vsMarker", "./assets/img/vsMarker.png");
         
@@ -72,6 +71,11 @@ export default class preloader extends Phaser.Scene
                 this.load.image("tarjetaContacto", "./assets/img/NPCs/tarjetaContacto.png");
                 this.load.image("toxicFan", "./assets/img/NPCs/toxicFan.png");
                 this.load.image("knife", "./assets/img/NPCs/knife.png");
+                this.load.image("shield", "./assets/img/tileMarkers/shield.png");
+                this.load.image("sword", "./assets/img/tileMarkers/sword.png");
+                this.load.image("bell", "./assets/img/tileMarkers/bell.png");
+                this.load.image("earworm", "./assets/img/tileMarkers/earworm.png");
+                this.load.image("clock", "./assets/img/tileMarkers/cdTile.png");
 
 
     }
@@ -105,13 +109,6 @@ export default class preloader extends Phaser.Scene
         repeat: -1
     });
 }
-    update()
-    {
-        
-        
-        
-    }
-  
-     
+
     
 }

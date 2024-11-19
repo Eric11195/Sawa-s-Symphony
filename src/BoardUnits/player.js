@@ -43,6 +43,7 @@ export default class Player extends BoardUnit{
             maxY:4
         };
         this.ancla = 0;
+        this.depth = 100;
         //console.log(this.ancla);
         /**@todo incluir los instrumentos correspondientes */
         this.instrumentos = [instrumento1, instrumento2, instrumento3];

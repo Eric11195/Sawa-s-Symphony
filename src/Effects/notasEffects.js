@@ -35,7 +35,6 @@ const notaEffects = {
             });
         if(efectosAccompaniment.self)
             Object.keys(efectosAccompaniment.self).forEach(key => {
-                console.log("self: "+key);
                 nota.applyToSelfOnAllyNoteImpact[key] = efectosAccompaniment.self[key];
             });
     },
@@ -134,7 +133,6 @@ const notaEffects = {
                 nota.applyToSelfOnEnemyNoteImpact[key] = efectosClash.self[key];
             });
     }
-
 }
 
 export default notaEffects;

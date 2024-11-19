@@ -52,8 +52,14 @@ const instrumentEffects = {
     },
 
     syncopate: function(instrument, func){
-        instrument.Syncopate = AddToFunctionAfter(instrument.Syncopate.bind(this), func.bind(this));
+        let myNewFunc = func(instrument);
+        instrument.Syncopate = AddToFunctionAfter(instrument.Syncopate.bind(this), myNewFunc.bind(this));
+    }, 
+    tempo: function(instrument, func){
+        let myNewFunc = func(instrument);
+        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), myNewFunc.bind(this))
     }
+
 }
 
 export default instrumentEffects;

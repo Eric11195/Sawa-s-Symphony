@@ -107,7 +107,13 @@ export default class Instrumento{
 
 
     Syncopate(){
-        
+
+    }
+
+    ReduceCooldown(int){
+        console.log(int);
+        this.actualCooldown = Math.max(this.actualCooldown-int, 0);
+        this.UpdateImageCd();
     }
 
 }
