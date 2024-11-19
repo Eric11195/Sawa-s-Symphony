@@ -92,10 +92,19 @@ for one otter`,
     nombre: "Psaltery", //brutal Orchestra enemy
     description: 
 `Brutal.`,
-    numeroNotas: 1,
+    numeroNotas: 0,
     tipoNotas: 1,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    ThrowNotes: function()
+    {
+        this.PsalteryIndex = this.PsalteryIndex ?? -1;
+        this.PsalteryIndex *= -1;
+        this.SpawnNotes(this.sceneRef.player.position.x, this.sceneRef.player.position.y+this.PsalteryIndex, this.tipoNotas);
+    }
+    ,
+    instrumentKeywords: {solo:function(instrument){
+        instrument.ProducirNotas();
+    }}
 },
 {//8
         nombre: "Grace", //One step from eden Violette's main 
