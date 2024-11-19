@@ -24,16 +24,17 @@ to Jump`];
     }
 
     TalkToNPC(){
-        super.TalkToNPC();
-        //this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.upgrade, 3, this.player));
-        for(let i = 1; i < 3; i++){
-            this.scene.time.addEvent({delay:1500*i,callback:this.NextDialogue, callbackScope:this});
+        if(super.TalkToNPC()){
+            //this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.upgrade, 3, this.player));
+            for(let i = 1; i < 3; i++){
+                this.scene.time.addEvent({delay:1500*i,callback:this.NextDialogue, callbackScope:this});
+            }
+            this.scene.time.addEvent({delay:3200, callback:function(){
+                this.startMinigame();
+                this.NextDialogue();
+            }, callbackScope:this});
+            //this.SpawnReturnButton();
         }
-        this.scene.time.addEvent({delay:3200, callback:function(){
-            this.startMinigame();
-            this.NextDialogue();
-        }, callbackScope:this});
-        //this.SpawnReturnButton();
     }
 
     startMinigame(){

@@ -3,7 +3,7 @@ import fansAferrimos from "../NPC/NPCs/fansAferrimos.js";
 import managerEstirado from "../NPC/NPCs/managerEstirado.js";
 import toxicFan from "../NPC/NPCs/toxicFan.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
-import { canClick } from "../Utils/ClickInhibitor.js";
+import { canBeTalked, canClick } from "../Utils/ClickInhibitor.js";
 
 export default class rewardsLobbyScene extends Phaser.Scene{
 
@@ -54,7 +54,7 @@ de confianza`]
 
 
     LoadBattleScene(){
-        if(canClick){
+        if(canBeTalked){
             this.shellDisplay.PrepareToBeDeleted();
             this.scene.start("combatScene", {player:this.player});
         }

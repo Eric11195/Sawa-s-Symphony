@@ -16,9 +16,10 @@ un hijo tuyo!`];
     }
 
     TalkToNPC(){
-        super.TalkToNPC();
-        this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.upgrade, 3, this.player));
-        
-        this.SpawnReturnButton();
+        if(super.TalkToNPC()){
+            this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.upgrade, 3, this.player));
+            
+            this.SpawnReturnButton();
+        }
     }
 }

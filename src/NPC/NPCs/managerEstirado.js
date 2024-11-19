@@ -23,11 +23,11 @@ de mi parte`,
     }
 
     TalkToNPC(){
-        super.TalkToNPC();
+        if(super.TalkToNPC())
         //Poner 2 cronos, 1 para cambiar el txt, y el siguiente para la tarjeta y lo otro
             //this.rewards.push(new Reward(this.scene,{x:(3/4)*windowWidth(), y:windowHeight()/2}, RewardClass.instrument, 1, this.player));
 
-        this.scene.time.addEvent({delay:2000,callback:this.Next1, callbackScope:this});
+            this.scene.time.addEvent({delay:2000,callback:this.Next1, callbackScope:this});
     }
 
     Next1(){

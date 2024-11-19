@@ -2,4 +2,9 @@ let canClick = true;
 function setCanClick(val){
     canClick = val;
 }
-export {canClick, setCanClick};
+
+let canBeTalked = true;
+function setCanBeTalked(val){
+    canBeTalked = val;
+}
+export {canClick, setCanClick, canBeTalked, setCanBeTalked};
