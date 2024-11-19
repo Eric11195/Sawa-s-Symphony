@@ -32,7 +32,9 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
             maxX:6,
             maxY:4
         };
-        this.UpdatePos();
+        this.x = Tile00PositionX() + this.position.x * TileDiffX();
+        this.y = Tile00PositionY() + this.position.y * TileDiffY();
+        //this.UpdatePos();
     }
     /**
      * returns the number of spaces this Unit has Moves
@@ -57,8 +59,10 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
      * @todo hacer que el movimiento no sea inmediato, si no que se deslice rapidamente hasta su nueva posición actual
      */
     UpdatePos(){
-        this.x = Tile00PositionX() + this.position.x * TileDiffX();
-        this.y = Tile00PositionY() + this.position.y * TileDiffY();
+        this.scene.tweens.add({targets:this, x:Tile00PositionX() + this.position.x * TileDiffX(), y:Tile00PositionY() + this.position.y * TileDiffY(), duration:100, ease:'Linear'});
+            
+        //this.x = Tile00PositionX() + this.position.x * TileDiffX();
+        //this.y = Tile00PositionY() + this.position.y * TileDiffY();
     }
 
     AddEarworm(toAdd){
