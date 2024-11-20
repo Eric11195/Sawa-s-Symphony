@@ -26,7 +26,7 @@ export default class ShellDisplay extends Phaser.GameObjects.Image{
     }
 
     UpdateNewShells(shellMod){
-        console.log(this);
+        //console.log(this);
         AddShells(shellMod);
         this.shelltext.text = currentShells;
     }
