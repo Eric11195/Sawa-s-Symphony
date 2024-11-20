@@ -102,7 +102,18 @@ export default class Instrumento{
     }
 
     UpdateImageCd(){
-
         this.cdImage.UpdateCd(this.actualCooldown);
     }
+
+
+    Syncopate(){
+
+    }
+
+    ReduceCooldown(int){
+        console.log(int);
+        this.actualCooldown = Math.max(this.actualCooldown-int, 0);
+        this.UpdateImageCd();
+    }
+
 }

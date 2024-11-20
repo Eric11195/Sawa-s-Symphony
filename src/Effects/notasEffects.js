@@ -5,8 +5,8 @@ const notaEffects = {
     //damages enemy notes on contact
     forte: function(nota)
     {
-        nota.AddKeyword({clash:{damage:null}});
-        nota.applyToSelfOnEnemyNoteImpact = {damage:null};
+        nota.AddKeyword({clash:{self:{damage:null},other:{destroy:null}}});
+        //nota.applyToSelfOnEnemyNoteImpact = {damage:null};
         
     },
     //doesnt collide with anything
@@ -29,16 +29,14 @@ const notaEffects = {
     //effects on ally note touch
     accompaniment: function(nota,efectosAccompaniment)
     {
-        if(nota.direction == -1){
-            Object.keys(efectosAccompaniment).forEach(key => {
-                nota.applyToEnemyNotes[key] = efectosAccompaniment[key];
+        if(efectosAccompaniment.other)
+            Object.keys(efectosAccompaniment.other).forEach(key => {
+                nota.applyToAllyNotes[key] = efectosAccompaniment.other[key];
             });
-            //nota.applyToEnemyNotes = efectosAccompaniment;
-        }else{
-            Object.keys(efectosAccompaniment).forEach(key => {
-                nota.applyToAllyNotes[key] = efectosAccompaniment[key];
+        if(efectosAccompaniment.self)
+            Object.keys(efectosAccompaniment.self).forEach(key => {
+                nota.applyToSelfOnAllyNoteImpact[key] = efectosAccompaniment.self[key];
             });
-        }
     },
     //paralizes the note for as long as it has silent. It is reduced by 1 each beat
     silent: function(nota,silentToAdd)
@@ -114,7 +112,7 @@ const notaEffects = {
     },
     //Añadir las keywords de vibrato
     vibrato: function (nota){        
-        nota.AddKeyword({accompaniment:{moveYRandom:null}, clash:{moveYRandom:null}});
+        nota.AddKeyword({accompaniment:{other:{moveYRandom:null}}, clash:{other:{moveYRandom:null}}});
     },
     //destruir nota
     destroy: function(nota){
@@ -126,17 +124,15 @@ const notaEffects = {
     }, 
     //efectos al chocar con notas del rival
     clash: function(nota, efectosClash){
-        if(nota.direction == -1){
-            Object.keys(efectosClash).forEach(key => {
-                nota.applyToAllyNotes[key] = efectosClash[key];
+        if(efectosClash.other)
+            Object.keys(efectosClash.other).forEach(key => {
+                nota.applyToEnemyNotes[key] = efectosClash.other[key];
             });
-        }else{
-            Object.keys(efectosClash).forEach(key => {
-                nota.applyToEnemyNotes[key] = efectosClash[key];
+        if(efectosClash.self)
+            Object.keys(efectosClash.self).forEach(key => {
+                nota.applyToSelfOnEnemyNoteImpact[key] = efectosClash.self[key];
             });
-        }
     }
-
 }
 
 export default notaEffects;

@@ -8,6 +8,7 @@ import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from "../DataDumpFiles/artifacts.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import ChoosePlayerInstrumentMenu from "../UIelems/ChoosePlayerInstrumentMenu.js";
+import { canClick, setCanClick } from "../Utils/ClickInhibitor.js";
 /**
  * Cambiar la clase Player por la clase character
  * Luego player y enemy heredan de la clase character
@@ -21,6 +22,7 @@ export default class Player extends BoardUnit{
     shellEmitter;
     normalMoveLimitPos;
     ancla;
+    level;
     /**Contiene los 3 instrumentos del player */
     instrumentos;
     /**
@@ -29,7 +31,7 @@ export default class Player extends BoardUnit{
      *      * @param {*} instrument2
      *      * @param {*} instrument3
      */
-    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 0){
+    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 100, level = 1){
         //Crea un sprite con el valor de la escena y la posición inicial del player y la textura de nuestro personaje
         super(scene, {x:1, y:2}, 'sawa');  
         this.setOrigin();
@@ -41,6 +43,7 @@ export default class Player extends BoardUnit{
             maxY:4
         };
         this.ancla = 0;
+        this.depth = 100;
         //console.log(this.ancla);
         /**@todo incluir los instrumentos correspondientes */
         this.instrumentos = [instrumento1, instrumento2, instrumento3];
@@ -54,8 +57,7 @@ export default class Player extends BoardUnit{
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
 
-        this.shells = shells;
-        this.shellEmitter = new Phaser.Events.EventEmitter();
+        //----------------------------------------------------------------------------------------------------------------------------------------this.level = level;
     }
 
     TryNormalMove(xAdd,yAdd){
@@ -71,7 +73,7 @@ export default class Player extends BoardUnit{
     NormalMove(xAdd, yAdd){
         if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
             if(this.Move(xAdd,yAdd) > 0){
-                this.Syncopate();
+                this.Syncopate(this.position.x, this.position.y);
             }
         }
     }
@@ -134,7 +136,10 @@ export default class Player extends BoardUnit{
     }
 
     /**Produce todos los efectos generales al moverse*/
-    Syncopate(xAdd,yAdd){
+    Syncopate(xPos,yPos){
+        for(let i = 0; i < this.instrumentos.length; i++){
+            this.instrumentos[i].Syncopate(xPos,yPos);
+        }
         /**@todo Lanzar un evento que coje todo cristo con syncopate */
         //console.log("syncopate");
     }
@@ -159,6 +164,7 @@ export default class Player extends BoardUnit{
                 this.ChooseInstrumentMenuSpawn(this,newScene, "Aplicar a:", InstrumentUpgrades[index]).then(
                     function(params){
                         InstrumentUpgrades[index].effectToApply(params.player.instrumentos[params.instrumentIndex]);;
+                        setCanClick(true);
                     }
                 );
                 break;
@@ -172,6 +178,7 @@ export default class Player extends BoardUnit{
                             //console.log(params.player);
                             params.player.instrumentos[params.instrumentIndex] = InstrumentDataBase[index];
                             //console.log(params.player.instrumentos[params.instrumentIndex]);
+                            setCanClick(true);
                         }
                     )
                 }else{
@@ -187,6 +194,7 @@ export default class Player extends BoardUnit{
 
     }
     ChooseInstrumentMenuSpawn(thisPlayer,newScene, textToShow, reward){
+        setCanClick(false);
         return new Promise(function(returnIndex){
             let imagesArray = [];
             let fondo = newScene.add.rectangle( 1320/8, 720/8, 1320*6/8, 720*6/8, 0xe69138).setOrigin(0);
@@ -215,19 +223,26 @@ export default class Player extends BoardUnit{
             imagesArray.push(new DescriptionImages(newScene, 1320/5, 720/4, reward.nombre, reward.nombre, reward.description).setDisplaySize(100,100));
         })
     }
+
+    /*
     /** Añade shells al jugador, o sustrae si se trata de un parámetro negativo.
      * 
      * @param {integer} shellta Las shells añadidas al jugador.
-     */
+    
     AddShells(shellta = 0){
         this.shells+=shellta;
-        this.shellEmitter.emit('updateshells');
+        this.shellEmitter.emit('updateshells', this.shells);
     }
     /**
      * 
      * @returns Las shells del jugador.
      */
+/*
     GetShells(){
         return this.shells;
     }
+    GetLevel(){
+        return this.level;
+    }
+*/
 }
