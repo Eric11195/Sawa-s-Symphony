@@ -39,7 +39,7 @@ const InstrumentDataBase = [
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    instrumentKeywords: {vibrato:[{x:0,y:1}, {x:0,y:-1}]}//{vibrato:{pos:{x:0,y:1}}}
 },
 {//4
     nombre: "Trumpet",

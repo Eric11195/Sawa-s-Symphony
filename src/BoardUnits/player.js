@@ -31,7 +31,7 @@ export default class Player extends BoardUnit{
      *      * @param {*} instrument2
      *      * @param {*} instrument3
      */
-    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo, shells = 100, level = 1){
+    constructor(scene, instrumento1 = undefined, instrumento2 = undefined, instrumento3 = undefined, Syncopate, Tempo){
         //Crea un sprite con el valor de la escena y la posición inicial del player y la textura de nuestro personaje
         super(scene, {x:1, y:2}, 'sawa');  
         this.setOrigin();
@@ -60,20 +60,17 @@ export default class Player extends BoardUnit{
         //----------------------------------------------------------------------------------------------------------------------------------------this.level = level;
     }
 
-    TryNormalMove(xAdd,yAdd){
-        if(clockInstance.IsTempo(0).canBePlayed && !this.ancla){
-            this.NormalMove(xAdd,yAdd)
-        }
-    }
     /**
      * 
      * @param {*} xAdd las posiciones a mover al player hacia la derecha
      * @param {*} yAdd las posiciones a mover al player hacia abajo
      */
     NormalMove(xAdd, yAdd){
-        if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
-            if(this.Move(xAdd,yAdd) > 0){
-                this.Syncopate(this.position.x, this.position.y);
+        if(clockInstance.IsTempo(0).canBePlayed && !this.ancla){
+            if(Math.abs(Math.max(this.normalMoveLimitPos.minX,Math.min(this.normalMoveLimitPos.maxX,this.position.x+xAdd))-this.position.x) + Math.abs(Math.max(this.normalMoveLimitPos.minY,Math.min(this.normalMoveLimitPos.maxY,this.position.y+yAdd))-this.position.y)>0){
+                if(this.Move(xAdd,yAdd) > 0){
+                    this.Syncopate(this.position.x, this.position.y);
+                }
             }
         }
     }

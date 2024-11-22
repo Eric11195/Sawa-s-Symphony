@@ -35,11 +35,16 @@ const instrumentEffects = {
     vibrato: function(instrument, config){
 
         let createVibrato = function(x,y,cdToWait,wait,thisInstrument){
-            let vibratoPos = {x:config.x+x, y:config.y+y};
-            //Crearlo solo si esta dentro de la pantalla
-            if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
-                notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
+            //let vibratoPos;
+            console.log(config);
+            for(let i = 0; i < config.length; i++){
+                console.log(config[i]);
+                let vibratoPos = {x:config[i].x+x, y:config[i].y+y};
+                if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
+                    notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
+                }
             }
+            //Crearlo solo si esta dentro de la pantalla
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), createVibrato.bind(instrument));
     },
