@@ -1,6 +1,7 @@
 
 import Mainmenu from "./mainMenu.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import ArtifactDataBase from "../DataDumpFiles/artifacts.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
@@ -28,7 +29,7 @@ export default class preloader extends Phaser.Scene
     
                 progress.clear();
                 progress.fillStyle(0xffffff, 1);
-                progress.fillRect(0, 270, 800 * value, 100);
+                progress.fillRect(0, 270, 1400 * value, 100);
     
             });
             this.load.on('complete', () =>
@@ -45,6 +46,8 @@ export default class preloader extends Phaser.Scene
                 this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
+                this.load.audio('bossCombatSong', [ (bossEnemy.songPath+'.ogg'), (bossEnemy.songPath+'.mp3'), (bossEnemy.songPath+'.m4a') ]);
+                this.load.image(bossEnemy.name, bossEnemy.imagePath);
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
                 this.load.image("vsMarker", "./assets/img/vsMarker.png");

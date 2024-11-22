@@ -6,6 +6,7 @@ import Instrument from "../Upgrades/instrument.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
@@ -56,7 +57,7 @@ export default class combatScene extends Phaser.Scene {
 
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
 
-        clockInstance = new Clock(this, testEnemy.bpm);
+        clockInstance = new Clock(this, bossEnemy.bpm);
         if(this.player===undefined){
             this.player = new Player(this, InstrumentDataBase[7], InstrumentDataBase[8], InstrumentDataBase[5]);
         }else{
@@ -79,7 +80,7 @@ export default class combatScene extends Phaser.Scene {
         //Get Artifact
         //ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
-        this.enemy = new Enemy(this, testEnemy);
+        this.enemy = new Enemy(this, bossEnemy);
 
         //this.testDescriptionImages = new DescriptionImages(this,200,200,"negra", "MIAU","probando probando");
 
@@ -200,7 +201,7 @@ export default class combatScene extends Phaser.Scene {
 
 
     startCombatSong(){
-        this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - testEnemy.msSongStart, callback: ()=>{music.play()}});
+        this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - bossEnemy.msSongStart, callback: ()=>{music.play()}});
     }
 
     ChangeToRewardsScene(){
