@@ -17,11 +17,15 @@ export default class mainmenu extends Phaser.Scene
     }
     preload()
     {
-        this.load.image("sawa", "./assets/img/fathomgames500px.png");
+        this.load.image("play", "./assets/img/play_button.png");
+        
         
     }
     create() {
-        const sprite = this.add.sprite(600,300,"sawa").setInteractive();
+        const background =this.add.sprite(0,0,"menufondo").setDisplaySize(2700,1500);
+        const title= this.add.sprite(650,100,"title");
+        const sprite = this.add.sprite(650,500,"play").setInteractive().setDisplaySize(1100,1100);
+        sprite.depth=1;
         sprite.on('pointerdown',()=>
             {
                 //console.log(2);

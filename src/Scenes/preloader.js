@@ -43,10 +43,16 @@ export default class preloader extends Phaser.Scene
         
                 this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
+                this.load.image("play", "./assets/img/play_button.png");
                 this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
+                this.load.image("menufondo", "./assets/img/background.png");
+                this.load.image("title", "./assets/img/title.png");
                 this.load.audio('bossCombatSong', [ (bossEnemy.songPath+'.ogg'), (bossEnemy.songPath+'.mp3'), (bossEnemy.songPath+'.m4a') ]);
+
+                
+
                 this.load.image(bossEnemy.name, bossEnemy.imagePath);
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");

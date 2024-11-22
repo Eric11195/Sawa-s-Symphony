@@ -86,8 +86,8 @@ export default class combatScene extends Phaser.Scene {
 
 
         this.vsMarker = new vsMarker(this, {x:195,y:50}, {x:1160,y:60});
-
-        music = this.sound.add('currentCombatSong');
+        music = this.sound.add('bossCombatSong');
+        //music = this.sound.add('currentCombatSong');
         clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
 
 
