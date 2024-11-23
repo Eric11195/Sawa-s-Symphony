@@ -197,6 +197,24 @@ and dance to them too.`,
             }});
         }
     }}
+},
+{//12
+    nombre:"Gong",
+    description: `Gonggggggggggg`,
+    numeroNotas: 1,
+    numeroNotas:1,
+    tipoNotas: 2,
+    ThrowNotes: function(){
+        for(let i = 0; i < this.notePositionMod.length; i++){
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 0, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 1, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 2, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 3, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 4, this.tipoNotas);
+        }
+    },
+    baseCooldown:8,
+    noteKeywords: {adagio:null},
 }
 ];
 
