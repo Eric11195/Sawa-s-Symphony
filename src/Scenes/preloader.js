@@ -67,6 +67,8 @@ export default class preloader extends Phaser.Scene
 
                 //Carga de NPCs
                 this.load.image("fansAferrimos", "./assets/img/NPCs/fansAferrimos.png");
+                this.load.image("mechanic", "assets/img/NPCs/mechanic.png");
+                this.load.image("mechanicFondo", "assets/img/NPCs/mechanic.png");
                 this.load.image("managerEstirado", "./assets/img/NPCs/managerEstirado.png");
                 this.load.image("tarjetaContacto", "./assets/img/NPCs/tarjetaContacto.png");
                 this.load.image("toxicFan", "./assets/img/NPCs/toxicFan.png");
@@ -76,6 +78,8 @@ export default class preloader extends Phaser.Scene
                 this.load.image("bell", "./assets/img/tileMarkers/bell.png");
                 this.load.image("earworm", "./assets/img/tileMarkers/earworm.png");
                 this.load.image("clock", "./assets/img/tileMarkers/cdTile.png");
+                this.load.image("NextBattleButton", "./assets/img/NextBattleButton.png");
+                this.load.image("returnButton", "./assets/img/returnButton.png");
 
 
     }
