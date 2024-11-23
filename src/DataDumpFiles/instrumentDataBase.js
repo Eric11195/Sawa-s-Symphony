@@ -177,7 +177,6 @@ and dance to them too.`,
         instrument.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.5, callback: ()=>{
             notasPool.Spawn("nota",xPos,yPos,1,0);
         }});
-        console.log("miau");
     }}}
 },
 {//11
@@ -185,11 +184,10 @@ and dance to them too.`,
     description: `Catchy Chorus`,
     numeroNotas: 1,
     tipoNotas: 1,
-    baseCooldown:5,
+    baseCooldown:10,
     noteKeywords: {earworm:1},
     instrumentKeywords: {solo:function(instrument){
         let randomInt = Math.floor(3*Math.random());
-        console.log(randomInt);
         //notasPool.Spawn("nota",instrument.sceneRef.player.position.x,Math.floor(5*Math.random()),1,Math.floor(Math.random()*3));
         for(let i = 0; i < randomInt+1; i++){
             instrument.sceneRef.time.addEvent({delay: i*clockInstance.delayTimer/randomInt, callback: ()=>{
@@ -215,6 +213,22 @@ and dance to them too.`,
     },
     baseCooldown:8,
     noteKeywords: {adagio:null},
+},
+{//13
+    nombre:"Caja",
+    description: `Rhythmic Movements`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    numeroNotas:2,
+    baseCooldown:2,
+    instrumentKeywords: {syncopate:function(instrument){return function(xPos,yPos){
+        for(let i = 0; i < 3; i++){
+            if(instrument.sceneRef.player.instrumentos[i]){
+                instrument.sceneRef.player.instrumentos[i].ReduceCooldown(1);
+            }
+        }
+    }}}
+
 }
 ];
 

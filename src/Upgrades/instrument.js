@@ -13,7 +13,7 @@ export default class Instrumento{
     baseCooldown = 0;
     noteKeywords={};
     cdCanBeReduced = true;
-    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description"]/*, "instrumentKeywords" ];*/
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate"]/*, "instrumentKeywords" ];*/
 
     cdImage;
     /**
@@ -107,12 +107,11 @@ export default class Instrumento{
     }
 
 
-    Syncopate(){
+    Syncopate(x,y,thisInstrument){
 
     }
 
     ReduceCooldown(int){
-        console.log(int);
         this.actualCooldown = Math.max(this.actualCooldown-int, 0);
         this.UpdateImageCd();
     }

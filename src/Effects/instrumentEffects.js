@@ -70,7 +70,8 @@ const instrumentEffects = {
             if(posX - instrument.sceneRef.player.position.x == 0 && posY - instrument.sceneRef.player.position.y==0){
                 func(instrument);
             }else{
-                instrument.cdCanBeReduced = true;
+                //instrument.cdCanBeReduced = true;
+                //instrument.UpdateImageCd();
                 instrument.actualCooldown = instrument.baseCooldown;
                 //se movio
                 clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
@@ -82,7 +83,7 @@ const instrumentEffects = {
             if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
             mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
             clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
-            instrument.cdCanBeReduced = false;
+            //instrument.cdCanBeReduced = false;
             //console.log(clockInstance.eventEmitter.listeners("BeatNow"));
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), suscribe.bind(this));

@@ -58,7 +58,7 @@ export default class combatScene extends Phaser.Scene {
 
         clockInstance = new Clock(this, testEnemy.bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[11], InstrumentDataBase[12], InstrumentDataBase[10]);
+            this.player = new Player(this, InstrumentDataBase[11], InstrumentDataBase[12], InstrumentDataBase[13]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);

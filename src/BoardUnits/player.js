@@ -135,7 +135,7 @@ export default class Player extends BoardUnit{
     /**Produce todos los efectos generales al moverse*/
     Syncopate(xPos,yPos){
         for(let i = 0; i < this.instrumentos.length; i++){
-            this.instrumentos[i].Syncopate(xPos,yPos);
+            this.instrumentos[i].Syncopate(xPos,yPos, this.instrumentos[i]);
         }
         /**@todo Lanzar un evento que coje todo cristo con syncopate */
         //console.log("syncopate");
