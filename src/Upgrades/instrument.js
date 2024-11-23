@@ -12,6 +12,7 @@ export default class Instrumento{
     actualCooldown = 0;
     baseCooldown = 0;
     noteKeywords={};
+    cdCanBeReduced = true;
     listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description"]/*, "instrumentKeywords" ];*/
 
     cdImage;
@@ -43,7 +44,7 @@ export default class Instrumento{
         //Se ejecuta a cada beat
         clockInstance.eventEmitter.on("BeatNow", ()=>{
             //console.log(this.actualCooldown);
-            if(this.actualCooldown!=0){
+            if(this.actualCooldown!=0 && this.cdCanBeReduced){
                 this.actualCooldown--;
                 this.UpdateImageCd();
             }

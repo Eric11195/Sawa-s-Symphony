@@ -9,7 +9,7 @@ const instrumentEffects = {
      */
     move: function(instrument, move){
         let auxMove = function(x,y,cdToWait, wait, thisInstrument){
-            thisInstrument.sceneRef.player.NormalMove(move.x,move.y);
+            thisInstrument.sceneRef.player.Move(move.x,move.y);
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxMove.bind(instrument));
     },
@@ -62,7 +62,7 @@ const instrumentEffects = {
     }, 
     tempo: function(instrument, func){
         let myNewFunc = func(instrument);
-        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), myNewFunc.bind(this));
+        instrument.Play = AddToFunctionBefore(instrument.Play.bind(this), myNewFunc.bind(this));
     }, 
     solo: function(instrument,func){
         var mySolistFunction;
@@ -70,6 +70,8 @@ const instrumentEffects = {
             if(posX - instrument.sceneRef.player.position.x == 0 && posY - instrument.sceneRef.player.position.y==0){
                 func(instrument);
             }else{
+                instrument.cdCanBeReduced = true;
+                instrument.actualCooldown = instrument.baseCooldown;
                 //se movio
                 clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
             }
@@ -80,6 +82,7 @@ const instrumentEffects = {
             if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
             mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
             clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
+            instrument.cdCanBeReduced = false;
             //console.log(clockInstance.eventEmitter.listeners("BeatNow"));
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), suscribe.bind(this));

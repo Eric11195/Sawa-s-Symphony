@@ -2,7 +2,7 @@ import { clockInstance, notasPool } from "../Scenes/combatScene.js";
 import BoardUnit from "./boardUnit.js";
 
 export default class Sostenuto extends BoardUnit{
-    static initDuration = 3;
+    static initDuration = 4;
     duration;
     constructor(scene, startPos, noteDirection, tipoNota, wait){
         super(scene,startPos,"sostenuto");
