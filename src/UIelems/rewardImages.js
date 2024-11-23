@@ -30,4 +30,8 @@ export default class RewardImages extends DescriptionImages{
         this.shelltext.destroy();
         this.shellimage.destroy();
     }
+    PrepareToBeErased(){
+        super.PrepareToBeErased();
+        this.RemoveShellUI();
+    }
 }
