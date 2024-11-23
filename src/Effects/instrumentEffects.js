@@ -9,7 +9,7 @@ const instrumentEffects = {
      */
     move: function(instrument, move){
         let auxMove = function(x,y,cdToWait, wait, thisInstrument){
-            thisInstrument.sceneRef.player.NormalMove(move.x,move.y);
+            thisInstrument.sceneRef.player.Move(move.x,move.y);
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), auxMove.bind(instrument));
     },
@@ -35,11 +35,16 @@ const instrumentEffects = {
     vibrato: function(instrument, config){
 
         let createVibrato = function(x,y,cdToWait,wait,thisInstrument){
-            let vibratoPos = {x:config.x+x, y:config.y+y};
-            //Crearlo solo si esta dentro de la pantalla
-            if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
-                notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
+            //let vibratoPos;
+            console.log(config);
+            for(let i = 0; i < config.length; i++){
+                console.log(config[i]);
+                let vibratoPos = {x:config[i].x+x, y:config[i].y+y};
+                if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
+                    notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
+                }
             }
+            //Crearlo solo si esta dentro de la pantalla
         }
         instrument.Play = AddToFunctionBefore(instrument.Play.bind(instrument), createVibrato.bind(instrument));
     },
@@ -57,7 +62,7 @@ const instrumentEffects = {
     }, 
     tempo: function(instrument, func){
         let myNewFunc = func(instrument);
-        instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), myNewFunc.bind(this));
+        instrument.Play = AddToFunctionBefore(instrument.Play.bind(this), myNewFunc.bind(this));
     }, 
     solo: function(instrument,func){
         var mySolistFunction;
@@ -65,6 +70,9 @@ const instrumentEffects = {
             if(posX - instrument.sceneRef.player.position.x == 0 && posY - instrument.sceneRef.player.position.y==0){
                 func(instrument);
             }else{
+                //instrument.cdCanBeReduced = true;
+                //instrument.UpdateImageCd();
+                instrument.actualCooldown = instrument.baseCooldown;
                 //se movio
                 clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
             }
@@ -75,6 +83,7 @@ const instrumentEffects = {
             if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
             mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
             clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
+            //instrument.cdCanBeReduced = false;
             //console.log(clockInstance.eventEmitter.listeners("BeatNow"));
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(this), suscribe.bind(this));

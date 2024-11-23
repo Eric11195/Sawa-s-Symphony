@@ -58,7 +58,7 @@ export default class combatScene extends Phaser.Scene {
 
         clockInstance = new Clock(this, testEnemy.bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[7], InstrumentDataBase[8], InstrumentDataBase[5]);
+            this.player = new Player(this, InstrumentDataBase[11], InstrumentDataBase[12], InstrumentDataBase[13]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);
@@ -177,13 +177,13 @@ export default class combatScene extends Phaser.Scene {
         //Ejemplo de como llamar ejecutar funciones cuando una tecla se pulse (solo se ejecuta una vez por cada pulsación de tecla)
         //KEYS.UP.isDown se puede usar si queremos hacerlo mientras se mantenga pulsado
         if (Phaser.Input.Keyboard.JustDown(this.KEYS.UP)) {
-            this.player.TryNormalMove(0,-1);
+            this.player.NormalMove(0,-1);
         }
         else if(Phaser.Input.Keyboard.JustDown(this.KEYS.DOWN)) {
-            this.player.TryNormalMove(0,1);
+            this.player.NormalMove(0,1);
         }
         else if (Phaser.Input.Keyboard.JustDown(this.KEYS.LEFT)) {
-            this.player.TryNormalMove(-1,0);
+            this.player.NormalMove(-1,0);
         }
         else if (Phaser.Input.Keyboard.JustDown(this.KEYS.RIGHT)){
             this.player.NormalMove(1,0);

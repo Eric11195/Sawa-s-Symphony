@@ -12,7 +12,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
     }
 
     init(data){
-        console.log(data.player);
+        //console.log(data.player);
         this.player = data.player;
     }
 
