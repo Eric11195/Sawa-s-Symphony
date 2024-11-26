@@ -200,7 +200,7 @@ and dance to them too.`,
     nombre:"Gong",
     description: `Gonggggggggggg`,
     numeroNotas: 1,
-    numeroNotas:1,
+    numeroNotas: 1,
     tipoNotas: 2,
     ThrowNotes: function(){
         for(let i = 0; i < this.notePositionMod.length; i++){
@@ -237,6 +237,7 @@ and dance to them too.`,
     tipoNotas: 0,
     baseCooldown: 4,
     ThrowNotes:function(){
+        if (this.tipoNotas < 0) this.tipoNotas = 0;
         if (this.tipoNotas < 3){
             this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
             this.tipoNotas++;
@@ -257,9 +258,8 @@ and dance to them too.`,
 {//15
     nombre:"Amp",
     description: `LOUDER!`,
-    baseCooldown: 10,
+    baseCooldown: 6,
     tipoNotas: 0,
-    delay: 3,
     instrumentKeywords: {sostenuto:{pos:{x:0,y:0}}},
     ThrowNotes:function(){
         this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
@@ -268,16 +268,7 @@ and dance to them too.`,
             for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas--;
         }});
     }
-}
-/*{//XX
-    nombre:"Bajo",
-    description: `Absence Makes The Heart Grow Fonder`,
-    baseCooldown: 8,
-    tipoNotas: 0,
-    ThrowNotes:function(){
-
-    }
-}*/
+},
 ];
 
 export default InstrumentDataBase;
