@@ -13,7 +13,7 @@ export default class Instrumento{
     baseCooldown = 0;
     noteKeywords={};
     cdCanBeReduced = true;
-    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate"]/*, "instrumentKeywords" ];*/
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate","tipoNotas"]/*, "instrumentKeywords" ];*/
 
     cdImage;
     /**

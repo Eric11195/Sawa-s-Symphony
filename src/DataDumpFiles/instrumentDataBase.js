@@ -157,7 +157,7 @@ and dance to them too.`,
         }}}
 },
 {//9
-    nombre: "Tuba", //ROR reference
+    nombre: "Tuba", //Skullgirls reference
     description: 
 `tuba tuba tuba tuba tuba`,
     numeroNotas: 1,
@@ -168,7 +168,7 @@ and dance to them too.`,
 },
 {//10
     nombre:"Kazoo",
-    description: `Doofensmirtz used it`,
+    description: `Who *are* you?`,
     numeroNotas: 2,
     tipoNotas: 0,
     baseCooldown:5,
