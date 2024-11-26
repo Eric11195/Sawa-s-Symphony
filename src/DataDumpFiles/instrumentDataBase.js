@@ -215,8 +215,8 @@ and dance to them too.`,
     noteKeywords: {adagio:null},
 },
 {//13
-    nombre:"Caja",
-    description: `Rhythmic Movements`,
+    nombre:"Snare_Drum",
+    description: `Hut Two Three Four`,
     numeroNotas: 1,
     tipoNotas: 0,
     numeroNotas:2,
@@ -229,7 +229,55 @@ and dance to them too.`,
         }
     }}}
 
+},
+{//14
+    nombre:"Drum_Kit",
+    description: `Nothin' But A Funky Beat`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    baseCooldown: 4,
+    ThrowNotes:function(){
+        if (this.tipoNotas < 3){
+            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+            this.tipoNotas++;
+        }
+        else{
+            this.tipoNotas = 0;
+            
+            for (let i= 0; i<3;i++){
+                this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.33*i, callback: ()=>{
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y-1,2);
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,2);
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y+1,2);
+                }});
+            }
+        }
+    }
+},
+{//15
+    nombre:"Amp",
+    description: `LOUDER!`,
+    baseCooldown: 10,
+    tipoNotas: 0,
+    delay: 3,
+    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}}},
+    ThrowNotes:function(){
+        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+        for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas++;
+        this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*4, callback: ()=>{
+            for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas--;
+        }});
+    }
 }
+/*{//XX
+    nombre:"Bajo",
+    description: `Absence Makes The Heart Grow Fonder`,
+    baseCooldown: 8,
+    tipoNotas: 0,
+    ThrowNotes:function(){
+
+    }
+}*/
 ];
 
 export default InstrumentDataBase;
