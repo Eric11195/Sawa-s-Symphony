@@ -50,7 +50,7 @@ const bossEmemy = {
         //tarara
         [
             function(enemy){       
-                notasPool.Spawn("nota",6,4,-1,0);              
+                notasPool.Spawn("nota",6,0,-1,0);              
             }, 
         ],
         [
@@ -60,7 +60,7 @@ const bossEmemy = {
         ],
         [
             function(enemy){       
-                notasPool.Spawn("nota",6,0,-1,0);              
+                notasPool.Spawn("nota",6,4,-1,0);              
             }, 
         ],
         //ta
@@ -97,7 +97,7 @@ const bossEmemy = {
         //tarara
         [
             function(enemy){       
-                notasPool.Spawn("nota",6,4,-1,0);              
+                notasPool.Spawn("nota",6,0,-1,0);              
             }, 
         ],
         [
@@ -107,7 +107,7 @@ const bossEmemy = {
         ],
         [
             function(enemy){       
-                notasPool.Spawn("nota",6,0,-1,0);              
+                notasPool.Spawn("nota",6,4,-1,0);              
             }, 
         ],
         //se acaba lo anterior
