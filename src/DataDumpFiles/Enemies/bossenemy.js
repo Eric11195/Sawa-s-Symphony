@@ -9,12 +9,108 @@ const bossEmemy = {
     startPosY: 2,
     height:1,
     name: "bossenemy",
-    bpm: 120,
+    bpm: 164,
     imagePath: "./assets/img/testEnemy.png",
     songPath: './assets/audio/Ganon-Rosario-Dale_-Zelda_-Dale-_Tema-Oficial_',
     msSongStart: 330,
     enemyActions:
     [   
+        //ta, tara, tara, tarata ta, tara tara tarata ta.....
+        //ta
+        [
+            function(enemy)
+             {                
+                 notasPool.Spawn("nota",6,2,-1,0);
+             }
+        ],
+        [],
+        //tara
+        [
+            function(enemy)
+            {
+                notasPool.Spawn("nota",6,1,-1,0);
+                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 200, callback: function(){
+                   notasPool.Spawn("nota",6,3,-1,0).AddKeyword(this.noteKeywords);}})
+                  
+                
+            }
+        ],
+        [],
+        [
+            function(enemy)
+             {
+                 notasPool.Spawn("nota",6,3,-1,0);
+                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 200, callback: function(){
+                    notasPool.Spawn("nota",6,1,-1,0).AddKeyword(this.noteKeywords);}})
+                   
+                 
+             }
+        ],
+        [],
+        //tarara
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,4,-1,0);              
+            }, 
+        ],
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,2,-1,0);              
+            }, 
+        ],
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,0,-1,0);              
+            }, 
+        ],
+        //ta
+        [
+            function(enemy)
+             {                
+                 notasPool.Spawn("nota",6,2,-1,0);
+             }
+        ],
+        [],
+        //tara
+        [
+            function(enemy)
+            {
+                notasPool.Spawn("nota",6,1,-1,0);
+                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 200, callback: function(){
+                   notasPool.Spawn("nota",6,3,-1,0).AddKeyword(this.noteKeywords);}})
+                  
+                
+            }
+        ],
+        [],
+        [
+            function(enemy)
+             {
+                 notasPool.Spawn("nota",6,3,-1,0);
+                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 200, callback: function(){
+                    notasPool.Spawn("nota",6,1,-1,0).AddKeyword(this.noteKeywords);}})
+                   
+                 
+             }
+        ],
+        [],
+        //tarara
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,4,-1,0);              
+            }, 
+        ],
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,2,-1,0);              
+            }, 
+        ],
+        [
+            function(enemy){       
+                notasPool.Spawn("nota",6,0,-1,0);              
+            }, 
+        ],
+        //se acaba lo anterior
         [
             function(enemy){       
                 notasPool.Spawn("nota",6,0,-1,0);              
@@ -382,8 +478,117 @@ const bossEmemy = {
                 enemy.Move(0,-2)
             }
         ],
-      
-       
+        //Escribe Zora
+        //Z
+        [
+            function(enemy)
+            {
+                notasPool.Spawn("nota",6,0,-1,0);
+                notasPool.Spawn("nota",6,3,-1,0);
+            }
+        ],
+        [
+            function(enemy)
+            {
+                notasPool.Spawn("nota",6,0,-1,0);
+                notasPool.Spawn("nota",6,2,-1,0);
+                notasPool.Spawn("nota",6,3,-1,0);
+                
+            }
+        ],
+        [
+            function(enemy)
+            {
+                notasPool.Spawn("nota",6,0,-1,0);
+                notasPool.Spawn("nota",6,1,-1,0);
+                notasPool.Spawn("nota",6,3,-1,0);
+            }
+        ],
+       //O
+       [
+        function(enemy)
+        {
+            notasPool.Spawn("nota",6,0,-1,0);
+            notasPool.Spawn("nota",6,1,-1,0);
+            notasPool.Spawn("nota",6,2,-1,0);
+            notasPool.Spawn("nota",6,3,-1,0);
+        }
+    ],
+    [
+        function(enemy)
+        {
+            notasPool.Spawn("nota",6,0,-1,0);
+           
+            notasPool.Spawn("nota",6,3,-1,0);
+        }
+    ],
+    [
+        function(enemy)
+        {
+            notasPool.Spawn("nota",6,0,-1,0);
+            notasPool.Spawn("nota",6,1,-1,0);
+            notasPool.Spawn("nota",6,2,-1,0);
+            notasPool.Spawn("nota",6,3,-1,0);
+        }
+    ],
+    //R
+    [
+        function(enemy)
+        {
+            notasPool.Spawn("nota",6,0,-1,0);
+            notasPool.Spawn("nota",6,1,-1,0);
+            notasPool.Spawn("nota",6,2,-1,0);
+            notasPool.Spawn("nota",6,3,-1,0);
+        }
+    ],
+    [
+        function(enemy)
+        {
+            notasPool.Spawn("nota",6,0,-1,0);
+           
+            notasPool.Spawn("nota",6,2,-1,0);
+           
+        }
+    ],
+    [
+        function(enemy)
+        {
+           
+            notasPool.Spawn("nota",6,1,-1,0);
+           
+            notasPool.Spawn("nota",6,3,-1,0);
+        }
+    ],
+   //A
+   [
+    function(enemy)
+    {
+        notasPool.Spawn("nota",6,0,-1,0);
+        notasPool.Spawn("nota",6,1,-1,0);
+        notasPool.Spawn("nota",6,2,-1,0);
+        notasPool.Spawn("nota",6,3,-1,0);
+    }
+    ],
+    [
+    function(enemy)
+     {
+         notasPool.Spawn("nota",6,0,-1,0);
+         
+         notasPool.Spawn("nota",6,2,-1,0);
+        
+     }
+    ],
+    [
+        function(enemy)
+         {
+             notasPool.Spawn("nota",6,0,-1,0);
+             notasPool.Spawn("nota",6,1,-1,0);
+             notasPool.Spawn("nota",6,2,-1,0);
+             notasPool.Spawn("nota",6,3,-1,0);
+         }
+        ],
+    
+
            ]
     
 };
