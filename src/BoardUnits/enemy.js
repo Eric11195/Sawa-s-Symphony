@@ -13,7 +13,7 @@ export default class Enemy extends BoardUnit{
         this.setDisplaySize(100,100);
         this.enemyActions = enemyData.enemyActions;
         this.enemyActionIndex = 0;
-        clockInstance.eventEmitter.on("BeatNow", this.ReworkedChargeNextBeatActions,this);
+        clockInstance.eventEmitter.on("BeatNow", this.ChargeNextBeatActions,this);
 
         scene.physics.add.existing(this);
         console.log(enemyData.height);
@@ -22,14 +22,14 @@ export default class Enemy extends BoardUnit{
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this)
     }
 
-    ReworkedChargeNextBeatActions(){
+    ChargeNextBeatActions(){
         for(let i = 0; i < this.enemyActions[this.enemyActionIndex].length; i++){
             this.enemyActions[this.enemyActionIndex][i](this);
         }
         this.enemyActionIndex++;
         //console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
         if(this.enemyActionIndex == this.enemyActions.length) {
-            clockInstance.eventEmitter.removeListener("BeatNow", this.ReworkedChargeNextBeatActions,this);
+            clockInstance.eventEmitter.removeListener("BeatNow", this.ChargeNextBeatActions,this);
             //Fin del nivel
         }
             
