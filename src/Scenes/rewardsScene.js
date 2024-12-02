@@ -39,6 +39,7 @@ export default class RewardsScene extends Phaser.Scene {
 
     init(data){
         this.player = data.player;
+        console.log(data.enemyIndex);
         this.enemyIndex = data.enemyIndex;
         //this.ownedinstruments = [];
         //Conchas

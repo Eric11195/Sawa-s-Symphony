@@ -18,7 +18,7 @@ export default class RewardImages extends DescriptionImages{
             break;
         }
         this.setDisplaySize(100,100);
-        console.log(price);
+        //console.log(price);
         if (price>0){
             this.shellrect = this.scene.add.rectangle(x,y+63,80,30,0xffffff);
             this.shelltext = this.scene.add.text(x, y+45, price,{ fontFamily: 'Arial', color: '#e69138', fontSize: '32px', fontFamily:"Grandstander" }).setOrigin(1,0);
