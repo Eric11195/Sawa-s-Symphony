@@ -6,13 +6,13 @@ export default class mainmenu extends Phaser.Scene
 
         super({key: "mainMenu"});
  
-       
+    
 
     }
     init()
     {
         //console.log("1");
-     
+    
         
     }
     preload()
@@ -29,7 +29,7 @@ export default class mainmenu extends Phaser.Scene
         sprite.on('pointerdown',()=>
             {
                 //console.log(2);
-                this.scene.start("combatScene",{ num:1});
+                this.scene.start("combatScene",{ enemyIndex:0});
             })
         
     }

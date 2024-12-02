@@ -7,6 +7,7 @@ import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
+import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
@@ -32,8 +33,7 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.playerPoints = 0;
-        this.enemyPoints = 0;
+        this.enemyList = [testEnemy, Violet];
 
     }
 
@@ -43,7 +43,8 @@ export default class combatScene extends Phaser.Scene {
         else{
             this.player = data.player;
         }
-
+        console.log(data.enemyIndex);
+        this.currentEnemyIndex = data.enemyIndex;
     }
     
     preload(){
@@ -54,10 +55,10 @@ export default class combatScene extends Phaser.Scene {
      */
     //MUY IMPORTANTE, cargar antes las imagenes que esten más detras pq si no taparan las que hayamos cargado antes
     create(){     
-
+        this.playerPoints = 0;
+        this.enemyPoints = 0;
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
-
-        clockInstance = new Clock(this, bossEnemy.bpm);
+        clockInstance = new Clock(this, this.enemyList[this.currentEnemyIndex].bpm);
         if(this.player===undefined){
             this.player = new Player(this, InstrumentDataBase[13], InstrumentDataBase[1], InstrumentDataBase[15]);
         }else{
@@ -80,14 +81,18 @@ export default class combatScene extends Phaser.Scene {
         //Get Artifact
         //ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
-        this.enemy = new Enemy(this, bossEnemy);
+
+        this.enemy = new Enemy(this, this.enemyList[this.currentEnemyIndex]);
+
 
         //this.testDescriptionImages = new DescriptionImages(this,200,200,"negra", "MIAU","probando probando");
 
 
         this.vsMarker = new vsMarker(this, {x:195,y:50}, {x:1160,y:60});
-        music = this.sound.add('bossCombatSong');
-        //music = this.sound.add('currentCombatSong');
+
+
+        music = this.sound.add(this.enemyList[this.currentEnemyIndex].name+'CombatSong');
+
         clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
 
 
@@ -97,7 +102,8 @@ export default class combatScene extends Phaser.Scene {
 
 
         //Crea los marcadores de ritmo
-        new RhythmMarker(this, 3);
+        console.log();
+        new RhythmMarker(this, Math.floor(this.enemyList[this.currentEnemyIndex].bpm/25));
 
         this.anims.create({
 			key: 'notes0',
@@ -201,12 +207,24 @@ export default class combatScene extends Phaser.Scene {
 
 
     startCombatSong(){
-        this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - bossEnemy.msSongStart, callback: ()=>{music.play()}});
+
+        this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - this.enemyList[this.currentEnemyIndex].msSongStart, callback: ()=>{music.play()}});
     }
 
     ChangeToRewardsScene(){
-        music.stop();
-        this.scene.start("rewardsScene", {player:this.player});
+        if(this.enemyPoints > this.playerPoints){
+            //Pantalla de derrota
+            console.log("Perdiste");
+        }else{
+            console.log(this.enemyList.length, "==", this.currentEnemyIndex);
+            if(this.currentEnemyIndex==this.enemyList.length-1){
+                console.log("Ganaste");
+                //Pantalla de Victoria
+            }else{
+                music.stop();
+                this.scene.start("rewardsScene", {player:this.player, enemyIndex: ++this.currentEnemyIndex});
+            }
+        }
     }
 
 

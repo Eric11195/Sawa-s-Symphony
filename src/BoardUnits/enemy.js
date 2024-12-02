@@ -29,7 +29,6 @@ export default class Enemy extends BoardUnit{
 
     ChargeNextBeatActions(){
         for(let i = 0; i < 5; i++){
-            console.log(this.enemyActions[this.enemyActionIndex][i]);
             if(this.enemyActions[this.enemyActionIndex][i]>=0)
                 notasPool.Spawn("nota",6,i,-1,this.enemyActions[this.enemyActionIndex][i]);
         }
@@ -37,6 +36,7 @@ export default class Enemy extends BoardUnit{
         this.enemyActionIndex++;
         //console.log(this.enemyActionIndex, " == ", this.enemyActions.length);
         if(this.enemyActionIndex == this.enemyActions.length) {
+            this.scene.ChangeToRewardsScene();
             clockInstance.eventEmitter.removeListener("BeatNow", this.ChargeNextBeatActions,this);
             //Fin del nivel
         }
