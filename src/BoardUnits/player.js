@@ -155,7 +155,7 @@ export default class Player extends BoardUnit{
         //console.log(this.ChooseInstrumentMenuSpawn);
         switch (rewardClass){
             case RewardClass.artifact:
-                ArtifactList[index].effect();
+                ArtifactList[index].effect(this);
                 break;
             case RewardClass.upgrade:
                 this.ChooseInstrumentMenuSpawn(this,newScene, "Aplicar a:", InstrumentUpgrades[index]).then(
