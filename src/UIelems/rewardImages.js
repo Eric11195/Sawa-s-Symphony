@@ -32,6 +32,7 @@ export default class RewardImages extends DescriptionImages{
     }
     PrepareToBeErased(){
         super.PrepareToBeErased();
-        this.RemoveShellUI();
+        if(this.price>0)
+            this.RemoveShellUI();
     }
 }
