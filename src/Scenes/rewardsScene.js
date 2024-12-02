@@ -39,6 +39,8 @@ export default class RewardsScene extends Phaser.Scene {
 
     init(data){
         this.player = data.player;
+        console.log(data.enemyIndex);
+        this.enemyIndex = data.enemyIndex;
         //this.ownedinstruments = [];
         //Conchas
         //this.currentplayer.shells += baseshells + (data.difficulty*extrashells);
@@ -90,7 +92,7 @@ export default class RewardsScene extends Phaser.Scene {
     LoadLobbyScene(){
         if(canClick){
             this.shellDisplay.PrepareToBeDeleted();
-            this.scene.start("rewardsLobbyScene", {player:this.player});
+            this.scene.start("rewardsLobbyScene", {player:this.player,enemyIndex:this.enemyIndex});
         }
     }
 
