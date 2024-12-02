@@ -40,7 +40,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
     LoadBattleScene(){
         if(canBeTalked){
             this.shellDisplay.PrepareToBeDeleted();
-            this.scene.start("combatScene", {player:this.player});
+            this.scene.start("combatScene", {player:this.player, enemyIndex: this.enemyIndex});
         }
     }
 

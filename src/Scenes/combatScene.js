@@ -31,8 +31,7 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.playerPoints = 0;
-        this.enemyPoints = 0;
+        this.enemyList = [testEnemy];
 
     }
 
@@ -42,7 +41,7 @@ export default class combatScene extends Phaser.Scene {
         else{
             this.player = data.player;
         }
-
+        this.currentEnemyIndex = data.enemyIndex;
     }
     
     preload(){
@@ -53,7 +52,8 @@ export default class combatScene extends Phaser.Scene {
      */
     //MUY IMPORTANTE, cargar antes las imagenes que esten más detras pq si no taparan las que hayamos cargado antes
     create(){     
-
+        this.playerPoints = 0;
+        this.enemyPoints = 0;
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
 
         clockInstance = new Clock(this, testEnemy.bpm);
@@ -204,8 +204,16 @@ export default class combatScene extends Phaser.Scene {
     }
 
     ChangeToRewardsScene(){
-        music.stop();
-        this.scene.start("rewardsScene", {player:this.player});
+        if(this.enemyPoints >= this.playerPoints){
+            //Pantalla de derrota
+        }else{
+            if(this.enemyIndex==3){
+                //Pantalla de Victoria
+            }else{
+                music.stop();
+                this.scene.start("rewardsScene", {player:this.player, enemyIndex: ++this.enemyIndex});
+            }
+        }
     }
 
 
