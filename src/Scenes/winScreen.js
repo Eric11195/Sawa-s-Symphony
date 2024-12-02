@@ -20,7 +20,7 @@ export default class mainmenu extends Phaser.Scene
         if(this.win)
             this.add.text(660,100, "You Win",{fontFamily:"Grandstander",fontSize:"128px"}).setOrigin(0.5).setTint(0x179bae);
         else{
-            this.add.text(660,100, "You Loose",{fontFamily:"Grandstander",fontSize:"128px"}).setOrigin(0.5).setTint(0x179bae);
+            this.add.text(660,100, "You Loose",{fontFamily:"Grandstander",fontSize:"128px"}).setOrigin(0.5).setTint(0xe69138);
         }
         this.add.text(200,150, "After Combat -> " + this.combats,{fontFamily:"Grandstander",fontSize:"32px"}).setTint(0x179bae);
 
