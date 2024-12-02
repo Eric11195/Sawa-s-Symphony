@@ -26,6 +26,7 @@ export default class mainmenu extends Phaser.Scene
 
         this.add.rectangle(360,375,400,200,0xe69138).setInteractive().on('pointerdown',()=>
             {
+                location.reload();
                 this.scene.start("mainMenu");
             }
         )

@@ -9,11 +9,8 @@ export default class mainmenu extends Phaser.Scene
     
 
     }
-    init()
+    init(myBool)
     {
-        //console.log("1");
-    
-        
     }
     preload()
     {
