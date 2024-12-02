@@ -7,6 +7,7 @@ import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
+import Hornet from "../DataDumpFiles/Enemies/HornetEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
@@ -32,7 +33,7 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.enemyList = [testEnemy, Violet];
+        this.enemyList = [testEnemy, Violet, Hornet];
 
     }
 
