@@ -1,6 +1,7 @@
 import NPC from "../NPC/npcClass.js";
 import fansAferrimos from "../NPC/NPCs/fansAferrimos.js";
 import managerEstirado from "../NPC/NPCs/managerEstirado.js";
+import mechanic from "../NPC/NPCs/mechanic.js";
 import toxicFan from "../NPC/NPCs/toxicFan.js";
 import ShellDisplay from "../UIelems/shellDisplay.js";
 import { canBeTalked, canClick } from "../Utils/ClickInhibitor.js";
@@ -12,15 +13,13 @@ export default class rewardsLobbyScene extends Phaser.Scene{
     }
 
     init(data){
-        console.log(data.player);
+        //console.log(data.player);
         this.player = data.player;
+        console.log(data.enemyIndex);
+        this.enemyIndex = data.enemyIndex;
     }
 
     preload(){
-        this.load.image("NextBattleButton", "./assets/img/NextBattleButton.png");
-        this.load.image("jose", "./assets/img/jose.png");
-        this.load.image("joseFondo", "./assets/img/joseFondo.png");
-        this.load.image("returnButton", "./assets/img/returnButton.png");
     }
 
     create(){
@@ -30,20 +29,7 @@ export default class rewardsLobbyScene extends Phaser.Scene{
 
 
         //Adds al NPCs to spawn pool
-        this.npcSpawnPool = [fansAferrimos, managerEstirado, toxicFan];
-
-        /*
-        this.testNPC = new NPC(this,
-            { 
-                name: "jose",
-                posX: 400,
-                posY: 400,
-                dialogo: [`¡Miau! 
-Soy tu furrillo 
-de confianza`]
-            }
-        );
-        */
+        this.npcSpawnPool = [fansAferrimos, managerEstirado, toxicFan,mechanic];
 
         //Spawn all NPCs
         //Por el momento spawnea todos los npcs
@@ -56,7 +42,7 @@ de confianza`]
     LoadBattleScene(){
         if(canBeTalked){
             this.shellDisplay.PrepareToBeDeleted();
-            this.scene.start("combatScene", {player:this.player});
+            this.scene.start("combatScene", {player:this.player, enemyIndex: this.enemyIndex});
         }
     }
 

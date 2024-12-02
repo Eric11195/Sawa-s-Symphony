@@ -39,7 +39,7 @@ const InstrumentDataBase = [
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown: 4,
-    instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    instrumentKeywords: {vibrato:[{x:0,y:1}, {x:0,y:-1}]}
 },
 {//4
     nombre: "Trumpet",
@@ -155,7 +155,129 @@ and dance to them too.`,
                             notasPool.Spawn("nota",instrument.sceneRef.player.position.x,instrument.sceneRef.player.position.y,1,1).AddKeyword({earworm:3,presto:null});
                 }});
         }}}
+},
+{//9
+    nombre: "Tuba", //Skullgirls reference
+    description: 
+`tuba tuba tuba tuba tuba`,
+    numeroNotas: 1,
+    tipoNotas: 1,
+    baseCooldown: 5,
+    //noteKeywords: {presto:null,clash:{self:{moveYRandom:null},other:{adagio:1}},accompaniment:{self:{moveYRandom:null},other:{allegro:null}}}
+    instrumentKeywords: {move:{x:-1,y:0},sostenuto:{pos:{x:0,y:0},tipoNota:1}}
+},
+{//10
+    nombre:"Kazoo",
+    description: `Who *are* you?`,
+    numeroNotas: 2,
+    tipoNotas: 0,
+    baseCooldown:5,
+    instrumentKeywords: {move:{x:0,y:1},tempo:function(instrument){return function(xPos,yPos){
+        notasPool.Spawn("nota",xPos,yPos,1,0);
+        instrument.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.5, callback: ()=>{
+            notasPool.Spawn("nota",xPos,yPos,1,0);
+        }});
+    }}}
+},
+{//11
+    nombre:"Microphone",
+    description: `Catchy Chorus`,
+    numeroNotas: 1,
+    tipoNotas: 1,
+    baseCooldown:10,
+    noteKeywords: {earworm:1},
+    instrumentKeywords: {solo:function(instrument){
+        let randomInt = Math.floor(3*Math.random());
+        //notasPool.Spawn("nota",instrument.sceneRef.player.position.x,Math.floor(5*Math.random()),1,Math.floor(Math.random()*3));
+        for(let i = 0; i < randomInt+1; i++){
+            instrument.sceneRef.time.addEvent({delay: i*clockInstance.delayTimer/randomInt, callback: ()=>{
+                notasPool.Spawn("nota",instrument.sceneRef.player.position.x,Math.floor(5*Math.random()),1,0).AddKeyword({earworm:1});
+            }});
+        }
+    }}
+},
+{//12
+    nombre:"Gong",
+    description: `Gonggggggggggg`,
+    numeroNotas: 1,
+    numeroNotas:1,
+    tipoNotas: 2,
+    ThrowNotes: function(){
+        for(let i = 0; i < this.notePositionMod.length; i++){
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 0, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 1, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 2, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 3, this.tipoNotas);
+        this.SpawnNotes(this.sceneRef.player.position.x+this.notePositionMod[i].x, 4, this.tipoNotas);
+        }
+    },
+    baseCooldown:8,
+    noteKeywords: {adagio:null},
+},
+{//13
+    nombre:"Snare_Drum",
+    description: `Hut Two Three Four`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    numeroNotas:2,
+    baseCooldown:2,
+    instrumentKeywords: {syncopate:function(instrument){return function(xPos,yPos){
+        for(let i = 0; i < 3; i++){
+            if(instrument.sceneRef.player.instrumentos[i]){
+                instrument.sceneRef.player.instrumentos[i].ReduceCooldown(1);
+            }
+        }
+    }}}
+
+},
+{//14
+    nombre:"Drum_Kit",
+    description: `Nothin' But A Funky Beat`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    baseCooldown: 4,
+    ThrowNotes:function(){
+        if (this.tipoNotas < 3){
+            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+            this.tipoNotas++;
+        }
+        else{
+            this.tipoNotas = 0;
+            
+            for (let i= 0; i<3;i++){
+                this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.33*i, callback: ()=>{
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y-1,2);
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,2);
+                    this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y+1,2);
+                }});
+            }
+        }
+    }
+},
+{//15
+    nombre:"Amp",
+    description: `LOUDER!`,
+    baseCooldown: 10,
+    tipoNotas: 0,
+    delay: 3,
+    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}}},
+    ThrowNotes:function(){
+        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+        for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas++;
+        this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*4, callback: ()=>{
+            for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas--;
+        }});
+    }
 }
+/*{//XX
+    nombre:"Bajo",
+    description: `Absence Makes The Heart Grow Fonder`,
+    baseCooldown: 8,
+    tipoNotas: 0,
+    ThrowNotes:function(){
+
+    }
+}*/
 ];
 
 export default InstrumentDataBase;

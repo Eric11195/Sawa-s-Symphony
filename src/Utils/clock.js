@@ -72,7 +72,7 @@ export default class Clock{
         if(cd > 1) auxBool = false;
         else{
             let timeTillNextBeat = this.GetTimeSinceBeat();
-            auxBool = ((new Date() - this.lastPress > this.delayTimer/2) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
+            auxBool = ((new Date() - this.lastPress > this.delayTimer/4) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
             beforeBeat = timeTillNextBeat > this.delayTimer - tempoErrorMargin;
         }
         this.lastPress = new Date();

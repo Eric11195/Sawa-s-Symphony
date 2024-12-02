@@ -7,7 +7,6 @@ const notaEffects = {
     {
         nota.AddKeyword({clash:{self:{damage:null},other:{destroy:null}}});
         //nota.applyToSelfOnEnemyNoteImpact = {damage:null};
-        
     },
     //doesnt collide with anything
     piano: function(nota)
@@ -60,6 +59,7 @@ const notaEffects = {
         nota.UpdateImage();
     },
     //coppies a note with everything that it contains
+    //This function is wildly broken do not use it
     copy: function(nota, newRelativePos){
         //Compruebo que este dentro del tablero
         if(nota.y + newRelativePos.y*TileDiffY() > Tile00PositionY() && nota.y + newRelativePos.y*TileDiffY() < Tile00PositionY() + 5*TileDiffY()){
