@@ -57,7 +57,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
 
         //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
         /**@todo investigar si hacer con un trigger en vez de por coordenadas */
-        if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
+        if(this.x > Tile00PositionX() + 6.3 * TileDiffX() || this.x < (Tile00PositionX() - 0.5*TileDiffX())){
             this.DestroyMe();
         }
     }
