@@ -33,7 +33,7 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.enemyList = [testEnemy, Violet];
+        this.enemyList = [bossEnemy,Violet, testEnemy];
 
     }
 

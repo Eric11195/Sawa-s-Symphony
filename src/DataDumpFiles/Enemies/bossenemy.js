@@ -8,7 +8,7 @@ import { notasPool } from "../../Scenes/combatScene.js";
 const bossEmemy = {
     startPosY: 2,
     height:1,
-    name: "bossenemy",
+    name: "bossEnemy",
     bpm: 164,
     imagePath: "./assets/img/testEnemy.png",
     songPath: './assets/audio/Ganon-Rosario-Dale_-Zelda_-Dale-_Tema-Oficial_',

@@ -51,12 +51,13 @@ export default class preloader extends Phaser.Scene
                 //this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
                 this.load.audio(Violet.name+'CombatSong', [ (Violet.songPath+'.ogg'), (Violet.songPath+'.mp3'), (Violet.songPath+'.m4a') ]);
                 this.load.audio(testEnemy.name+'CombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
+                this.load.audio(bossEnemy.name+'CombatSong', [ (bossEnemy.songPath+'.ogg'), (bossEnemy.songPath+'.mp3'), (bossEnemy.songPath+'.m4a') ]);
                 this.load.image(Violet.name, Violet.imagePath);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
                 this.load.image("menufondo", "./assets/img/background.png");
                 this.load.image("title", "./assets/img/title.png");
-                this.load.audio('bossCombatSong', [ (bossEnemy.songPath+'.ogg'), (bossEnemy.songPath+'.mp3'), (bossEnemy.songPath+'.m4a') ]);
+                
 
                 
 
