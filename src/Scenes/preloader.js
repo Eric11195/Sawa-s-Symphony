@@ -24,12 +24,13 @@ export default class preloader extends Phaser.Scene
     {
         //this.load.image("loading", "./assets/img/loading.png");
         const progress = this.add.graphics();
+        this.add.text(460,200, "Loading...",{fontFamily:"Grandstander",fontSize:"48px"});
         this.load.on('progress', value =>
             {
-    
+                
                 progress.clear();
                 progress.fillStyle(0xffffff, 1);
-                progress.fillRect(0, 270, 800 * value, 100);
+                progress.fillRect(460, 270, 400 * value, 100);
     
             });
             this.load.on('complete', () =>
