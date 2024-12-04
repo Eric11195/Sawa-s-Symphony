@@ -5,6 +5,7 @@ import Preloader from "./Scenes/preloader.js";
 import MainMenuScene from "./Scenes/mainMenu.js";
 import RewardsLobbyScene from "./Scenes/rewardsLobbyScene.js";
 import RewardsScene from "./Scenes/rewardsScene.js";
+import WinScene from "./Scenes/winScreen.js";
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -20,7 +21,7 @@ let config = {
     },
    // Decimos a Phaser cual es nuestra escena
 
-    scene: [Preloader,MainMenuScene , CombatScene, RewardsScene, RewardsLobbyScene],    // Decimos a Phaser cual es nuestra escena
+    scene: [Preloader,MainMenuScene , CombatScene, RewardsScene, RewardsLobbyScene, WinScene],    // Decimos a Phaser cual es nuestra escena
 
     physics: { 
         default: 'arcade', 

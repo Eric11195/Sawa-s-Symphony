@@ -9,28 +9,38 @@ export default class mainmenu extends Phaser.Scene
     
 
     }
-    init()
+    init(myBool)
     {
-        //console.log("1");
-    
-        
     }
     preload()
     {
-        this.load.image("play", "./assets/img/play_button.png");
-        
+
+        //this.load.image("sawa", "./assets/img/fathomgames500px.png");
         
     }
     create() {
-        const background =this.add.sprite(0,0,"menufondo").setDisplaySize(2700,1500);
-        const title= this.add.sprite(650,100,"title");
-        const sprite = this.add.sprite(650,500,"play").setInteractive().setDisplaySize(1100,1100);
-        sprite.depth=1;
+        //game.stage.backgroundColor = "0x179bae";
+        this.add.rectangle(-10,-10, 3000,3000,0x179bae);
+        //this.cameras.main.setBackgroundColor('#0x179bae')
+        this.add.text(150,100, `Sawa's Symphony`,{fontFamily:"Grandstander",fontSize:"128px"}).setTint(0xe69138);
+
+        //Play Button
+        this.add.rectangle(660,375,400,200,0xe69138).setInteractive().on('pointerdown',()=>
+            {
+                this.scene.start("combatScene",{ enemyIndex:0});
+            }
+        )
+        this.add.text(590,330, `Play`,{fontFamily:"Grandstander",fontSize:"64px"});
+
+        /*
+        const sprite = this.add.sprite(600,300,"sawa").setInteractive();
+
         sprite.on('pointerdown',()=>
             {
                 //console.log(2);
                 this.scene.start("combatScene",{ enemyIndex:0});
             })
+                */
         
     }
     update()

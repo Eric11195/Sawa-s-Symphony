@@ -105,26 +105,6 @@ export default class combatScene extends Phaser.Scene {
         console.log();
         new RhythmMarker(this, Math.floor(this.enemyList[this.currentEnemyIndex].bpm/25));
 
-        this.anims.create({
-			key: 'notes0',
-			frames: this.anims.generateFrameNumbers('notes', {start:0, end:0}),
-			frameRate: 1,
-			repeat: -1
-		});
-        this.anims.create({
-			key: 'notes1',
-			frames: this.anims.generateFrameNumbers('notes', {start:1, end:1}),
-			frameRate: 1,
-			repeat: -1
-		});
-        this.anims.create({
-			key: 'notes2',
-			frames: this.anims.generateFrameNumbers('notes', {start:2, end:2}),
-			frameRate: 1,
-			repeat: -1
-		});
-
-
         //Colisiones------------------------------------------------------------------------------------------------------------------------
         this.notes = this.physics.add.group();
 
@@ -212,16 +192,18 @@ export default class combatScene extends Phaser.Scene {
     }
 
     ChangeToRewardsScene(){
+        music.stop();
         if(this.enemyPoints > this.playerPoints){
             //Pantalla de derrota
             console.log("Perdiste");
+            this.scene.start("winMenu", {win:false, nCombats: this.currentEnemyIndex});
         }else{
             console.log(this.enemyList.length, "==", this.currentEnemyIndex);
             if(this.currentEnemyIndex==this.enemyList.length-1){
-                console.log("Ganaste");
                 //Pantalla de Victoria
+                console.log("Ganaste");
+                this.scene.start("winMenu", {win:true, nCombats: this.currentEnemyIndex});
             }else{
-                music.stop();
                 this.scene.start("rewardsScene", {player:this.player, enemyIndex: ++this.currentEnemyIndex});
             }
         }
