@@ -10,7 +10,7 @@ const InstrumentDataBase = [
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
-    noteKeywords: {earworm:2,forte:null,allegro:null, accompaniment:{silent:2}},
+    noteKeywords: {silent:2,earworm:2,forte:null,allegro:null, accompaniment:{other:{silent:2}}},
     instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}, ancla: 2}
 },
 {//1

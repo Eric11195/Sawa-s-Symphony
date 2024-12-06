@@ -52,6 +52,10 @@ const instrumentEffects = {
     ancla: function(instrument, time){
         let auxAncla = function(x,y,cdToWait, wait, thisInstrument){
             thisInstrument.sceneRef.player.ancla = time + cdToWait;
+            console.log(thisInstrument.sceneRef.player.anchorImg);
+            thisInstrument.sceneRef.player.anchorImg.x = thisInstrument.sceneRef.player.x;
+            thisInstrument.sceneRef.player.anchorImg.y = thisInstrument.sceneRef.player.y;
+            thisInstrument.sceneRef.player.anchorImg.setVisible(true);
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
     },
@@ -75,12 +79,16 @@ const instrumentEffects = {
                 instrument.actualCooldown = instrument.baseCooldown;
                 //se movio
                 clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+                instrument.sceneRef.player.soloImg.setVisible(false);
             }
         }}
         //clockInstance.on("BeatNow", );
         
         let suscribe = function(){
             if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+            instrument.sceneRef.player.soloImg.setVisible(true);
+            instrument.sceneRef.player.soloImg.x = instrument.sceneRef.player.x;
+            instrument.sceneRef.player.soloImg.y = instrument.sceneRef.player.y;
             mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
             clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
             //instrument.cdCanBeReduced = false;
