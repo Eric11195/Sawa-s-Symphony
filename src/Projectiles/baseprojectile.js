@@ -36,11 +36,11 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.container = this.scene.add.container(this.x, this.y);
 
         //  Our emitter
-        this.emitter = this.scene.add.particles(0, 0, 'lemming', {
+        this.emitter = this.scene.add.particles(0, 0, 'earwormParticle', {
             lifespan: 200,
             speed: { min: 200, max: 400 },
-            angle: -135,
-            gravityY: -200
+            angle: {min:-135, max:-100},
+            gravityY: -100
         });
         //scene.notes.add(this);
         this.emitter.pause();
@@ -84,7 +84,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         if(this.earworm > 0){
             this.emitter.resume();
             this.emitter.setVisible(true);
-            this.emitter.setFrequency(clockInstance.delayTimer /this.earworm);
+            this.emitter.setFrequency(clockInstance.delayTimer / (2*this.earworm));
             //this.emitter.setQuantity(this.earworm/1000);
             console.log(this.emitter.quantity);
         }else{
@@ -127,6 +127,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     DestroyMe(){
+        this.emitter.pause();
         this.pool.Release(this);
     }
 }
