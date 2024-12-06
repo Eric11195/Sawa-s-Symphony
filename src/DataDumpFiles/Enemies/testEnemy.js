@@ -10,27 +10,20 @@ const testEnemy = {
     imagePath: "./assets/img/testEnemy.png",
     songPath: './assets/audio/Brutal_Orchestra_OST_Primary_Colours',
     msSongStart: 330,
+    enemyActions:
+    [
+        [1,-1,-1,-1,1,0],
+        [1,1,-1,-1,-1,0],
+        [2,1,1,-1,-1,0],
+        [2,2,1,1,-1,-1]
+    ]
+    /*
     enemyActions:[
         [
-            /** @param {Enemy} enemy */
+            
             function(enemy){
-                /**
-                 * delay in ms from beat till actions is done
-                 * callback function to be done
-                 */
-/*
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    notasPool.Spawn("nota",6,1,-1,0).AddKeyword(this.noteKeywords);
-                    //new Nota(this.scene,6,1,0,-1);
-                }});
-            },//fin acción 1
-            function(enemy){
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 300, callback: function(){
-                    notasPool.Spawn("nota",6,2,-1,0).AddKeyword(this.noteKeywords);
-                    //new Nota(this.scene,6,2,0,-1);
-                }});
-            },//fin acción 2
-*/             notasPool.Spawn("nota",6,2,-1,0);      
+
+           notasPool.Spawn("nota",6,2,-1,0);      
             },
 
         ],
@@ -217,7 +210,7 @@ const testEnemy = {
             },
         ],
 
-    ]
+    ]*/
     /*
     enemyActions:
     [

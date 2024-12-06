@@ -1,6 +1,7 @@
 
 import Mainmenu from "./mainMenu.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import ArtifactDataBase from "../DataDumpFiles/artifacts.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
@@ -23,12 +24,13 @@ export default class preloader extends Phaser.Scene
     {
         //this.load.image("loading", "./assets/img/loading.png");
         const progress = this.add.graphics();
+        this.add.text(460,200, "Loading...",{fontFamily:"Grandstander",fontSize:"48px"});
         this.load.on('progress', value =>
             {
-    
+                
                 progress.clear();
                 progress.fillStyle(0xffffff, 1);
-                progress.fillRect(0, 270, 800 * value, 100);
+                progress.fillRect(460, 270, 400 * value, 100);
     
             });
             this.load.on('complete', () =>
@@ -42,7 +44,10 @@ export default class preloader extends Phaser.Scene
         
                 this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
-                this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
+                //this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
+                this.load.audio(Violet.name+'CombatSong', [ (Violet.songPath+'.ogg'), (Violet.songPath+'.mp3'), (Violet.songPath+'.m4a') ]);
+                this.load.audio(testEnemy.name+'CombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
+                this.load.image(Violet.name, Violet.imagePath);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
