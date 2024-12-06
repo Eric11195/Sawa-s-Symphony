@@ -33,9 +33,18 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             if(this.silent > 0) this.silent--;
         });
         
+        this.container = this.scene.add.container(this.x, this.y);
 
+        //  Our emitter
+        this.emitter = this.scene.add.particles(0, 0, 'lemming', {
+            lifespan: 200,
+            speed: { min: 200, max: 400 },
+            angle: -135,
+            gravityY: -200
+        });
         //scene.notes.add(this);
-
+        this.emitter.pause();
+        this.container.add(this.emitter);
     }
 
     preUpdate(t,dt){
@@ -52,13 +61,17 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         /** @todo Habrá que buscar una manera de implementar el delta time que no implique ponerle contadores a todas las notas
          */
         this.x += this.direction * dt/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
-        
+
+        this.container.x = this.x;
+        this.container.y = this.y;
         //console.log("dir ",this.direction, " dt ", this.deltaTime, " sp ",this.speed, "clT", clockInstance.delayTimer);
 
         //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
         /**@todo investigar si hacer con un trigger en vez de por coordenadas */
         if(this.x > Tile00PositionX() + 6.3 * TileDiffX()){
             this.DestroyMe();
+            this.emitter.pause();
+            this.emitter.setVisible(false);
         }
     }
 
@@ -68,6 +81,16 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
        // console.log(key);
                 NotasEffects[key](this, config[key]);
             });
+        if(this.earworm > 0){
+            this.emitter.resume();
+            this.emitter.setVisible(true);
+            this.emitter.setFrequency(clockInstance.delayTimer /this.earworm);
+            //this.emitter.setQuantity(this.earworm/1000);
+            console.log(this.emitter.quantity);
+        }else{
+            this.emitter.pause();
+            this.emitter.setVisible(false);
+        }
     }
 
     /*config needs: 
@@ -89,6 +112,9 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.applyToSelfOnEnemyNoteImpact = [];
         this.applyToSelfOnAllyNoteImpact = [];
         this.acceptsKeywords = true;
+        this.emitter.pause();
+        this.emitter.setVisible(false);
+        
     }
 
     SetAcceptsKeywords(bool){

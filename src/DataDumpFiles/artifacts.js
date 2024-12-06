@@ -31,17 +31,6 @@ const artifactList = [
         nombre: "Trinity_Pop",
         description: `3333 BPM`,
     },
-    {
-        effect: function(player){
-            console.log("miau pls");
-            notasPool.Spawn = function(whatToSpawn,x, y, direction,tipoNota){
-                console.log("arguments");
-                notasPool.Spawn(whatToSpawn,x,y,direction,tipoNota).AddKeyword({earworm:1});
-            }
-        },
-        nombre: "Poisonous Voice",
-        description: `They will remember you`,
-    },
 
 ];
 export default artifactList;
