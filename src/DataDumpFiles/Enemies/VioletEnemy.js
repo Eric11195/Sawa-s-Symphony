@@ -9,7 +9,7 @@ const violetEnemy = {
     bpm: 160,
     imagePath: "./assets/img/Violet.png",
     songPath: './assets/audio/One-Step-From-Eden-Neverending-Song_-Violette_s-Theme',
-    msSongStart: 300,
+    msSongStart: 450,
     enemyActions:[
 
         [0,2,0,2,0,2],
@@ -331,6 +331,11 @@ const violetEnemy = {
         [-1,-1,-1,-1,-1,0],
         [-1,-1,-1,-1,-1,-1],
         [-1,-1,-1,-1,-1,-2],
+
+        //Pausa Final
+        [-1,-1,-1,-1,-1,0],
+        [-1,-1,-1,-1,-1,0],
+        [-1,-1,-1,-1,-1,0]
 
     ]
 };

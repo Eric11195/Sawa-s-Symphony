@@ -1,4 +1,4 @@
-import { AddToFunctionAfter,AddToFunctionBefore } from "../Utils/addToFunction.js";
+import { AddToFunctionAfter ,AddToFunctionBefore } from "../Utils/addToFunction.js";
 import NotasEffects from "../Effects/notasEffects.js"
 import { notasPool } from "../Scenes/combatScene.js";
 import Proyectil from "../Projectiles/baseprojectile.js";
