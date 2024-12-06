@@ -85,8 +85,11 @@ export default class preloader extends Phaser.Scene
                 this.load.image("clock", "./assets/img/tileMarkers/cdTile.png");
                 this.load.image("NextBattleButton", "./assets/img/NextBattleButton.png");
                 this.load.image("returnButton", "./assets/img/returnButton.png");
-
-
+                this.load.image("earwormParticle", "./assets/img/Earworm.png");
+                this.load.image("forteShield", "./assets/img/Forte.png");
+                this.load.image("silentMarker", "./assets/img/Rest.png");
+                this.load.image("soloMarker", "./assets/img/Solo.png");
+                this.load.image("anchorMarker", "./assets/img/Anchor.png");
     }
     create() {
     
