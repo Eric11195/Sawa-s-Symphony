@@ -9,6 +9,7 @@ import ArtifactList from "../DataDumpFiles/artifacts.js";
 import DescriptionImages from "../UIelems/descriptionImages.js";
 import ChoosePlayerInstrumentMenu from "../UIelems/ChoosePlayerInstrumentMenu.js";
 import { canClick, setCanClick } from "../Utils/ClickInhibitor.js";
+import { Tile00PositionX, Tile00PositionY, TileDiffX, TileDiffY } from "../Utils/screenPositions.js";
 /**
  * Cambiar la clase Player por la clase character
  * Luego player y enemy heredan de la clase character
@@ -52,11 +53,16 @@ export default class Player extends BoardUnit{
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this);
         // Agregamos el caballero a las físicas para que Phaser lo tenga en cuenta
 		scene.physics.add.existing(this);
-        this.body.setSize(350, 150, true);
+        this.body.setSize(250, 150, true);
 
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
 
+
+        this.anchorImg = this.scene.add.image(0,0,"anchorMarker").setVisible(false).setDisplaySize(100,100);
+        this.anchorImg.depth = 101;
+        this.soloImg = this.scene.add.image(0,0,"soloMarker").setVisible(false).setDisplaySize(100,100);
+        this.soloImg.depth = 101;
         //----------------------------------------------------------------------------------------------------------------------------------------this.level = level;
     }
 
@@ -125,6 +131,7 @@ export default class Player extends BoardUnit{
         if(this.ancla>0){
             this.ancla--;
         }
+        this.anchorImg.setVisible(this.ancla>0);
         if(this.earworm > 0){
             this.scene.AddPointsToEnemy(this.earworm);
             this.earworm = Math.floor(this.earworm/2);
@@ -142,6 +149,13 @@ export default class Player extends BoardUnit{
     }
     /**Produce todos los efectos especiales generales al tocar al ritmo */
     Tempo(numeroInstrumento,beforeBeat){
+        
+    }
+
+    UpdatePos(){
+        super.UpdatePos();
+        this.scene.tweens.add({targets:this.anchorImg, x:Tile00PositionX() + this.position.x * TileDiffX(), y:Tile00PositionY() + this.position.y * TileDiffY(), duration:100, ease:'Linear'});    
+        this.scene.tweens.add({targets:this.soloImg, x:Tile00PositionX() + this.position.x * TileDiffX(), y:Tile00PositionY() + this.position.y * TileDiffY(), duration:100, ease:'Linear'});    
         
     }
 

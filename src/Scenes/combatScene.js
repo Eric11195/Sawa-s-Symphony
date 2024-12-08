@@ -8,6 +8,7 @@ import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
 import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
 import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
+import Hornet from "../DataDumpFiles/Enemies/HornetEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
 import ArtifactList from '../DataDumpFiles/artifacts.js';
 import vsMarker from "../UIelems/vsMarker.js";
@@ -33,7 +34,9 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.enemyList = [bossEnemy,Violet, testEnemy];
+
+        this.enemyList = [testEnemy, Violet, Hornet,bossEnemy];
+
 
     }
 
@@ -60,7 +63,7 @@ export default class combatScene extends Phaser.Scene {
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
         clockInstance = new Clock(this, this.enemyList[this.currentEnemyIndex].bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[13], InstrumentDataBase[1], InstrumentDataBase[15]);
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[7], InstrumentDataBase[15]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);

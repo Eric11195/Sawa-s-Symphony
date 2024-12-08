@@ -59,8 +59,7 @@ export default class BoardUnit extends Phaser.GameObjects.Sprite{
      * @todo hacer que el movimiento no sea inmediato, si no que se deslice rapidamente hasta su nueva posición actual
      */
     UpdatePos(){
-        this.scene.tweens.add({targets:this, x:Tile00PositionX() + this.position.x * TileDiffX(), y:Tile00PositionY() + this.position.y * TileDiffY(), duration:100, ease:'Linear'});
-            
+        this.scene.tweens.add({targets:this, x:Tile00PositionX() + this.position.x * TileDiffX(), y:Tile00PositionY() + this.position.y * TileDiffY(), duration:100, ease:'Linear'});    
         //this.x = Tile00PositionX() + this.position.x * TileDiffX();
         //this.y = Tile00PositionY() + this.position.y * TileDiffY();
     }

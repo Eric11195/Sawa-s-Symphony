@@ -31,11 +31,27 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         //takes the event postupdate from the scene and makes this function postUpdate be called when received
         clockInstance.eventEmitter.on("BeatNow", ()=>{
             if(this.silent > 0) this.silent--;
+            this.silentImg.setVisible(this.silent>0);
         });
         
-
+        this.forteImg = this.scene.add.image(0,0,"forteShield");
+        this.forteImg.setVisible(false);
+        this.forteImg.setOrigin(0,0.5);
+        this.forteImg.setDisplaySize(40,40);
+        this.silentImg = this.scene.add.image(0,0,"silentMarker");
+        this.silentImg.setVisible(false);
+        this.silentImg.setDisplaySize(50,50);
+        //  Our emitter
+        this.container = this.scene.add.container(this.x, this.y);
+        this.emitter = this.scene.add.particles(0, 0, 'earwormParticle', {
+            lifespan: 200,
+            speed: { min: 200, max: 400 },
+            angle: {min:-135, max:-100},
+            gravityY: -100
+        });
         //scene.notes.add(this);
-
+        this.emitter.pause();
+        this.container.add(this.emitter);
     }
 
     preUpdate(t,dt){
@@ -52,13 +68,24 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         /** @todo Habrá que buscar una manera de implementar el delta time que no implique ponerle contadores a todas las notas
          */
         this.x += this.direction * dt/1000 *((this.speed * TileDiffX()) / (clockInstance.delayTimer/1000));
-        
+
+        this.container.x = this.x;
+        this.container.y = this.y;
+        this.silentImg.x = this.x;
+        this.silentImg.y = this.y;
+        //console.log(this.silentImg.visible, ",", this.forteImg.visible);
+        this.forteImg.x = this.x;
+        this.forteImg.y = this.y;
         //console.log("dir ",this.direction, " dt ", this.deltaTime, " sp ",this.speed, "clT", clockInstance.delayTimer);
 
         //Si se sale por la derecha destruir (o igual esto es mejor hacerlo con un trigger en esa zona)
         /**@todo investigar si hacer con un trigger en vez de por coordenadas */
+
         if(this.x > Tile00PositionX() + 6.3 * TileDiffX() || this.x < (Tile00PositionX() - 0.5*TileDiffX())){
+
             this.DestroyMe();
+            this.emitter.pause();
+            this.emitter.setVisible(false);
         }
     }
 
@@ -68,6 +95,18 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
        // console.log(key);
                 NotasEffects[key](this, config[key]);
             });
+        this.forteImg.setVisible(Object.keys(this.applyToEnemyNotes).length>0 || Object.keys(this.applyToSelfOnEnemyNoteImpact).length>0);
+        this.silentImg.setVisible(this.silent>0);
+        if(this.earworm > 0){
+            this.emitter.resume();
+            this.emitter.setVisible(true);
+            this.emitter.setFrequency(clockInstance.delayTimer / (2*this.earworm));
+            //this.emitter.setQuantity(this.earworm/1000);
+        }else{
+            this.emitter.pause();
+            this.emitter.setVisible(false);
+        }
+        console.log(Object.keys(this.applyToEnemyNotes).length);
     }
 
     /*config needs: 
@@ -89,6 +128,10 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.applyToSelfOnEnemyNoteImpact = [];
         this.applyToSelfOnAllyNoteImpact = [];
         this.acceptsKeywords = true;
+        this.emitter.pause();
+        this.emitter.setVisible(false);
+        this.forteImg.setVisible(false);
+        this.silentImg.setVisible(false);
     }
 
     SetAcceptsKeywords(bool){
@@ -101,6 +144,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     DestroyMe(){
+        this.emitter.pause();
         this.pool.Release(this);
     }
 }

@@ -10,7 +10,9 @@ const InstrumentDataBase = [
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
+
     noteKeywords: {allegro:null},
+
     instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}, ancla: 2}
 },
 {//1
