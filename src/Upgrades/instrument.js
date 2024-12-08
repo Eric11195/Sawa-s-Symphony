@@ -11,9 +11,10 @@ export default class Instrumento{
     tipoNotas = 1;
     actualCooldown = 0;
     baseCooldown = 0;
+    counter = this.tipoNotas;
     noteKeywords={};
     cdCanBeReduced = true;
-    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate","tipoNotas"]/*, "instrumentKeywords" ];*/
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate","tipoNotas","counter"]/*, "instrumentKeywords" ];*/
 
     cdImage;
     /**

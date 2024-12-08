@@ -235,14 +235,15 @@ and dance to them too.`,
     description: `Nothin' But A Funky Beat`,
     numeroNotas: 1,
     tipoNotas: 0,
+    counter: 0,
     baseCooldown: 4,
     ThrowNotes:function(){
-        if (this.tipoNotas < 3){
-            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
-            this.tipoNotas++;
+        if (this.counter < 3){
+            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.counter);
+            this.counter++;
         }
         else{
-            this.tipoNotas = 0;
+            this.counter = this.tipoNotas;
             
             for (let i= 0; i<3;i++){
                 this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.33*i, callback: ()=>{
