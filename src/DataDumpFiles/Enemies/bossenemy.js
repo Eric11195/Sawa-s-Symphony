@@ -15,7 +15,6 @@ const bossEmemy = {
     msSongStart: 400,
     enemyActions:
     [  
-       
         
         //principio
         [-1,-1,0,-1,-1,0],
