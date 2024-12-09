@@ -1,5 +1,5 @@
 /**Is doubled cause it checks this time before and after the beat */
-const tempoErrorMargin = 125;
+const tempoErrorMargin = 2;
 
 export default class Clock{
     /** time of the last key Pressed, updated with isTempo */
@@ -72,7 +72,7 @@ export default class Clock{
         if(cd > 1) auxBool = false;
         else{
             let timeTillNextBeat = this.GetTimeSinceBeat();
-            auxBool = ((new Date() - this.lastPress > this.delayTimer/4) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
+            auxBool = ((new Date() - this.lastPress > this.delayTimer/4) && ((timeTillNextBeat < this.delayTimer/tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - this.delayTimer/tempoErrorMargin && cd<=1)));
             beforeBeat = timeTillNextBeat > this.delayTimer - tempoErrorMargin;
         }
         this.lastPress = new Date();
