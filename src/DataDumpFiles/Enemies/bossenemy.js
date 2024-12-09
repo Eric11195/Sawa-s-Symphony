@@ -12,7 +12,7 @@ const bossEmemy = {
     bpm: 164,
     imagePath: "./assets/img/testEnemy.png",
     songPath: './assets/audio/Ganon-Rosario-Dale_-Zelda_-Dale-_Tema-Oficial_',
-    msSongStart: 330,
+    msSongStart: 400,
     enemyActions:
     [  
        

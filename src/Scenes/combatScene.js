@@ -106,7 +106,7 @@ export default class combatScene extends Phaser.Scene {
 
         //Crea los marcadores de ritmo
         console.log();
-        new RhythmMarker(this, Math.floor(this.enemyList[this.currentEnemyIndex].bpm/25));
+        new RhythmMarker(this, Math.floor(this.enemyList[this.currentEnemyIndex].bpm/10));
 
         //Colisiones------------------------------------------------------------------------------------------------------------------------
         this.notes = this.physics.add.group();
