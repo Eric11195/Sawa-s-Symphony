@@ -84,11 +84,14 @@ export default class preloader extends Phaser.Scene
 
                 //Carga de NPCs
                 this.load.image("fansAferrimos", "./assets/img/NPCs/fansAferrimos.png");
+                this.load.image("fansAferrimosFondo", "./assets/img/NPCs/fansAferrimosFondo.png");
                 this.load.image("mechanic", "assets/img/NPCs/mechanic.png");
                 this.load.image("mechanicFondo", "assets/img/NPCs/mechanic.png");
                 this.load.image("managerEstirado", "./assets/img/NPCs/managerEstirado.png");
+                this.load.image("managerEstiradoFondo", "./assets/img/NPCs/managerEstiradoFondo.png");
                 this.load.image("tarjetaContacto", "./assets/img/NPCs/tarjetaContacto.png");
                 this.load.image("toxicFan", "./assets/img/NPCs/toxicFan.png");
+                this.load.image("toxicFanFondo", "./assets/img/NPCs/toxicFanFondo.png");
                 this.load.image("knife", "./assets/img/NPCs/knife.png");
                 this.load.image("shield", "./assets/img/tileMarkers/shield.png");
                 this.load.image("sword", "./assets/img/tileMarkers/sword.png");
