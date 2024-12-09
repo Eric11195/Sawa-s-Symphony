@@ -1,6 +1,7 @@
 
 import Mainmenu from "./mainMenu.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
 import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import ArtifactDataBase from "../DataDumpFiles/artifacts.js";
@@ -30,7 +31,9 @@ export default class preloader extends Phaser.Scene
                 
                 progress.clear();
                 progress.fillStyle(0xffffff, 1);
+
                 progress.fillRect(460, 270, 400 * value, 100);
+
     
             });
             this.load.on('complete', () =>
@@ -44,12 +47,21 @@ export default class preloader extends Phaser.Scene
         
                 this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
+
                 //this.load.audio('currentCombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
                 this.load.audio(Violet.name+'CombatSong', [ (Violet.songPath+'.ogg'), (Violet.songPath+'.mp3'), (Violet.songPath+'.m4a') ]);
                 this.load.audio(testEnemy.name+'CombatSong', [ (testEnemy.songPath+'.ogg'), (testEnemy.songPath+'.mp3'), (testEnemy.songPath+'.m4a') ]);
+                this.load.audio(bossEnemy.name+'CombatSong', [ (bossEnemy.songPath+'.ogg'), (bossEnemy.songPath+'.mp3'), (bossEnemy.songPath+'.m4a') ]);
                 this.load.image(Violet.name, Violet.imagePath);
                 this.load.image(testEnemy.name, testEnemy.imagePath);
                 this.load.image("fondo", "./assets/img/IlustracionCombatZoneProvisional_LRhythm.jpg");
+                this.load.image("menufondo", "./assets/img/background.png");
+                this.load.image("title", "./assets/img/title.png");
+                
+
+                
+
+                this.load.image(bossEnemy.name, bossEnemy.imagePath);
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
                 this.load.image("vsMarker", "./assets/img/vsMarker.png");

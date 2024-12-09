@@ -6,6 +6,7 @@ import Instrument from "../Upgrades/instrument.js";
 import InstrumentDataBase from "../DataDumpFiles/instrumentDataBase.js";
 import Enemy from "../BoardUnits/enemy.js";
 import testEnemy from "../DataDumpFiles/Enemies/testEnemy.js";
+import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js"
 import Violet from "../DataDumpFiles/Enemies/VioletEnemy.js";
 import Hornet from "../DataDumpFiles/Enemies/HornetEnemy.js";
 import InstrumentUpgrades from "../Upgrades/instrumentUpgrades.js";
@@ -33,7 +34,9 @@ export default class combatScene extends Phaser.Scene {
 
         super({key: "combatScene"});
 
-        this.enemyList = [testEnemy, Violet, Hornet];
+
+        this.enemyList = [/*testEnemy*/, Violet, /*Hornet*/,bossEnemy];
+
 
     }
 
@@ -58,7 +61,6 @@ export default class combatScene extends Phaser.Scene {
         this.playerPoints = 0;
         this.enemyPoints = 0;
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
-
         clockInstance = new Clock(this, this.enemyList[this.currentEnemyIndex].bpm);
         if(this.player===undefined){
             this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[7], InstrumentDataBase[14]);
@@ -82,14 +84,18 @@ export default class combatScene extends Phaser.Scene {
         //Get Artifact
         //ArtifactList[0].effect();
         //this.player.instrumentos[0].ApplyUpgrade(InstrumentUpgrades[1]);
+
         this.enemy = new Enemy(this, this.enemyList[this.currentEnemyIndex]);
+
 
         //this.testDescriptionImages = new DescriptionImages(this,200,200,"negra", "MIAU","probando probando");
 
 
         this.vsMarker = new vsMarker(this, {x:195,y:50}, {x:1160,y:60});
 
+
         music = this.sound.add(this.enemyList[this.currentEnemyIndex].name+'CombatSong');
+
         clockInstance.eventEmitter.once("BeatNow", this.startCombatSong, this);
 
 
@@ -184,6 +190,7 @@ export default class combatScene extends Phaser.Scene {
 
 
     startCombatSong(){
+
         this.startSongEvent = this.time.addEvent({delay: clockInstance.delayTimer - this.enemyList[this.currentEnemyIndex].msSongStart, callback: ()=>{music.play()}});
     }
 

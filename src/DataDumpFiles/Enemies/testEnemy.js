@@ -5,6 +5,7 @@ import { notasPool } from "../../Scenes/combatScene.js";
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const testEnemy = {
     startPosY: 2,
+    height:5,
     name: "testEnemy",
     bpm: 78,
     imagePath: "./assets/img/testEnemy.png",
@@ -29,22 +30,22 @@ const testEnemy = {
         ],
         [
             function(enemy){                
-            enemy.Move(0,-1);                
+           // enemy.Move(0,-1);                
             },
         ],
         [
             function(enemy){               
-              enemy.Move(0,-1)                
+            //  enemy.Move(0,-1)                
             },
         ],
         [
             function(enemy){                
-                enemy.Move(0,1)              
+              //  enemy.Move(0,1)              
             },
         ],
         [
             function(enemy){              
-              enemy.Move(0,1)              
+              //enemy.Move(0,1)              
             },
         ],
         [
@@ -67,12 +68,12 @@ const testEnemy = {
         [
             function(enemy){
                 enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                   this.Move(0,-1)
+               //    this.Move(0,-1)
                 }});
             },
         ], [
             function(enemy){               
-                  enemy.Move(0,-1)                 
+                 // enemy.Move(0,-1)                 
             },
         ],                
                 //new Nota(enemy.scene,6,0,0,-1).AddKeyword({adagio:null}) para adagio
@@ -83,7 +84,7 @@ const testEnemy = {
         ],
         [
             function(enemy){                
-                enemy.Move(0,1);                
+              //  enemy.Move(0,1);                
             },
         ],
         [
@@ -93,7 +94,7 @@ const testEnemy = {
         ],
         [
             function(enemy){                
-              enemy.Move(0,1)                
+             // enemy.Move(0,1)                
             },
         ],
         [
@@ -104,7 +105,7 @@ const testEnemy = {
      
         [
             function(enemy){               
-                enemy.Move(0,1)              
+              //  enemy.Move(0,1)              
             },
         ],
         [
@@ -114,7 +115,7 @@ const testEnemy = {
         ],
         [
             function(enemy){               
-               enemy.Move(0,1)                 
+              // enemy.Move(0,1)                 
             },
         ],
         [
@@ -133,7 +134,7 @@ const testEnemy = {
         ],
         [
             function(enemy){  
-            enemy.Move(0,-1) 
+           // enemy.Move(0,-1) 
             },
         ],[
             function(enemy){
@@ -142,7 +143,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-              enemy.Move(0,-1)
+             // enemy.Move(0,-1)
             },
         ],
         [
@@ -152,7 +153,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-                enemy.Move(0,-1)
+            //    enemy.Move(0,-1)
             },
         ],
         [
@@ -162,7 +163,7 @@ const testEnemy = {
         ],
         [
             function(enemy){
-              enemy.Move(0,-1) 
+            //  enemy.Move(0,-1) 
             },
         ],
         [
@@ -176,13 +177,13 @@ const testEnemy = {
         ],
         [
             function(enemy){
-              enemy.Move(0,1)  
+             // enemy.Move(0,1)  
             },
         ],
         [
             function(enemy){
  
-          enemy.Move(0,1)     
+          //enemy.Move(0,1)     
             },
         ],
         [
@@ -196,12 +197,12 @@ const testEnemy = {
         ],
         [
             function(enemy){ 
-                enemy.Move(0,-1)     
+           //     enemy.Move(0,-1)     
             },
         ],
         [
             function(enemy){
-                enemy.Move(0,1)      
+         //       enemy.Move(0,1)      
             },
         ],
         [

@@ -10,7 +10,9 @@ const InstrumentDataBase = [
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
-    noteKeywords: {silent:2,earworm:2,forte:null,allegro:null, accompaniment:{other:{silent:2}}},
+
+    noteKeywords: {allegro:null},
+
     instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}, ancla: 2}
 },
 {//1
@@ -269,7 +271,36 @@ and dance to them too.`,
             for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas--;
         }});
     }
-}
+},
+{//1
+    nombre: "Triangle",
+    description: 
+`One of the world's best shapes.`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    baseCooldown:5,
+    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
+    ThrowNotes:function(){
+        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+    },
+    noteKeywords:{vibrato:null},
+}, 
+{//1
+    nombre: "Saxophone",
+    description: 
+`Just play that sax, babe!`,
+    numeroNotas: 1,
+    tipoNotas: 2,
+    baseCooldown:5,
+    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0},{x:0,y:1},{x:0,y:2}],
+    instrumentKeywords: {move:{x:0,y:1}},
+    ThrowNotes:function(){
+        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+    },
+    noteKeywords:{adagio:null},
+   
+}, 
+
 /*{//XX
     nombre:"Bajo",
     description: `Absence Makes The Heart Grow Fonder`,
