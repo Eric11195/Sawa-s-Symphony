@@ -13,287 +13,124 @@ const testEnemy = {
     msSongStart: 330,
     enemyActions:
     [
-        [1,-1,-1,-1,1,0],
+        //Pausa
+        [-1,-1,-1,-1,-1,0],
+        //6 iniciales
+        [-1,-1,-1,-1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,-1,1,1,1,0],
+        [1,-1,-1,-1,-1,0],
         [1,1,-1,-1,-1,0],
-        [2,1,1,-1,-1,0],
-        [2,2,1,1,-1,-1]
+        [1,1,-1,-1,-1,0],
+        [1,1,-1,1,1,0],
+
+        //Init
+        [-1,-1,-1,1,1,0],
+        [-1,-1,-1,1,-1,0],
+        [-1,-1,1,-1,-1,0],
+        [-1,-1,-1,-1,1,0],
+        [-1,1,-1,1,-1,0],
+        [1,-1,-1,-1,1,0],
+        [1,1,-1,1,1,0],
+        [1,1,-1,1,1,0],
+        [1,-1,-1,-1,1,0],
+
+        //Begins squizo
+        [1,1,-1,-1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,1,-1,-1,1,0],
+        [1,1,1,-1,1,0],
+        [1,-1,-1,-1,1,0],
+        [-1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,1,-1,1,1,0],
+        [-1,-1,0,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,-1,1,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,-1,-1,-1,1,0],
+        [-1,-1,-1,-1,1,0],
+        [1,-1,-1,-1,1,0],
+        //repeat
+        [1,1,-1,-1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,1,-1,-1,1,0],
+        [1,1,1,-1,1,0],
+        [1,-1,-1,-1,1,0],
+        [-1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [1,-1,-1,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,1,-1,1,1,0],
+        [-1,-1,0,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,-1,1,1,1,0],
+        [-1,-1,-1,1,1,0],
+        [-1,-1,-1,-1,1,0],
+        [-1,-1,-1,-1,1,0],
+        [1,-1,-1,-1,1,0],
+        //Change
+        [1,0,-1,0,1,0],
+        [2,-1,-1,-1,2,0],
+        [2,2,-1,-1,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,2,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,2,-1,-1,2,0],
+        [2,2,2,-1,2,0],
+        [2,-1,-1,-1,2,0],
+        [-1,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,2,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [-1,-1,-1,2,2,0],
+        [-1,1,-1,2,2,0],
+        [-1,-1,0,2,2,0],
+        [-1,-1,-1,2,2,0],
+        [-1,-1,2,2,2,0],
+        [-1,-1,-1,2,2,0],
+        [-1,-1,-1,-1,2,0],
+        [-1,-1,-1,-1,2,0],
+        [2,-1,-1,-1,2,0],
+        [2,2,-1,-1,2,0],
+        [2,2,-1,-1,2,0],
+        [2,2,2,-1,-1,0],
+        [2,2,2,-1,-1,0],
+        [2,2,2,2,-1,0],
+        [2,2,2,2,-1,0],
+        [2,2,-1,-1,2,0],
+        [2,2,-1,-1,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [2,-1,-1,2,2,0],
+        [-1,-1,2,2,2,0],
+        [-1,-1,2,2,2,0],
+
+        [-1,-1,-1,-1,0,0],
+        [-1,-1,-1,0,0,0],
+        [-1,-1,0,0,0,0],
+        [0,-1,-1,-1,-1,0],
+        [0,0,-1,-1,-1,0],
+        [0,0,-1,-1,-1,0],
+        [0,0,-1,0,0,0],
+        [-1,-1,-1,-1,-1,0],
+        [-1,-1,-1,-1,-1,0],
+        [-1,-1,-1,-1,-1,0],
     ]
-    /*
-    enemyActions:[
-        [
-            
-            function(enemy){
-
-           notasPool.Spawn("nota",6,2,-1,0);      
-            },
-
-        ],
-        [
-            function(enemy){                
-           // enemy.Move(0,-1);                
-            },
-        ],
-        [
-            function(enemy){               
-            //  enemy.Move(0,-1)                
-            },
-        ],
-        [
-            function(enemy){                
-              //  enemy.Move(0,1)              
-            },
-        ],
-        [
-            function(enemy){              
-              //enemy.Move(0,1)              
-            },
-        ],
-        [
-            function(enemy){ 
-            },
-        ],
-        [
-            function(enemy){
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-                    notasPool.Spawn("nota",6,3,-1,0);
-                    notasPool.Spawn("nota",6,1,-1,0);
-                    notasPool.Spawn("nota",6,2,-1,0);
-                }});
-            },
-        ],
-        [
-            function(enemy){ 
-            },
-        ],
-        [
-            function(enemy){
-                enemy.scene.time.addEvent({ callbackScope: enemy, delay: 0, callback: function(){
-               //    this.Move(0,-1)
-                }});
-            },
-        ], [
-            function(enemy){               
-                 // enemy.Move(0,-1)                 
-            },
-        ],                
-                //new Nota(enemy.scene,6,0,0,-1).AddKeyword({adagio:null}) para adagio
-        [
-            function(enemy){       
-                notasPool.Spawn("nota",6,0,-1,0);              
-            },
-        ],
-        [
-            function(enemy){                
-              //  enemy.Move(0,1);                
-            },
-        ],
-        [
-            function(enemy){    
-              notasPool.Spawn("nota",6,1,-1,0);              
-            },
-        ],
-        [
-            function(enemy){                
-             // enemy.Move(0,1)                
-            },
-        ],
-        [
-            function(enemy){       
-              notasPool.Spawn("nota",6,2,-1,0);              
-            },
-        ],
-     
-        [
-            function(enemy){               
-              //  enemy.Move(0,1)              
-            },
-        ],
-        [
-            function(enemy){     
-              notasPool.Spawn("nota",6,3,-1,0);             
-            },
-        ],
-        [
-            function(enemy){               
-              // enemy.Move(0,1)                 
-            },
-        ],
-        [
-            function(enemy){    
-              notasPool.Spawn("nota",6,4,-1,0);
-            },
-        ],
-        [
-            function(enemy){
-            },
-        ],
-        [
-            function(enemy){
-              notasPool.Spawn("nota",6,4,-1,0);
-            },
-        ],
-        [
-            function(enemy){  
-           // enemy.Move(0,-1) 
-            },
-        ],[
-            function(enemy){
-                notasPool.Spawn("nota",6,3,-1,0);
-            },
-        ],
-        [
-            function(enemy){
-             // enemy.Move(0,-1)
-            },
-        ],
-        [
-            function(enemy){
-              notasPool.Spawn("nota",6,2,-1,0);
-            },
-        ],
-        [
-            function(enemy){
-            //    enemy.Move(0,-1)
-            },
-        ],
-        [
-            function(enemy){ 
-              notasPool.Spawn("nota",6,1,-1,0);
-            },
-        ],
-        [
-            function(enemy){
-            //  enemy.Move(0,-1) 
-            },
-        ],
-        [
-            function(enemy){
-              notasPool.Spawn("nota",6,0,-1,0);
-            },
-        ],
-        [
-            function(enemy){
-            },
-        ],
-        [
-            function(enemy){
-             // enemy.Move(0,1)  
-            },
-        ],
-        [
-            function(enemy){
- 
-          //enemy.Move(0,1)     
-            },
-        ],
-        [
-            function(enemy){   
-            },
-        ],
-        [
-            function(enemy){ 
-              notasPool.Spawn("nota",6,2,-1,0).AddKeyword({adagio:null});   
-            },
-        ],
-        [
-            function(enemy){ 
-           //     enemy.Move(0,-1)     
-            },
-        ],
-        [
-            function(enemy){
-         //       enemy.Move(0,1)      
-            },
-        ],
-        [
-            function(enemy){ 
-                notasPool.Spawn("nota",6,2,-1,0).AddKeyword({allegro:null});
-            },
-        ],
-
-    ]*/
-    /*
-    enemyActions:
-    [
-        [//Compas 1
-            {
-                notes:
-                [
-                    {
-                        posY: 2,
-                        tipoNota: 1
-                    }
-                ],
-                move:
-                {
-                    y: 0
-                }
-            }
-        ],
-        [//Compas 2
-            {
-                notes:
-                [
-                ],
-                move:
-                {
-                    y: 1
-                }
-            }
-        ],
-        [//Compas 3
-            {
-                notes:
-                [
-                    {
-                        posY: 3,
-                        tipoNota: 1
-                    }
-                ],
-                move:
-                {
-                    y: -1
-                }
-            },
-            {
-                notes:
-                [
-                    {
-                        posY: 2,
-                        tipoNota: 1
-                    }
-                ],
-                move:
-                {
-                    y: 2
-                }
-            },
-            {
-                notes:
-                [
-                    {
-                        posY: 4,
-                        tipoNota: 1
-                    }
-                ],
-                move:
-                {
-                    y: 0
-                }
-            }
-        ],
-        [//Compas 4
-            {
-                notes:
-                [
-                ],
-                move:
-                {
-                    y: 1
-                }
-            }
-        ],
-    ]
-        */
 };
 export default testEnemy;
