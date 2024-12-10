@@ -25,7 +25,7 @@ export default class Instrumento{
         if(instrumentConfig instanceof Instrumento){
             //Modificar solo lo que debería del instrumento ya creado
             for(let key in this.listOfGetValuesOnCreatedInstrument){
-                this[this.listOfGetValuesOnCreatedInstrument[key]] = instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]];
+                    this[this.listOfGetValuesOnCreatedInstrument[key]] = instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]];
             }
         }else{
             Object.keys(instrumentConfig).forEach(key => {

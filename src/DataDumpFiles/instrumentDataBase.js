@@ -12,18 +12,15 @@ const InstrumentDataBase = [
     tipoNotas: 0,
 
     noteKeywords: {allegro:null},
-
-    instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}, ancla: 2}
 },
 {//1
     nombre: "Piano",
     description: 
 `You know what to do.`,
     numeroNotas: 1,
-    tipoNotas: 1,
+    tipoNotas: 0,
     baseCooldown: 4,
-    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
-    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 0}}
+    notePositionMod: [{x:0,y:1},{x:0,y:0},{x:0,y:-1}],
 }, 
 {//2
     nombre: "Bell",//cascabel
@@ -272,7 +269,7 @@ and dance to them too.`,
         }});
     }
 },
-{//1
+{//16
     nombre: "Triangle",
     description: 
 `One of the world's best shapes.`,
@@ -283,9 +280,9 @@ and dance to them too.`,
     ThrowNotes:function(){
         this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
     },
-    noteKeywords:{vibrato:null},
+    noteKeywords:{forte:null},
 }, 
-{//1
+{//17
     nombre: "Saxophone",
     description: 
 `Just play that sax, babe!`,

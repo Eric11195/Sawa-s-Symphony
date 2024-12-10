@@ -63,7 +63,7 @@ export default class combatScene extends Phaser.Scene {
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
         clockInstance = new Clock(this, this.enemyList[this.currentEnemyIndex].bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[7], InstrumentDataBase[14]);
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[3]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);

@@ -144,6 +144,9 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
     }
 
     DestroyMe(){
+        this.emitter.setVisible(false);
+        this.forteImg.setVisible(false);
+        this.silentImg.setVisible(false);
         this.emitter.pause();
         this.pool.Release(this);
     }
