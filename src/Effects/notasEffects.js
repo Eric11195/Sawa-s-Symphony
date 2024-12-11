@@ -14,7 +14,7 @@ const notaEffects = {
         nota.piano = true;
     },
     //Venom, it deals X damage and then it halves
-    earworm: function(nota,earwormToAdd){
+    earworm: function(nota,earwormToAdd){ //--------------------------------------------------------------------------------------------------------------------
         nota.earworm+=earwormToAdd;
         //console.log("earworm:", nota.earworm);
     },
@@ -26,7 +26,7 @@ const notaEffects = {
         nota.speed =(1/2);
     },
     //effects on ally note touch
-    accompaniment: function(nota,efectosAccompaniment)
+    accompaniment: function(nota,efectosAccompaniment) //--------------------------------------------------------------------------------------------------------------------
     {
         if(efectosAccompaniment.other)
             Object.keys(efectosAccompaniment.other).forEach(key => {
@@ -43,7 +43,7 @@ const notaEffects = {
         nota.silent+=silentToAdd;
     },
     //damages 1 note
-    damage: function(nota){
+    damage: function(nota){ 
         nota.tipoNota--;
         if(nota.tipoNota < 0){
             nota.AddKeyword({destroy:null});
@@ -91,7 +91,7 @@ const notaEffects = {
     },
     moveNote: function (nota, newPos){
 
-        nota.x += newPos.x * TileDiffX();
+        nota.x += newPos.x * TileDiffX() + TileDiffX()/2;
         if(nota.y + newPos.y*TileDiffY() >= Tile00PositionY() && nota.y + newPos.y*TileDiffY() <= Tile00PositionY() + 4*TileDiffY()){
             nota.y += newPos.y * TileDiffY();
         }
@@ -123,7 +123,7 @@ const notaEffects = {
         nota.speed = 3;
     }, 
     //efectos al chocar con notas del rival
-    clash: function(nota, efectosClash){
+    clash: function(nota, efectosClash){ //--------------------------------------------------------------------------------------------------------------------
         if(efectosClash.other)
             Object.keys(efectosClash.other).forEach(key => {
                 nota.applyToEnemyNotes[key] = efectosClash.other[key];

@@ -1,4 +1,4 @@
-import { AddToFunctionAfter,AddToFunctionBefore } from "../Utils/addToFunction.js";
+import { AddToFunctionAfter ,AddToFunctionBefore } from "../Utils/addToFunction.js";
 import NotasEffects from "../Effects/notasEffects.js"
 import { notasPool } from "../Scenes/combatScene.js";
 import Proyectil from "../Projectiles/baseprojectile.js";
@@ -33,14 +33,12 @@ const artifactList = [
     },
     {
         effect: function(player){
-            console.log("miau pls");
-            notasPool.Spawn = function(whatToSpawn,x, y, direction,tipoNota){
-                console.log("arguments");
-                notasPool.Spawn(whatToSpawn,x,y,direction,tipoNota).AddKeyword({earworm:1});
-            }
+            NotasEffects.earworm = function(nota,earwormToAdd){ //--------------------------------------------------------------------------------------------------------------------
+                nota.earworm+=2*earwormToAdd;
+            };
         },
-        nombre: "Poisonous Voice",
-        description: `They will remember you`,
+        nombre: "Grunge",
+        description: `Pleasant Infectation`,
     },
 
 ];

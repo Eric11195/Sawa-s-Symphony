@@ -14,6 +14,7 @@ export default class mainmenu extends Phaser.Scene
     }
     preload()
     {
+
         //this.load.image("sawa", "./assets/img/fathomgames500px.png");
         
     }
@@ -33,6 +34,7 @@ export default class mainmenu extends Phaser.Scene
 
         /*
         const sprite = this.add.sprite(600,300,"sawa").setInteractive();
+
         sprite.on('pointerdown',()=>
             {
                 //console.log(2);

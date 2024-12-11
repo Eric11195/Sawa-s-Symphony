@@ -28,11 +28,11 @@ export function InstrumentCdImageDiffX(){
 }
 
 export function npcDialoguePositionX(){
-    return 300;
+    return 210;
 }
 
 export function npcDialoguePositionY(){
-    return 100;
+    return 150;
 }
 
 export function npcReturnButtonPositionX(){

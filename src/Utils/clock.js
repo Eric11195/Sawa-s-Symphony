@@ -1,7 +1,8 @@
 /**Is doubled cause it checks this time before and after the beat */
-const tempoErrorMargin = 100;
+const tempoErrorMargin = 125;
 
 export default class Clock{
+    alreadyPressedThisTurn = false;
     /** time of the last key Pressed, updated with isTempo */
     lastPress;
     /** ms between beats */

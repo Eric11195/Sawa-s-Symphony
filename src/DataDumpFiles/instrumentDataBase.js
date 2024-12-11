@@ -10,18 +10,17 @@ const InstrumentDataBase = [
     baseCooldown: 2,
     numeroNotas: 1,
     tipoNotas: 0,
-    noteKeywords: {earworm:2,forte:null,allegro:null, accompaniment:{silent:2}},
-    instrumentKeywords: {move:{x:0,y:-1}, vibrato:{x:0,y:0}, ancla: 2}
+
+    noteKeywords: {allegro:null},
 },
 {//1
     nombre: "Piano",
     description: 
 `You know what to do.`,
     numeroNotas: 1,
-    tipoNotas: 1,
+    tipoNotas: 0,
     baseCooldown: 4,
-    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
-    instrumentKeywords: {sostenuto:{pos:{x:0,y:0}, tipoNota: 0}}
+    notePositionMod: [{x:0,y:1},{x:0,y:0},{x:0,y:-1}],
 }, 
 {//2
     nombre: "Bell",//cascabel
@@ -59,7 +58,7 @@ was electric.`,
     tipoNotas: 0,
     baseCooldown: 4,
     noteKeywords: {presto:null,clash:{self:{moveYRandom:null},other:{adagio:1}},accompaniment:{self:{moveYRandom:null},other:{allegro:null}}}
-    //instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}
+    //instrumentKeywords: {vibrato:{pos:{x:0,y:0}}}clash:{self:{moveYRandom:null},other:{adagio:1}}
 },
 {//6
     nombre: "Golden_Lute",
@@ -200,7 +199,7 @@ and dance to them too.`,
     nombre:"Gong",
     description: `Gonggggggggggg`,
     numeroNotas: 1,
-    numeroNotas: 1,
+    numeroNotas:1,
     tipoNotas: 2,
     ThrowNotes: function(){
         for(let i = 0; i < this.notePositionMod.length; i++){
@@ -235,15 +234,15 @@ and dance to them too.`,
     description: `Nothin' But A Funky Beat`,
     numeroNotas: 1,
     tipoNotas: 0,
+    counter: 0,
     baseCooldown: 4,
     ThrowNotes:function(){
-        if (this.tipoNotas < 0) this.tipoNotas = 0;
-        if (this.tipoNotas < 3){
-            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
-            this.tipoNotas++;
+        if (this.counter < 3){
+            this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.counter);
+            this.counter++;
         }
         else{
-            this.tipoNotas = 0;
+            this.counter = this.tipoNotas;
             
             for (let i= 0; i<3;i++){
                 this.sceneRef.time.addEvent({delay: clockInstance.delayTimer*0.33*i, callback: ()=>{
@@ -258,8 +257,9 @@ and dance to them too.`,
 {//15
     nombre:"Amp",
     description: `LOUDER!`,
-    baseCooldown: 6,
+    baseCooldown: 10,
     tipoNotas: 0,
+    delay: 3,
     instrumentKeywords: {sostenuto:{pos:{x:0,y:0}}},
     ThrowNotes:function(){
         this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
@@ -269,6 +269,64 @@ and dance to them too.`,
         }});
     }
 },
+{//16
+    nombre: "Triangle",
+    description: 
+`One of the world's best shapes.`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    baseCooldown:5,
+    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0}/*,{x:0,y:-1}*/],
+    ThrowNotes:function(){
+        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
+    },
+    noteKeywords:{forte:null},
+}, 
+{//17
+    nombre: "Saxophone",
+    description: 
+`Just play that sax, babe!`,
+    numeroNotas: 1,
+    tipoNotas: 2,
+    baseCooldown:5,
+    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0},{x:0,y:1},{x:0,y:-1}],
+    instrumentKeywords: {move:{x:0,y:1}},
+    noteKeywords:{adagio:null},
+}, 
+
+/*{//XX
+    nombre:"Bajo",
+    description: `Absence Makes The Heart Grow Fonder`,
+    baseCooldown: 8,
+    tipoNotas: 0,
+    ThrowNotes:function(){
+
+    }
+}*/
+{//18
+    nombre: "Xylophone",
+    description: 
+`Used by kids and adults equally`,
+    numeroNotas: 1,
+    tipoNotas: 1,
+    baseCooldown:5,
+    notePositionMod: [{x:0,y:0},{x:0,y:1},{x:0,y:-1}],
+    instrumentKeywords: {move:{x:0,y:0}},
+    noteKeywords:{accompaniment:{other:{forte:null,silent:2}}},
+   
+}, 
+{//19
+    nombre: "Carraca",
+    description: 
+`So hideous it infects everyting in touch with it`,
+    numeroNotas: 1,
+    tipoNotas: 0,
+    baseCooldown:8,
+    notePositionMod: [{x:0,y:-4},{x:0,y:-3},{x:0,y:-2},{x:0,y:-1},{x:0,y:0},{x:0,y:1},{x:0,y:2},{x:0,y:3},{x:0,y:4}],
+    instrumentKeywords: {move:{x:0,y:0}},
+    noteKeywords:{clash:{other:{earworm:1}},accompaniment:{self:{earworm:1},other:{earworm:1}},earworm:0,adagio:null},
+   
+}, 
 ];
 
 export default InstrumentDataBase;

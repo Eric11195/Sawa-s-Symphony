@@ -38,7 +38,7 @@ const instrumentEffects = {
             //let vibratoPos;
             console.log(config);
             for(let i = 0; i < config.length; i++){
-                console.log(config[i]);
+                //console.log(config[i]);
                 let vibratoPos = {x:config[i].x+x, y:config[i].y+y};
                 if(vibratoPos.x >= 0 && vibratoPos.x <7 && vibratoPos.y >= 0 && vibratoPos.y < 5){
                     notasPool.Spawn("vibrato", vibratoPos.x,vibratoPos.y, 1);//new Vibrato(this.sceneRef, vibratoPos.x,vibratoPos.y, 1);
@@ -52,6 +52,10 @@ const instrumentEffects = {
     ancla: function(instrument, time){
         let auxAncla = function(x,y,cdToWait, wait, thisInstrument){
             thisInstrument.sceneRef.player.ancla = time + cdToWait;
+            console.log(thisInstrument.sceneRef.player.anchorImg);
+            thisInstrument.sceneRef.player.anchorImg.x = thisInstrument.sceneRef.player.x;
+            thisInstrument.sceneRef.player.anchorImg.y = thisInstrument.sceneRef.player.y;
+            thisInstrument.sceneRef.player.anchorImg.setVisible(true);
         }
         instrument.Play = AddToFunctionAfter(instrument.Play.bind(instrument), auxAncla.bind(instrument));
     },
@@ -75,12 +79,16 @@ const instrumentEffects = {
                 instrument.actualCooldown = instrument.baseCooldown;
                 //se movio
                 clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+                instrument.sceneRef.player.soloImg.setVisible(false);
             }
         }}
         //clockInstance.on("BeatNow", );
         
         let suscribe = function(){
             if(mySolistFunction) clockInstance.eventEmitter.off("BeatNow", mySolistFunction, instrument);
+            instrument.sceneRef.player.soloImg.setVisible(true);
+            instrument.sceneRef.player.soloImg.x = instrument.sceneRef.player.x;
+            instrument.sceneRef.player.soloImg.y = instrument.sceneRef.player.y;
             mySolistFunction = myNewFunc(instrument.sceneRef.player.position.x, instrument.sceneRef.player.position.y);
             clockInstance.eventEmitter.on("BeatNow", mySolistFunction, instrument);
             //instrument.cdCanBeReduced = false;

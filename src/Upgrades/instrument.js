@@ -11,9 +11,10 @@ export default class Instrumento{
     tipoNotas = 1;
     actualCooldown = 0;
     baseCooldown = 0;
+    counter = this.tipoNotas;
     noteKeywords={};
     cdCanBeReduced = true;
-    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate","tipoNotas"]/*, "instrumentKeywords" ];*/
+    listOfGetValuesOnCreatedInstrument = ["Play","ProducirNotas","ThrowNotes", "SpawnNotes", "noteKeywords", "nombre", "numeroNotas", "notePositionMod", "baseCooldown", "description", "Syncopate","tipoNotas","counter"]/*, "instrumentKeywords" ];*/
 
     cdImage;
     /**
@@ -24,7 +25,7 @@ export default class Instrumento{
         if(instrumentConfig instanceof Instrumento){
             //Modificar solo lo que debería del instrumento ya creado
             for(let key in this.listOfGetValuesOnCreatedInstrument){
-                this[this.listOfGetValuesOnCreatedInstrument[key]] = instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]];
+                    this[this.listOfGetValuesOnCreatedInstrument[key]] = instrumentConfig[this.listOfGetValuesOnCreatedInstrument[key]];
             }
         }else{
             Object.keys(instrumentConfig).forEach(key => {

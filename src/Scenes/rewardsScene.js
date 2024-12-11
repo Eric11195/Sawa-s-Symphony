@@ -71,10 +71,9 @@ export default class RewardsScene extends Phaser.Scene {
     create(){
         //this.player.AddShells(this.baseshells+(this.extrashells*this.performanceModifier*this.player.GetLevel()));
         this.shellDisplay = new ShellDisplay(this);
-        this.events.emit(SHELL_UPDATE_EVENT, 100);
+        this.events.emit(SHELL_UPDATE_EVENT, 25);
         //Spawn rewards
         this.CreateRewards(1);
-
 
         //Spawn next scene Button
         this.nextSceneButton = this.add.image(1150,360, "Go_To_Lobby_Button").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadLobbyScene, this);
@@ -85,7 +84,7 @@ export default class RewardsScene extends Phaser.Scene {
         ++rewardNumber;
         this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.upgrade, 3, this.player,true));
         ++rewardNumber;
-        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 2, this.player,false));
+        this.rewards.push(new Reward(this,{x:MidscreenX(), y:200*rewardNumber}, RewardClass.artifact, 1, this.player,true));
     }
 
 

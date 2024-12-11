@@ -31,10 +31,22 @@ export default class rewardsLobbyScene extends Phaser.Scene{
         //Adds al NPCs to spawn pool
         this.npcSpawnPool = [fansAferrimos, managerEstirado, toxicFan,mechanic];
 
+        let randomInts = [undefined,undefined];
+        randomInts[0] = Math.floor(this.npcSpawnPool.length*Math.random());
+        do{
+            randomInts[1]=Math.floor(this.npcSpawnPool.length*Math.random());
+            console.log(randomInts[0], "!=", randomInts[1]);
+        }while(randomInts[0]==randomInts[1]);
+
+        for(let i = 0; i < randomInts.length; i++){
+            console.log(i);
+            new this.npcSpawnPool[randomInts[i]](this,this.player);
+        }
+
         //Spawn all NPCs
         //Por el momento spawnea todos los npcs
-        for(let i = 0; i < this.npcSpawnPool.length; i++)
-            new this.npcSpawnPool[i](this,this.player);
+        //for(let i = 0; i < this.npcSpawnPool.length; i++)
+          //  new this.npcSpawnPool[i](this,this.player);
         //new this.npcSpawnPool[Math.floor(this.npcSpawnPool.length*Math.random())](this,this.player);
     }
 
