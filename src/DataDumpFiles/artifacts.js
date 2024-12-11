@@ -18,8 +18,6 @@ const artifactList = [
             player.Syncopate = AddToFunctionAfter(player.Syncopate, function(x,y){
                 notasPool.Spawn("nota",x,y,1,0);
             });
-            //NotasEffects.silent = AddToFunctionBefore(NotasEffects.silent, function(nota){nota.AddKeyword({upgrade:null})});
-
         },
         nombre: "Clown_Shoes",
         description: `MIC MIC`,
