@@ -53,7 +53,7 @@ export default class Player extends BoardUnit{
         clockInstance.eventEmitter.on("BeatNow", this.BeatFunction,this);
         // Agregamos el caballero a las físicas para que Phaser lo tenga en cuenta
 		scene.physics.add.existing(this);
-        this.body.setSize(250, 150, true);
+        this.body.setSize(20, 20, true);
 
         if(Syncopate !== undefined) this.Syncopate = Syncopate;
         if(Tempo !== undefined) this.Tempo = Tempo;
