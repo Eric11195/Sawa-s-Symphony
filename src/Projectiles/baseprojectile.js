@@ -106,7 +106,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             this.emitter.pause();
             this.emitter.setVisible(false);
         }
-        console.log(Object.keys(this.applyToEnemyNotes).length);
+        //console.log(Object.keys(this.applyToEnemyNotes).length);
     }
 
     /*config needs: 

@@ -75,7 +75,6 @@ export default class RewardsScene extends Phaser.Scene {
         //Spawn rewards
         this.CreateRewards(1);
 
-
         //Spawn next scene Button
         this.nextSceneButton = this.add.image(1150,360, "Go_To_Lobby_Button").setDisplaySize(200,200).setInteractive().on("pointerdown", this.LoadLobbyScene, this);
     }

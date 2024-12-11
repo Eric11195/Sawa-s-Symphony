@@ -13,7 +13,6 @@ export default class RewardImages extends DescriptionImages{
                 super(scene,x,y,InstrumentUpgrades[index].nombre,InstrumentUpgrades[index].nombre, InstrumentUpgrades[index].description);
             break;
             case RewardClass.artifact:
-                console.log();
                 super(scene,x,y,artifactList[index].nombre,artifactList[index].nombre, artifactList[index].description);
             break;
         }
@@ -24,6 +23,7 @@ export default class RewardImages extends DescriptionImages{
             this.shelltext = this.scene.add.text(x, y+45, price,{ fontFamily: 'Arial', color: '#e69138', fontSize: '32px', fontFamily:"Grandstander" }).setOrigin(1,0);
             this.shellimage = this.scene.add.image(x, y+47,"shell").setOrigin(0,0);
         }
+        this.price = price;
     }
     RemoveShellUI(){
         this.shellrect.destroy();
@@ -32,6 +32,7 @@ export default class RewardImages extends DescriptionImages{
     }
     PrepareToBeErased(){
         super.PrepareToBeErased();
+        //console.log(this.price);
         if(this.price>0)
             this.RemoveShellUI();
     }
