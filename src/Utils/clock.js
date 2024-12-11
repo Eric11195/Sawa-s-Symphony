@@ -1,5 +1,5 @@
 /**Is doubled cause it checks this time before and after the beat */
-const tempoErrorMargin = 2;
+const tempoErrorMargin = 125;
 
 export default class Clock{
     alreadyPressedThisTurn = false;
@@ -53,7 +53,6 @@ export default class Clock{
     /**Updates the last beat timer */
     UpdateLastBeat(){
         this.lastBeat = new Date();
-        this.alreadyPressedThisTurn = false;
         //console.clear();
         this.eventEmitter.emit("BeatNow");
     }
@@ -74,9 +73,8 @@ export default class Clock{
         if(cd > 1) auxBool = false;
         else{
             let timeTillNextBeat = this.GetTimeSinceBeat();
-            auxBool = ((new Date() - this.lastPress > this.delayTimer/2) && ((timeTillNextBeat < this.delayTimer/tempoErrorMargin && cd < 1 && !this.alreadyPressedThisTurn) || (timeTillNextBeat > this.delayTimer - this.delayTimer/tempoErrorMargin && cd<=1)));
+            auxBool = ((new Date() - this.lastPress > this.delayTimer/4) && ((timeTillNextBeat < tempoErrorMargin && cd < 1) || (timeTillNextBeat > this.delayTimer - tempoErrorMargin && cd<=1)));
             beforeBeat = timeTillNextBeat > this.delayTimer - tempoErrorMargin;
-            this.alreadyPressedThisTurn = !beforeBeat;
         }
         this.lastPress = new Date();
         return {canBePlayed:auxBool, beforeBeat:beforeBeat};
