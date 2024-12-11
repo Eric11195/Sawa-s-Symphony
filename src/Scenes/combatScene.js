@@ -63,7 +63,7 @@ export default class combatScene extends Phaser.Scene {
         this.add.image(0,0,"fondo").setDisplaySize(this.game.scale.width, this.game.scale.height).setOrigin(0,0).depth = -1;
         clockInstance = new Clock(this, this.enemyList[this.currentEnemyIndex].bpm);
         if(this.player===undefined){
-            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[3],InstrumentDataBase[19]);
+            this.player = new Player(this, InstrumentDataBase[0], InstrumentDataBase[3],InstrumentDataBase[18]);
         }else{
             //Si ya tenemos player le damos los parametros del anterior
             this.player = new Player(this, this.player.instrumentos[0], this.player.instrumentos[1], this.player.instrumentos[2], this.player.Syncopate, this.player.Tempo);
@@ -198,13 +198,13 @@ export default class combatScene extends Phaser.Scene {
         music.stop();
         if(this.enemyPoints > this.playerPoints){
             //Pantalla de derrota
-            //console.log("Perdiste");
+            console.log("Perdiste");
             this.scene.start("winMenu", {win:false, nCombats: this.currentEnemyIndex});
         }else{
             console.log(this.enemyList.length, "==", this.currentEnemyIndex);
             if(this.currentEnemyIndex==this.enemyList.length-1){
                 //Pantalla de Victoria
-                //console.log("Ganaste");
+                console.log("Ganaste");
                 this.scene.start("winMenu", {win:true, nCombats: this.currentEnemyIndex});
             }else{
                 this.scene.start("rewardsScene", {player:this.player, enemyIndex: ++this.currentEnemyIndex});

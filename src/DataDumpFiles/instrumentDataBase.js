@@ -310,11 +310,8 @@ and dance to them too.`,
     numeroNotas: 1,
     tipoNotas: 1,
     baseCooldown:5,
-    notePositionMod: [/*{x:0,y:1},*/{x:0,y:0},{x:0,y:1},{x:0,y:2}],
+    notePositionMod: [{x:0,y:0},{x:0,y:1},{x:0,y:-1}],
     instrumentKeywords: {move:{x:0,y:0}},
-    ThrowNotes:function(){
-        this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
-    },
     noteKeywords:{accompaniment:{other:{forte:null,silent:2}}},
    
 }, 
