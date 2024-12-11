@@ -46,7 +46,7 @@ export default class combatScene extends Phaser.Scene {
         else{
             this.player = data.player;
         }
-        console.log(data.enemyIndex);
+        //console.log(data.enemyIndex);
         this.currentEnemyIndex = data.enemyIndex;
     }
     
@@ -198,13 +198,13 @@ export default class combatScene extends Phaser.Scene {
         music.stop();
         if(this.enemyPoints > this.playerPoints){
             //Pantalla de derrota
-            console.log("Perdiste");
+            //console.log("Perdiste");
             this.scene.start("winMenu", {win:false, nCombats: this.currentEnemyIndex});
         }else{
             console.log(this.enemyList.length, "==", this.currentEnemyIndex);
             if(this.currentEnemyIndex==this.enemyList.length-1){
                 //Pantalla de Victoria
-                console.log("Ganaste");
+                //console.log("Ganaste");
                 this.scene.start("winMenu", {win:true, nCombats: this.currentEnemyIndex});
             }else{
                 this.scene.start("rewardsScene", {player:this.player, enemyIndex: ++this.currentEnemyIndex});

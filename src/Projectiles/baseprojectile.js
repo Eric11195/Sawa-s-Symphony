@@ -24,7 +24,6 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
         this.setScale(2,2);
         //this.direction = direction;
         this.speed = 1;
-
         scene.physics.add.existing(this);
         this.body.setSize(20, 20, true);
 
@@ -34,10 +33,16 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             this.silentImg.setVisible(this.silent>0);
         });
         
+        this.accompanimentMarker = this.scene.add.image(0,0,"accompanimentMarker");
+        this.accompanimentMarker.setVisible(false);
+        this.accompanimentMarker.setOrigin(0,0.5);
+        this.accompanimentMarker.setDisplaySize(40,40);
+
         this.forteImg = this.scene.add.image(0,0,"forteShield");
         this.forteImg.setVisible(false);
         this.forteImg.setOrigin(0,0.5);
         this.forteImg.setDisplaySize(40,40);
+
         this.silentImg = this.scene.add.image(0,0,"silentMarker");
         this.silentImg.setVisible(false);
         this.silentImg.setDisplaySize(50,50);
@@ -106,7 +111,7 @@ export default class Proyectil extends Phaser.GameObjects.Sprite{
             this.emitter.pause();
             this.emitter.setVisible(false);
         }
-        console.log(Object.keys(this.applyToEnemyNotes).length);
+        //console.log(Object.keys(this.applyToEnemyNotes).length);
     }
 
     /*config needs: 
