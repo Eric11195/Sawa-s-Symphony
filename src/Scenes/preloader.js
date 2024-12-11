@@ -17,10 +17,8 @@ export default class preloader extends Phaser.Scene
     }
     init()
     {
-        //console.log("1");
-    
-        
     }
+    
     preload()
     {
         //this.load.image("loading", "./assets/img/loading.png");
@@ -28,13 +26,10 @@ export default class preloader extends Phaser.Scene
         this.add.text(460,200, "Loading...",{fontFamily:"Grandstander",fontSize:"48px"});
         this.load.on('progress', value =>
             {
-                
                 progress.clear();
                 progress.fillStyle(0xffffff, 1);
 
                 progress.fillRect(460, 270, 400 * value, 100);
-
-    
             });
             this.load.on('complete', () =>
                 {
@@ -59,8 +54,6 @@ export default class preloader extends Phaser.Scene
                 this.load.image("title", "./assets/img/title.png");
                 
 
-                
-
                 this.load.image(bossEnemy.name, bossEnemy.imagePath);
                 this.load.image("sawa", "./assets/img/fathomgames500px.png");
                 this.load.image("rhythmMarker", "./assets/img/rhythmMarker.png");
@@ -80,7 +73,6 @@ export default class preloader extends Phaser.Scene
                 this.load.image("sostenuto", "./assets/img/sostenuto.png");
         
                 this.load.spritesheet('notes', 'assets/img/notasSpriteSheet.png', {frameWidth: 32, frameHeight: 32});
-        
 
                 //Carga de NPCs
                 this.load.image("fansAferrimos", "./assets/img/NPCs/fansAferrimos.png");

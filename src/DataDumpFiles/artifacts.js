@@ -31,6 +31,23 @@ const artifactList = [
         nombre: "Trinity_Pop",
         description: `3333 BPM`,
     },
+    {
+        effect: function(player){
+            NotasEffect.earworm = function(nota,earwormToAdd){ //--------------------------------------------------------------------------------------------------------------------
+                nota.earworm+=2*earwormToAdd;
+                //console.log("earworm:", nota.earworm);
+            };
+        },
+        nombre: "Grunge",
+        description: `Pleasant Infectation`,
+    },
+    {
+        effect: function(player){
+            
+        },
+        nombre: "Excesive Vibration",
+        description: "Eardrumming"
+    }
 
 ];
 export default artifactList;
