@@ -15,8 +15,9 @@ export default class Reward{
     player;
     separationBetweenImages = 125;
     baseprice = 10;
+    choice = false;
 
-    constructor(scene, position, rewardClass, numberOfRewards, player, paid = false){
+    constructor(scene, position, rewardClass, numberOfRewards, player, paid = false, forceInstrument){
         this.numberOfRewards = numberOfRewards;
         this.rewardClass = rewardClass;
         this.player = player;
@@ -41,7 +42,8 @@ export default class Reward{
         }
         this.background = scene.add.rectangle( position.x, position.y, numberOfRewards*(100 + this.separationBetweenImages/3), 150, 0xe69138).setOrigin(0.5);
         for (let i = 0; i<numberOfRewards; i++){
-            this.choicesIndexes.push(this.randomInst(this.remainingitems));
+            if (forceInstrument === undefined) this.choicesIndexes.push(this.randomInst(this.remainingitems));
+            else this.choicesIndexes.push(forceInstrument);
             let price = 0;
             if (paid) price = Math.floor(priceMod*this.randomPrice()); 
             let index = this.clicOnRewardFunc(this.choicesIndexes[i], price);
@@ -68,6 +70,7 @@ export default class Reward{
                 this.scene.events.emit(SHELL_UPDATE_EVENT, -price);
                 //Elimina el index escogido de la lista
                 this.choicesIndexes.splice(this.choicesIndexes.indexOf(index),1);
+                this.choice = true;
             }
             else{console.log("Te faltan conchas chaval")} //TODO: Mensaje de conchas insuficientes
 

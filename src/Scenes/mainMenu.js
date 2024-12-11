@@ -27,7 +27,7 @@ export default class mainmenu extends Phaser.Scene
         //Play Button
         this.add.rectangle(660,375,400,200,0xe69138).setInteractive().on('pointerdown',()=>
             {
-                this.scene.start("combatScene",{ enemyIndex:0});
+                this.scene.start("startScene");
             }
         )
         this.add.text(590,330, `Play`,{fontFamily:"Grandstander",fontSize:"64px"});
