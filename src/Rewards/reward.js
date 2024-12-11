@@ -22,17 +22,20 @@ export default class Reward{
         this.player = player;
         this.scene = scene;
         this.paid = paid;
+        let priceMod = 1;
         switch (rewardClass){
 
             case RewardClass.instrument:
                 //console.log(InstrumentsLeft);
                 this.remainingitems = InstrumentsLeft;
+                priceMod = 1.2;
                 break;
             case RewardClass.upgrade:
                 this.remainingitems = UpgradesLeft;
                 break;
             case RewardClass.artifact:
                 this.remainingitems = ArtifactsLeft;
+                priceMod = 1.7;
                 break;
 
         }
@@ -40,7 +43,7 @@ export default class Reward{
         for (let i = 0; i<numberOfRewards; i++){
             this.choicesIndexes.push(this.randomInst(this.remainingitems));
             let price = 0;
-            if (paid) price = this.randomPrice(); 
+            if (paid) price = Math.floor(priceMod*this.randomPrice()); 
             let index = this.clicOnRewardFunc(this.choicesIndexes[i], price);
             this.choicesImages.push(new RewardImages(scene, this.getImagePositionX(position.x,i,numberOfRewards), position.y, this.choicesIndexes[i], rewardClass,price).setInteractive().on("pointerdown", index, this));
         }
