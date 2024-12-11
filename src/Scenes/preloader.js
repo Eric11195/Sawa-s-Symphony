@@ -105,6 +105,7 @@ export default class preloader extends Phaser.Scene
                 this.load.image("silentMarker", "./assets/img/Rest.png");
                 this.load.image("soloMarker", "./assets/img/Solo.png");
                 this.load.image("anchorMarker", "./assets/img/Anchor.png");
+                this.load.image("accompanimentMarker", "./assets/img/Accompaniment.png");
     }
     create() {
     

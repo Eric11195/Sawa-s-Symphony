@@ -295,7 +295,6 @@ and dance to them too.`,
         this.SpawnNotes(this.sceneRef.player.position.x,this.sceneRef.player.position.y,this.tipoNotas);
     },
     noteKeywords:{adagio:null},
-   
 }, 
 
 /*{//XX
