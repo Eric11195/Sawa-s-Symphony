@@ -33,21 +33,13 @@ const artifactList = [
     },
     {
         effect: function(player){
-            NotasEffect.earworm = function(nota,earwormToAdd){ //--------------------------------------------------------------------------------------------------------------------
+            NotasEffects.earworm = function(nota,earwormToAdd){ //--------------------------------------------------------------------------------------------------------------------
                 nota.earworm+=2*earwormToAdd;
-                //console.log("earworm:", nota.earworm);
             };
         },
         nombre: "Grunge",
         description: `Pleasant Infectation`,
     },
-    {
-        effect: function(player){
-            
-        },
-        nombre: "Excesive Vibration",
-        description: "Eardrumming"
-    }
 
 ];
 export default artifactList;
