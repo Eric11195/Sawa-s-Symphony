@@ -15,8 +15,7 @@ export default class Enemy extends BoardUnit{
             .then((json) => console.log(json));
         */
             this.setOrigin();
-        if (enemyData == bossEnemy) this.setDisplaySize(200,432);
-        else this.setDisplaySize(100,100);
+        this.setDisplaySize(enemyData.imw, enemyData.imh);
         this.enemyActions = enemyData.enemyActions;
         this.enemyActionIndex = 0;
         clockInstance.eventEmitter.on("BeatNow", this.ChargeNextBeatActions,this);

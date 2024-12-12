@@ -6,6 +6,8 @@ import { notasPool } from "../../Scenes/combatScene.js";
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const bossEnemy = {
+    imw: 200,
+    imh: 436,
     startPosY: 2,
     height:15,
     name: "bossEnemy",
