@@ -17,12 +17,14 @@ export default class mainmenu extends Phaser.Scene
     {        
     }
     create() {
-        if(this.win)
+        if(this.win){
             this.add.text(660,100, "You Win",{fontFamily:"Grandstander",fontSize:"128px"}).setOrigin(0.5).setTint(0x179bae);
+            this.add.text(475,150, "Vegan Seadrake Defeated",{fontFamily:"Grandstander",fontSize:"32px"}).setTint(0x179bae);
+        }
         else{
             this.add.text(660,100, "You Lose",{fontFamily:"Grandstander",fontSize:"128px"}).setOrigin(0.5).setTint(0xe69138);
+            this.add.text(475,150, "After Combat -> " + this.combats,{fontFamily:"Grandstander",fontSize:"32px"}).setTint(0x179bae);
         }
-        this.add.text(200,150, "After Combat -> " + this.combats,{fontFamily:"Grandstander",fontSize:"32px"}).setTint(0x179bae);
 
         this.add.rectangle(360,375,400,200,0xe69138).setInteractive().on('pointerdown',()=>
             {
