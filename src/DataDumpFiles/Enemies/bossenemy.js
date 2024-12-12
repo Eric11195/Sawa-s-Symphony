@@ -5,12 +5,12 @@ import { notasPool } from "../../Scenes/combatScene.js";
 
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
-const bossEmemy = {
+const bossEnemy = {
     startPosY: 2,
-    height:1,
+    height:15,
     name: "bossEnemy",
     bpm: 164,
-    imagePath: "./assets/img/testEnemy.png",
+    imagePath: "./assets/img/serpienteVegana.png",
     songPath: './assets/audio/Ganon-Rosario-Dale_-Zelda_-Dale-_Tema-Oficial_',
     msSongStart: 400,
     enemyActions:
@@ -1064,4 +1064,4 @@ const bossEmemy = {
     
     
 };
-export default bossEmemy;
+export default bossEnemy;

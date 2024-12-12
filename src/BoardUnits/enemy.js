@@ -1,6 +1,7 @@
 import { clockInstance } from "../Scenes/combatScene.js";
 import BoardUnit from './boardUnit.js';
 import {notasPool} from "../Scenes/combatScene.js"
+import bossEnemy from "../DataDumpFiles/Enemies/bossenemy.js";
 export default class Enemy extends BoardUnit{
     enemyActionIndex;
     enemyActions;
@@ -14,7 +15,8 @@ export default class Enemy extends BoardUnit{
             .then((json) => console.log(json));
         */
             this.setOrigin();
-        this.setDisplaySize(100,100);
+        if (enemyData == bossEnemy) this.setDisplaySize(200,432);
+        else this.setDisplaySize(100,100);
         this.enemyActions = enemyData.enemyActions;
         this.enemyActionIndex = 0;
         clockInstance.eventEmitter.on("BeatNow", this.ChargeNextBeatActions,this);
