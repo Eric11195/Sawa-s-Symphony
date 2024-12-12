@@ -2,4 +2,4 @@
 Puesto que sólo disponemos de versiones gratuitas de lucidchart, no hemos sido capaces de actualizar el documento con la clase StartScene. A continuación se halla su descripción:
 StartScene es una clase que hereda de Phaser.Scene. 
 Posee un objeto Player player, un bool rewardChosen y un PreFX nextBattleButton.
-Posee métodos constructor(), create(), StartCombatScene() y OnRewardChosen.
+Posee métodos constructor(), create(), void StartCombatScene() y void OnRewardChosen().
