@@ -4,6 +4,8 @@ import { notasPool } from "../../Scenes/combatScene.js";
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const violetEnemy = {
+    imw: 100,
+    imh: 100,
     startPosY: 0,
     name: "Violet",
     bpm: 160,

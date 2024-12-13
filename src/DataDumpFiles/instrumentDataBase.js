@@ -254,7 +254,7 @@ and dance to them too.`,
         }
     }
 },
-{//15
+/*{//XX
     nombre:"Amp",
     description: `LOUDER!`,
     baseCooldown: 10,
@@ -268,8 +268,8 @@ and dance to them too.`,
             for(let i = 0; i < 3; i++) if(this.sceneRef.player.instrumentos[i]) this.sceneRef.player.instrumentos[i].tipoNotas--;
         }});
     }
-},
-{//16
+},*/
+{//15
     nombre: "Triangle",
     description: 
 `One of the world's best shapes.`,
@@ -282,7 +282,7 @@ and dance to them too.`,
     },
     noteKeywords:{forte:null},
 }, 
-{//17
+{//16
     nombre: "Saxophone",
     description: 
 `Just play that sax, babe!`,
@@ -303,7 +303,7 @@ and dance to them too.`,
 
     }
 }*/
-{//18
+{//17
     nombre: "Xylophone",
     description: 
 `Used by kids and adults equally`,
@@ -315,7 +315,7 @@ and dance to them too.`,
     noteKeywords:{accompaniment:{other:{forte:null,silent:2}}},
    
 }, 
-{//19
+{//18
     nombre: "Carraca",
     description: 
 `So hideous it infects everyting in touch with it`,

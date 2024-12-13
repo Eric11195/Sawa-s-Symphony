@@ -4,11 +4,13 @@ import { notasPool } from "../../Scenes/combatScene.js";
 
 /**Tiene una array con todos los archivos necesarios para configurar los distintos instrumentos */
 const testEnemy = {
+    imw: 100,
+    imh: 500,
     startPosY: 2,
     height:5,
     name: "testEnemy",
     bpm: 78,
-    imagePath: "./assets/img/testEnemy.png",
+    imagePath: "./assets/img/banco.png",
     songPath: './assets/audio/Brutal_Orchestra_OST_Primary_Colours',
     msSongStart: 330,
     enemyActions:

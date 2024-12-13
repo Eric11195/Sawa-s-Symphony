@@ -16,7 +16,7 @@ export default class Reward{
     separationBetweenImages = 125;
     baseprice = 10;
 
-    constructor(scene, position, rewardClass, numberOfRewards, player, paid = false){
+    constructor(scene, position, rewardClass, numberOfRewards, player, paid = false, forceInstrument, callback){
         this.numberOfRewards = numberOfRewards;
         this.rewardClass = rewardClass;
         this.player = player;
@@ -41,10 +41,11 @@ export default class Reward{
         }
         this.background = scene.add.rectangle( position.x, position.y, numberOfRewards*(100 + this.separationBetweenImages/3), 150, 0xe69138).setOrigin(0.5);
         for (let i = 0; i<numberOfRewards; i++){
-            this.choicesIndexes.push(this.randomInst(this.remainingitems));
+            if (forceInstrument === undefined) this.choicesIndexes.push(this.randomInst(this.remainingitems));
+            else this.choicesIndexes.push(forceInstrument);
             let price = 0;
             if (paid) price = Math.floor(priceMod*this.randomPrice()); 
-            let index = this.clicOnRewardFunc(this.choicesIndexes[i], price);
+            let index = this.clicOnRewardFunc(this.choicesIndexes[i], price, callback);
             this.choicesImages.push(new RewardImages(scene, this.getImagePositionX(position.x,i,numberOfRewards), position.y, this.choicesIndexes[i], rewardClass,price).setInteractive().on("pointerdown", index, this));
         }
 
@@ -53,7 +54,7 @@ export default class Reward{
         //this.cost = 1;
     }
 
-    clicOnRewardFunc(index,price){
+    clicOnRewardFunc(index,price, callback){
         return function(){
             if (currentShells>=price && canClick){
 
@@ -68,6 +69,7 @@ export default class Reward{
                 this.scene.events.emit(SHELL_UPDATE_EVENT, -price);
                 //Elimina el index escogido de la lista
                 this.choicesIndexes.splice(this.choicesIndexes.indexOf(index),1);
+                if (callback !== undefined) callback();
             }
             else{console.log("Te faltan conchas chaval")} //TODO: Mensaje de conchas insuficientes
 
