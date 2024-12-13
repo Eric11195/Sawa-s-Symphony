@@ -42,7 +42,7 @@ to Jump`];
         console.log(windowWidth()*3/4, " ", windowHeight()/6);
         this.flappyFondo = this.scene.add.rectangle(windowWidth()/2, windowHeight()/12, 7*windowWidth()/8, (7/8)*windowHeight(), 0x179bae).setOrigin(0,0);
         //this.flappyFondo.depth = 6;
-        this.flappyBird = new FlappyBird(this.scene,windowWidth()*2.3/4, windowHeight()/6);
+        this.flappyBird = new FlappyBird(this.scene,windowWidth()*2.3/4, windowHeight()/5);
         //this.flappyBird.depth = 100;
         
         this.knifes = this.scene.physics.add.group({
@@ -60,12 +60,14 @@ to Jump`];
 
         this.scene.physics.add.overlap(this.flappyBird, this.knifes, (player, knife) =>
             {
+                console.log("Pajaro muere");
                 this.endGame(false);
             });
     }
 
 
     ThrowKnife(){
+        console.log("Miau");
         if(this.knifesThrown == 12){
             this.endGame(true);
         }else if(this.knifesThrown <=10){
