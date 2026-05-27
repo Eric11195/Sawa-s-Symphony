@@ -70,7 +70,7 @@ See [`architecture.md`](architecture.md) for the full class diagram and design n
 
 ---
 
-## A Cappela Soundtrack from different Videogames
+## A Cappella Soundtrack from different Videogames
 
 All music in Sawa's Song was interpreted by **Izan de Vega López**. The OST was written to match specific BPM values for each enemy encounter, ensuring the rhythm system feels natural and intentional rather than retrofitted.
 
@@ -90,19 +90,44 @@ In total there are three songs:
 
 ---
 
+## My Contribution
+
+**Izan de Vega López** — programming lead, game designer, and composer.
+
+Core systems I designed and implemented:
+- **Beat-synced event system** (`src/Utils/clock.js`) — BPM-driven clock with ±125ms accuracy window
+- **Object pooling** (`src/Projectiles/projectilePool.js`) — configurable overflow strategies (grow / cap / recycle)
+- **Note keyword system** — composable flags (`Forte`, `Piano`, `Earworm`, `Adagio`, `Allegro`, …) with emergent interaction rules
+- **NPC & minigame framework** (`src/NPC/npcClass.js`) — including a full Flappy Bird minigame
+- **A cappella OST** — three songs recorded and timed to specific enemy BPMs
+
+---
+
 ## Team — Fathom Games
 
 | Name | Role |
 |------|------|
-| Izan de Vega López | Programming, Game Design, Music|
+| Izan de Vega López | Programming, Game Design, Music |
 | Óscar Melquiades Durán Narganes | Programming, Game Design, Art |
 | Sergio Yago Juárez | Programming, Game Design |
-| Diego Martín García | Programming|
+| Diego Martín García | Programming |
 
 [![Twitter](https://img.shields.io/badge/Twitter-@FathomGames1-blue)](https://x.com/FathomGames1)
 [![Discord](https://img.shields.io/badge/Discord-Join-7289da)](https://discord.gg/Fqsc9G9W)
 [![YouTube](https://img.shields.io/badge/YouTube-Channel-red)](https://www.youtube.com/channel/UCYzZh8CjlzoX60kzE2s3ylw)
 [![Instagram](https://img.shields.io/badge/Instagram-@fathomgames1-pink)](https://www.instagram.com/fathomgames1/)
+
+---
+
+---
+
+## References
+
+- [Phaser 3 Documentation](https://newdocs.phaser.io/docs/3.60.0)
+- [One Step from Eden](https://store.steampowered.com/app/1061540/One_Step_From_Eden/) — grid combat reference
+- [Crypt of the Necrodancer](https://store.steampowered.com/app/247080/Crypt_of_the_NecroDancer/) — beat-synced action reference
+- [Slay the Spire](https://store.steampowered.com/app/646570/Slay_the_Spire/) — roguelite economy reference
+- [Architecture diagram](architecture.md)
 
 ---
 
